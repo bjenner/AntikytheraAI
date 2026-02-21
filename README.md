@@ -42,3 +42,5 @@ Primary reference:
 
 These materials are not redistributed in this repository.
 All original works remain the copyright of their respective owners.
+
+Licensed under CC BY 4.0
