@@ -17,6 +17,10 @@ exports/dxf/*
 !exports/png/.gitkeep
 !exports/dxf/.gitkeep
 
+# Source materials that are not to be redistributed
+source_materials/*.pdf
+ 
+
 # Temporary and logs
 *.log
 *.tmp

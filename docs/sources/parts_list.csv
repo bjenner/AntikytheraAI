@@ -1,0 +1,2 @@
+part_id,part_name,category,quantity,min_qty,max_qty,key_dimensions_mm,material_guess,source_drawing_ids,evidence_notes,confidence,open_questions,status
+PRT-001,,,,,,,,,,,,
