@@ -1,5 +1,8 @@
 # Source Data Templates
 
+Licensing and attribution for redistributed third-party source materials in
+this folder are documented in `THIRD_PARTY_NOTICES.md` at the repository root.
+
 ## `drawing_index.csv`
 One row per drawing/image/source artifact in scope.
 

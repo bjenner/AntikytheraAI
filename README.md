@@ -40,7 +40,11 @@ Primary reference:
 • Antikythera Mechanism Engineering Drawings  
   https://www.amclock.net/
 
-These materials are not redistributed in this repository.
+The repository includes selected source PDFs and extracted section PDFs for
+research/traceability under the original stated license terms.
 All original works remain the copyright of their respective owners.
+
+Attribution and third-party license details:
+- `THIRD_PARTY_NOTICES.md`
 
 Licensed under CC BY 4.0

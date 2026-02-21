@@ -62,13 +62,18 @@ https://creativecommons.org/licenses/by/4.0/
 THIRD-PARTY SOURCE MATERIALS
 ---------------------------------------------------------------------------
 
-This repository may reference external engineering drawings, research papers,
-or historical source materials that are not distributed within this repository.
+This repository includes third-party source materials under their original
+licenses where redistribution is permitted.
 
-Such materials remain the copyright of their respective owners and are used
-only as reference sources.
+These materials remain the copyright of their respective owners and are not
+relicensed by this project.
 
-See the project README for attribution and links to original source material.
+Current third-party materials include Antikythera manual/source PDFs attributed
+to their author and marked as Creative Commons Attribution 3.0 Unported
+(CC BY 3.0), except where otherwise noted in the source material itself.
+
+Attribution details, source links, and change notes are recorded in:
+`THIRD_PARTY_NOTICES.md`
 
 ---------------------------------------------------------------------------
 SUMMARY

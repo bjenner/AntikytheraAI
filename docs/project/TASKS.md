@@ -1,10 +1,33 @@
 # Tasks (next actions)
 
 ## Now (do next)
-- [ ] Define part-file convention for `scad/parts/`:
+- [x] Split manual into section PDFs (append page ranges in filenames):
+      - `manual_sec6_assembly_disassembly_pXXX-YYY.pdf`
+      - `manual_sec61_main_assembly_pXXX-YYY.pdf`
+      - `manual_sec62_back_internal_plate_subassembly_pXXX-YYY.pdf`
+      - `manual_sec63_planet_gear_box_assembly_pXXX-YYY.pdf`
+      - `manual_sec64_superior_planet_subassembly_pXXX-YYY.pdf`
+      - `manual_sec641_saturn_sun_subassembly_pXXX-YYY.pdf`
+      - `manual_sec642_jupiter_subassembly_pXXX-YYY.pdf`
+      - `manual_sec643_mars_subassembly_pXXX-YYY.pdf`
+      - `manual_sec644_sun_slot_axle_subassembly_pXXX-YYY.pdf`
+      - `manual_sec65_b1_subassembly_pXXX-YYY.pdf`
+      - `manual_sec66_housing_subassembly_pXXX-YYY.pdf`
+- [x] Split manufacturing-order PDFs (append page ranges in filenames):
+      - `manual_sec811_manufacturing_order_pXXX-YYY.pdf`
+      - `manual_sec811x_subsections_pXXX-YYY.pdf` (or one PDF per subsection)
+- [x] Split supporting-reference PDFs (append page ranges in filenames):
+      - `manual_sec83_engineering_manufacturing_drawings_pXXX-YYY.pdf`
+      - `manual_sec88_gear_teeth_profile_pXXX-YYY.pdf`
+      - `manual_sec75_gear_ratio_size_estimates_pXXX-YYY.pdf`
+      - `manual_sec74_3d_computer_models_pXXX-YYY.pdf`
+- [x] Place extracted page-range PDFs in `docs/sources/Antikythera Mechanism/extracted/`
+- [x] Add each extracted PDF to `docs/sources/drawing_index.csv` with page-range in title/notes
+- [x] Define part-file convention for `scad/parts/`:
       - one physical part per file
       - canonical module name per part ID
       - standard origin/orientation convention
+      - documented in `docs/decisions/part_naming_convention.md`
 - [ ] Create usage-mode scene stubs in `scad/assemblies/`:
       - single-part scene
       - engineering-drawing scene

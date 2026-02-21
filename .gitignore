@@ -17,9 +17,8 @@ exports/dxf/*
 !exports/png/.gitkeep
 !exports/dxf/.gitkeep
 
-# Source materials that are not to be redistributed
+# Source materials (defer to Git LFS workflow later)
 docs/sources/*/*.pdf
-
 
 # Temporary and logs
 *.log
