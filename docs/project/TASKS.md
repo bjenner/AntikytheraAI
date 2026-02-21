@@ -1,6 +1,17 @@
 # Tasks (next actions)
 
 ## Now (do next)
+- [ ] Define part-file convention for `scad/parts/`:
+      - one physical part per file
+      - canonical module name per part ID
+      - standard origin/orientation convention
+- [ ] Create usage-mode scene stubs in `scad/assemblies/`:
+      - single-part scene
+      - engineering-drawing scene
+      - assembly-process scene
+      - assembled-motion scene
+      - exploded-view scene
+- [ ] Define scene-selection contract in `scad/main.scad` (mode -> module mapping)
 - [x] Run QA pass on `docs/sources/drawing_index.csv` for consistency:
       - `date_estimate` completeness (`unknown` vs extracted dates)
       - naming consistency for `fragment_scope`
@@ -17,6 +28,7 @@
 - [ ] Record key conflicts/assumptions in `docs/decisions/`
 
 ## Soon
+- [ ] Map canonical part IDs from `docs/sources/parts_list.csv` to planned `scad/parts/*.scad` files
 - [ ] Add automated traceability check: every part maps to one or more drawing IDs
 - [ ] Normalize naming/aliases (single preferred name per part + synonyms)
 - [ ] Add coverage summary: total drawings indexed, total parts identified, low-confidence items
