@@ -1,0 +1,22 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Generated exports
+exports/stl/*
+exports/png/*
+exports/dxf/*
+!exports/stl/.gitkeep
+!exports/png/.gitkeep
+!exports/dxf/.gitkeep
+
+# Temporary and logs
+*.log
+*.tmp
