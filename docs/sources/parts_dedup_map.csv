@@ -12,3 +12,4 @@ PRT-B1-006,PRT-COM-006,low,rejected_low_confidence,Type B collar may be orientat
 PRT-A-005,PRT-B-006,medium,merged_medium_confidence,Both describe small fastener/cap hardware,Merged into canonical entry; validate dimensions/labels when higher-fidelity evidence is available
 PRT-A-005,PRT-COM-008,low,rejected_low_confidence,Micro hardware may overlap fastener/pin family,Do not merge without labeled dimensions or explicit part-number cross-reference
 PRT-A-001,PRT-COM-001,low,rejected_low_confidence,Both are simple circular disc-like components,Do not merge without labeled dimensions or explicit part-number cross-reference
+PRT-SPP-018,PRT-SPP-014,medium,candidate_merge,DRW-022 labels rivet pins as SP6 x4 while section text labels pin set as SP4 x4,Confirm with additional superior-plate sheets/BOM whether SP4 and SP6 are rename or distinct

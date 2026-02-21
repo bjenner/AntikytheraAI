@@ -1,5 +1,15 @@
 # Tasks (next actions)
 
+## Active Focus (start here)
+- [ ] Section `8.11.5 Superior Planet Plate` (`DRW-056`):
+      - [x] extract part candidates and functional notes from pages `106-109`
+      - [x] map candidate parts to canonical IDs in `docs/sources/parts_list.csv`
+      - [x] tag all touched parts with `source_drawing_ids` including `DRW-056`
+      - [x] record uncertainties/assumptions in `docs/decisions/`
+      - [x] define initial OpenSCAD part-file targets under `scad/parts/` using the naming convention
+      - [ ] resolve naming conflict between manual `SP4` pins and drawing `SP6` pins
+      - [ ] refine placeholder geometry using section dimensions/tolerances from drawings
+
 ## Now (do next)
 - [x] Split manual into section PDFs (append page ranges in filenames):
       - `manual_sec6_assembly_disassembly_pXXX-YYY.pdf`
