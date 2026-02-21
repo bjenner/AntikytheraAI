@@ -28,3 +28,12 @@ Scope:
 1. Decide whether `PRT-HOU-004` should be fixed to exact quantity (`1`) or uncertain range (`1..2`) and keep fields consistent.
 2. Optionally attempt secondary metadata extraction path for `DRW-009` and `DRW-017` creation dates.
 3. Start medium-confidence dedup resolution from `docs/sources/parts_dedup_map.csv`.
+
+
+## Post-QA Update
+- Resolved medium-confidence duplicate candidates (6 merges) using `docs/sources/parts_dedup_map.csv`.
+- Removed merged candidate rows from `docs/sources/parts_list.csv` and consolidated references/ranges into canonical rows.
+- Current counts after merge pass: 23 drawings, 191 part rows.
+- Re-ran integrity checks: 0 blocking issues.
+
+- Low-confidence dedup pass complete: remaining low-confidence candidates marked `rejected_low_confidence` pending stronger evidence.

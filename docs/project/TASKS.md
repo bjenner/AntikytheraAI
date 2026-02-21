@@ -10,8 +10,8 @@
       - quantity/min-max consistency
       - low-confidence rows needing immediate clarification
 - [x] Resolve QA finding: `PRT-HOU-004` quantity/max range mismatch
-- [ ] Attempt secondary extraction for missing `date_estimate` on `DRW-009` and `DRW-017`
-- [ ] Perform next dedup pass:
+- [x] Attempt secondary extraction for missing `date_estimate` on `DRW-009` and `DRW-017`
+- [x] Perform next dedup pass:
       - resolve medium-confidence candidates in `docs/sources/parts_dedup_map.csv`
       - promote/reject candidates with rationale
 - [ ] Record key conflicts/assumptions in `docs/decisions/`
@@ -37,3 +37,4 @@
 - [x] Add initial dedup map in `docs/sources/parts_dedup_map.csv`
 - [x] Apply high-confidence dedup merge pass (merged `PRT-B1-005` into `PRT-B-005`)
 - [x] Run QA Round 1 and record findings in `docs/decisions/qa_round_1.md`
+- [x] Complete low-confidence dedup pass (mark unresolved pairs as rejected pending stronger evidence)
