@@ -22,3 +22,14 @@ Field notes:
 - `source_drawing_ids`: semicolon-separated references, e.g. `DRW-001;DRW-014`
 - `confidence`: suggested scale `high|medium|low`
 - `status`: suggested values `identified|inferred|needs_review`
+
+## `parts_dedup_map.csv`
+A proposed dedup/canonicalization map for parts that may represent the same physical component.
+
+Field notes:
+- `canonical_part_id`: preferred ID to keep if merged
+- `candidate_part_id`: potentially duplicate ID
+- `confidence`: confidence in duplication (`high|medium|low`)
+- `decision`: current state (e.g. `candidate_merge`)
+- `reason`: why these are suspected duplicates
+- `next_action`: evidence needed before merging

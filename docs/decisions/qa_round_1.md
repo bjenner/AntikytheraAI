@@ -1,0 +1,30 @@
+# QA Round 1 (Source CSV Integrity)
+
+Date: 2026-02-21
+Scope:
+- `docs/sources/drawing_index.csv`
+- `docs/sources/parts_list.csv`
+- `docs/sources/parts_dedup_map.csv` (reference only)
+
+## Summary
+- Drawings indexed: 23 (`DRW-001` to `DRW-023`)
+- Parts rows: 197
+- High severity issues: 0
+- Medium severity issues: 0
+- Low severity issues: 1
+
+## Findings
+1. Low: `PRT-HOU-004` has `quantity=1` and `max_qty=2` mismatch in `docs/sources/parts_list.csv`.
+
+## Informational Notes
+- `date_estimate` is currently `unknown` for:
+  - `DRW-009`
+  - `DRW-017`
+- No duplicate drawing IDs or part IDs detected.
+- No orphan drawings detected (every drawing has at least one linked part row).
+- All part `source_drawing_ids` resolve to known drawing IDs.
+
+## Recommended Follow-up
+1. Decide whether `PRT-HOU-004` should be fixed to exact quantity (`1`) or uncertain range (`1..2`) and keep fields consistent.
+2. Optionally attempt secondary metadata extraction path for `DRW-009` and `DRW-017` creation dates.
+3. Start medium-confidence dedup resolution from `docs/sources/parts_dedup_map.csv`.
