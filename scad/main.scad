@@ -17,6 +17,7 @@ use <assemblies/full_mechanism.scad>
 use <assemblies/drw022_sheet5.scad>
 use <assemblies/drw001_sheet5.scad>
 use <assemblies/drw001_sheet6.scad>
+use <assemblies/drw001_sheet7.scad>
 
 $fn = quality == "render" ? 160 : 72;
 
@@ -48,6 +49,8 @@ if (mode == "part_a1") {
     drw001_sheet5();
 } else if (mode == "drw001_sheet6") {
     drw001_sheet6();
+} else if (mode == "drw001_sheet7") {
+    drw001_sheet7();
 } else if (mode == "assembly") {
     full_mechanism(theta = 0, exploded_gap = 0);
 } else if (mode == "exploded") {
