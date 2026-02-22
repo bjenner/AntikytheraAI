@@ -4,6 +4,16 @@
 
 include <configs/presets.scad>
 use <parts/a1.scad>
+use <parts/b9_pin.scad>
+use <parts/b10_disc.scad>
+use <parts/b11_carrier_block.scad>
+use <parts/b12_pin.scad>
+use <parts/b13_roller.scad>
+use <parts/b14_pin.scad>
+use <parts/b15_wire_link.scad>
+use <parts/b16_rivet.scad>
+use <parts/b17_standoff_pin.scad>
+use <parts/b18_link_plate.scad>
 use <parts/sp1_superior_gear.scad>
 use <parts/sp2_gear_axle_subassembly.scad>
 use <parts/sp3_superior_plate.scad>
@@ -21,6 +31,8 @@ use <assemblies/drw001_sheet4.scad>
 use <assemblies/drw001_sheet5.scad>
 use <assemblies/drw001_sheet6.scad>
 use <assemblies/drw001_sheet7.scad>
+use <assemblies/drw002_sheet9.scad>
+use <assemblies/drw002_sheet10.scad>
 
 $fn = quality == "render" ? 160 : 72;
 
@@ -28,6 +40,26 @@ spin_theta = mode == "animate" ? 360 * spin_turns * $t : 0;
 
 if (mode == "part_a1") {
     part_a1();
+} else if (mode == "part_b9") {
+    part_b9();
+} else if (mode == "part_b10") {
+    part_b10();
+} else if (mode == "part_b11") {
+    part_b11();
+} else if (mode == "part_b12") {
+    part_b12();
+} else if (mode == "part_b13") {
+    part_b13();
+} else if (mode == "part_b14") {
+    part_b14();
+} else if (mode == "part_b15") {
+    part_b15();
+} else if (mode == "part_b16") {
+    part_b16();
+} else if (mode == "part_b17") {
+    part_b17();
+} else if (mode == "part_b18") {
+    part_b18();
 } else if (mode == "part_sp1") {
     part_sp1();
 } else if (mode == "part_sp2") {
@@ -60,6 +92,10 @@ if (mode == "part_a1") {
     drw001_sheet6();
 } else if (mode == "drw001_sheet7") {
     drw001_sheet7();
+} else if (mode == "drw002_sheet9") {
+    drw002_sheet9();
+} else if (mode == "drw002_sheet10") {
+    drw002_sheet10();
 } else if (mode == "assembly") {
     full_mechanism(theta = 0, exploded_gap = 0);
 } else if (mode == "exploded") {

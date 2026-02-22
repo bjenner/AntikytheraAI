@@ -1,7 +1,7 @@
 // Shared configuration presets for rendering and animation.
 // SPDX-License-Identifier: MIT
 
-mode = "drw001_sheet1";   // "part_a1", "part_sp1", "part_sp2", "part_sp3", "part_sp4", "part_sp5", "part_sp6", "part_sp7", "part_sat6", "part_spp17", "drw022_sheet5", "drw001_sheet1", "drw001_sheet2", "drw001_sheet4", "drw001_sheet5", "drw001_sheet6", "drw001_sheet7", "assembly", "exploded", "animate"
+mode = "drw002_sheet9";   // "part_a1", "part_b9", "part_b10", "part_b11", "part_b12", "part_b13", "part_b14", "part_b15", "part_b16", "part_b17", "part_b18", "part_sp1", "part_sp2", "part_sp3", "part_sp4", "part_sp5", "part_sp6", "part_sp7", "part_sat6", "part_spp17", "drw022_sheet5", "drw001_sheet1", "drw001_sheet2", "drw001_sheet4", "drw001_sheet5", "drw001_sheet6", "drw001_sheet7", "drw002_sheet9", "drw002_sheet10", "assembly", "exploded", "animate"
 quality = "preview";      // "preview" or "render"
 exploded_gap = 10;         // mm offset used by exploded views
 spin_turns = 1;            // revolutions completed per animation cycle
