@@ -4,6 +4,8 @@
 
 include <configs/presets.scad>
 use <parts/a1.scad>
+use <parts/b5_post.scad>
+use <parts/b6_clip.scad>
 use <parts/b7_hub.scad>
 use <parts/b8_rivet_pin.scad>
 use <parts/b9_pin.scad>
@@ -33,6 +35,7 @@ use <assemblies/drw001_sheet4.scad>
 use <assemblies/drw001_sheet5.scad>
 use <assemblies/drw001_sheet6.scad>
 use <assemblies/drw001_sheet7.scad>
+use <assemblies/drw002_sheet7.scad>
 use <assemblies/drw002_sheet8.scad>
 use <assemblies/drw002_sheet9.scad>
 use <assemblies/drw002_sheet10.scad>
@@ -43,6 +46,10 @@ spin_theta = mode == "animate" ? 360 * spin_turns * $t : 0;
 
 if (mode == "part_a1") {
     part_a1();
+} else if (mode == "part_b5") {
+    part_b5();
+} else if (mode == "part_b6") {
+    part_b6();
 } else if (mode == "part_b7") {
     part_b7();
 } else if (mode == "part_b8") {
@@ -99,6 +106,8 @@ if (mode == "part_a1") {
     drw001_sheet6();
 } else if (mode == "drw001_sheet7") {
     drw001_sheet7();
+} else if (mode == "drw002_sheet7") {
+    drw002_sheet7();
 } else if (mode == "drw002_sheet8") {
     drw002_sheet8();
 } else if (mode == "drw002_sheet9") {
