@@ -15,6 +15,9 @@ use <parts/sat6_date_pointer_axle.scad>
 use <parts/spp17_date_pointer_base.scad>
 use <assemblies/full_mechanism.scad>
 use <assemblies/drw022_sheet5.scad>
+use <assemblies/drw001_sheet1.scad>
+use <assemblies/drw001_sheet2.scad>
+use <assemblies/drw001_sheet4.scad>
 use <assemblies/drw001_sheet5.scad>
 use <assemblies/drw001_sheet6.scad>
 use <assemblies/drw001_sheet7.scad>
@@ -45,6 +48,12 @@ if (mode == "part_a1") {
     part_spp17();
 } else if (mode == "drw022_sheet5") {
     drw022_sheet5();
+} else if (mode == "drw001_sheet1") {
+    drw001_sheet1();
+} else if (mode == "drw001_sheet2") {
+    drw001_sheet2();
+} else if (mode == "drw001_sheet4") {
+    drw001_sheet4();
 } else if (mode == "drw001_sheet5") {
     drw001_sheet5();
 } else if (mode == "drw001_sheet6") {
