@@ -15,6 +15,7 @@ use <parts/sat6_date_pointer_axle.scad>
 use <parts/spp17_date_pointer_base.scad>
 use <assemblies/full_mechanism.scad>
 use <assemblies/drw022_sheet5.scad>
+use <assemblies/drw001_sheet5.scad>
 
 $fn = quality == "render" ? 160 : 72;
 
@@ -42,6 +43,8 @@ if (mode == "part_a1") {
     part_spp17();
 } else if (mode == "drw022_sheet5") {
     drw022_sheet5();
+} else if (mode == "drw001_sheet5") {
+    drw001_sheet5();
 } else if (mode == "assembly") {
     full_mechanism(theta = 0, exploded_gap = 0);
 } else if (mode == "exploded") {
