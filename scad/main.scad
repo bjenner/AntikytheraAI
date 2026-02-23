@@ -40,6 +40,7 @@ use <assemblies/drw001_sheet4.scad>
 use <assemblies/drw001_sheet5.scad>
 use <assemblies/drw001_sheet6.scad>
 use <assemblies/drw001_sheet7.scad>
+use <assemblies/drw002_sheet2.scad>
 use <assemblies/drw002_sheet6.scad>
 use <assemblies/drw002_sheet7.scad>
 use <assemblies/drw002_sheet8.scad>
@@ -122,6 +123,8 @@ if (mode == "part_a1") {
     drw001_sheet6();
 } else if (mode == "drw001_sheet7") {
     drw001_sheet7();
+} else if (mode == "drw002_sheet2") {
+    drw002_sheet2();
 } else if (mode == "drw002_sheet6") {
     drw002_sheet6();
 } else if (mode == "drw002_sheet7") {
