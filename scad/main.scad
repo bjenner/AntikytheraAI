@@ -23,6 +23,15 @@ use <parts/b15_wire_link.scad>
 use <parts/b16_rivet.scad>
 use <parts/b17_standoff_pin.scad>
 use <parts/b18_link_plate.scad>
+use <parts/cp1_pointer_small.scad>
+use <parts/cp2_slider.scad>
+use <parts/cp3_rivet.scad>
+use <parts/cp4_stopper.scad>
+use <parts/cp5_spacer.scad>
+use <parts/cp6_bush.scad>
+use <parts/cp7_bush.scad>
+use <parts/cp8_pin.scad>
+use <parts/cp9_pin.scad>
 use <parts/sp1_superior_gear.scad>
 use <parts/sp2_gear_axle_subassembly.scad>
 use <parts/sp3_superior_plate.scad>
@@ -47,6 +56,9 @@ use <assemblies/drw002_sheet7.scad>
 use <assemblies/drw002_sheet8.scad>
 use <assemblies/drw002_sheet9.scad>
 use <assemblies/drw002_sheet10.scad>
+use <assemblies/drw005_sheet1.scad>
+use <assemblies/drw005_sheet2.scad>
+use <assemblies/drw005_sheet3.scad>
 
 $fn = quality == "render" ? 160 : 72;
 
@@ -92,6 +104,24 @@ if (mode == "part_a1") {
     part_b17();
 } else if (mode == "part_b18") {
     part_b18();
+} else if (mode == "part_cp1") {
+    part_cp1();
+} else if (mode == "part_cp2") {
+    part_cp2();
+} else if (mode == "part_cp3") {
+    part_cp3();
+} else if (mode == "part_cp4") {
+    part_cp4();
+} else if (mode == "part_cp5") {
+    part_cp5();
+} else if (mode == "part_cp6") {
+    part_cp6();
+} else if (mode == "part_cp7") {
+    part_cp7();
+} else if (mode == "part_cp8") {
+    part_cp8();
+} else if (mode == "part_cp9") {
+    part_cp9();
 } else if (mode == "part_sp1") {
     part_sp1();
 } else if (mode == "part_sp2") {
@@ -138,6 +168,12 @@ if (mode == "part_a1") {
     drw002_sheet9();
 } else if (mode == "drw002_sheet10") {
     drw002_sheet10();
+} else if (mode == "drw005_sheet1") {
+    drw005_sheet1();
+} else if (mode == "drw005_sheet2") {
+    drw005_sheet2();
+} else if (mode == "drw005_sheet3") {
+    drw005_sheet3();
 } else if (mode == "assembly") {
     full_mechanism(theta = 0, exploded_gap = 0);
 } else if (mode == "exploded") {
