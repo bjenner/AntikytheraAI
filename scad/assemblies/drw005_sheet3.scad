@@ -1,6 +1,13 @@
 // DRW-005 Sheet 3 recreation (Common Parts cp-f1 to cp-f6).
-// Scene-first implementation with local modules.
+// Refactored to use standalone part modules.
 // SPDX-License-Identifier: MIT
+
+use <../parts/cpf1_fork.scad>
+use <../parts/cpf2_fork.scad>
+use <../parts/cpf3_fork.scad>
+use <../parts/cpf4_fork.scad>
+use <../parts/cpf5_fork.scad>
+use <../parts/cpf6_fork.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.3) {
     hull() {
@@ -18,21 +25,6 @@ module outline2d(w = 0.38) {
 
 module label(s, sz = 3.0, bold = false) {
     text(s, size = sz, halign = "left", valign = "center", font = bold ? "Liberation Sans:style=Bold" : "Liberation Sans");
-}
-
-module fork_profile_2d(body_r = 5.0, slot_w = 2.0, slot_len = 8.0, leg_w = 1.6, neck_r = 3.0) {
-    difference() {
-        union() {
-            circle(r = body_r, $fn = 80);
-            translate([0, body_r - 0.2]) square([slot_w + 2 * leg_w, slot_len], center = true);
-        }
-        translate([0, body_r + slot_len * 0.35]) square([slot_w, slot_len], center = true);
-    }
-}
-
-module fork_part_local(body_r = 5.0, slot_w = 2.0, slot_len = 8.0, th = 1.0) {
-    linear_extrude(height = th)
-        fork_profile_2d(body_r = body_r, slot_w = slot_w, slot_len = slot_len);
 }
 
 module drw005_sheet3() {
@@ -61,14 +53,14 @@ module drw005_sheet3() {
     color("black") translate([289, 13, 0]) linear_extrude(height = th) label("SIZE A3    REV 8.0    SHEET 3 OF 3", sz = 2.9);
 
     // Top row forks.
-    color([0.35, 0.27, 0.20]) translate([46, 246, 16]) rotate([68, 0, 26]) scale([2.0, 2.0, 2.0]) fork_part_local(body_r = 5.0, slot_w = 1.5, slot_len = 6.0, th = 1.0);
-    color([0.35, 0.27, 0.20]) translate([148, 246, 16]) rotate([68, 0, 26]) scale([2.0, 2.0, 2.0]) fork_part_local(body_r = 5.0, slot_w = 2.0, slot_len = 7.0, th = 1.0);
-    color([0.35, 0.27, 0.20]) translate([260, 246, 16]) rotate([68, 0, 26]) scale([2.0, 2.0, 2.0]) fork_part_local(body_r = 5.0, slot_w = 2.0, slot_len = 8.0, th = 1.0);
-    color([0.35, 0.27, 0.20]) translate([356, 246, 16]) rotate([68, 0, 26]) scale([2.0, 2.0, 2.0]) fork_part_local(body_r = 5.0, slot_w = 2.0, slot_len = 8.0, th = 1.0);
+    color([0.35, 0.27, 0.20]) translate([46, 246, 16]) rotate([68, 0, 26]) scale([2.0, 2.0, 2.0]) part_cpf1();
+    color([0.35, 0.27, 0.20]) translate([148, 246, 16]) rotate([68, 0, 26]) scale([2.0, 2.0, 2.0]) part_cpf2();
+    color([0.35, 0.27, 0.20]) translate([260, 246, 16]) rotate([68, 0, 26]) scale([2.0, 2.0, 2.0]) part_cpf3();
+    color([0.35, 0.27, 0.20]) translate([356, 246, 16]) rotate([68, 0, 26]) scale([2.0, 2.0, 2.0]) part_cpf4();
 
     // Bottom row forks.
-    color([0.35, 0.27, 0.20]) translate([154, 96, 16]) rotate([68, 0, 28]) scale([2.4, 2.4, 2.4]) fork_part_local(body_r = 6.0, slot_w = 2.5, slot_len = 12.0, th = 1.0);
-    color([0.35, 0.27, 0.20]) translate([320, 104, 16]) rotate([68, 0, 28]) scale([2.2, 2.2, 2.2]) fork_part_local(body_r = 5.0, slot_w = 3.0, slot_len = 10.0, th = 1.0);
+    color([0.35, 0.27, 0.20]) translate([154, 96, 16]) rotate([68, 0, 28]) scale([2.4, 2.4, 2.4]) part_cpf5();
+    color([0.35, 0.27, 0.20]) translate([320, 104, 16]) rotate([68, 0, 28]) scale([2.2, 2.2, 2.2]) part_cpf6();
 
     // Labels.
     color("black") {
@@ -82,19 +74,19 @@ module drw005_sheet3() {
 
     // 2D guide profiles.
     color([0.92, 0.92, 0.92]) {
-        translate([38, 182, 0]) linear_extrude(height = th) fork_profile_2d(body_r = 5.0, slot_w = 1.5, slot_len = 6.0);
-        translate([140, 182, 0]) linear_extrude(height = th) fork_profile_2d(body_r = 5.0, slot_w = 2.0, slot_len = 7.0);
-        translate([252, 182, 0]) linear_extrude(height = th) fork_profile_2d(body_r = 5.0, slot_w = 2.0, slot_len = 8.0);
-        translate([348, 182, 0]) linear_extrude(height = th) fork_profile_2d(body_r = 5.0, slot_w = 2.0, slot_len = 8.0);
-        translate([96, 48, 0]) linear_extrude(height = th) fork_profile_2d(body_r = 6.0, slot_w = 2.5, slot_len = 12.0);
-        translate([246, 48, 0]) linear_extrude(height = th) fork_profile_2d(body_r = 5.0, slot_w = 3.0, slot_len = 10.0);
+        translate([38, 182, 0]) linear_extrude(height = th) projection(cut = true) part_cpf1();
+        translate([140, 182, 0]) linear_extrude(height = th) projection(cut = true) part_cpf2();
+        translate([252, 182, 0]) linear_extrude(height = th) projection(cut = true) part_cpf3();
+        translate([348, 182, 0]) linear_extrude(height = th) projection(cut = true) part_cpf4();
+        translate([96, 48, 0]) linear_extrude(height = th) projection(cut = true) part_cpf5();
+        translate([246, 48, 0]) linear_extrude(height = th) projection(cut = true) part_cpf6();
     }
     color("black") {
-        translate([38, 182, 0.01]) linear_extrude(height = th) outline2d(0.30) fork_profile_2d(body_r = 5.0, slot_w = 1.5, slot_len = 6.0);
-        translate([140, 182, 0.01]) linear_extrude(height = th) outline2d(0.30) fork_profile_2d(body_r = 5.0, slot_w = 2.0, slot_len = 7.0);
-        translate([252, 182, 0.01]) linear_extrude(height = th) outline2d(0.30) fork_profile_2d(body_r = 5.0, slot_w = 2.0, slot_len = 8.0);
-        translate([348, 182, 0.01]) linear_extrude(height = th) outline2d(0.30) fork_profile_2d(body_r = 5.0, slot_w = 2.0, slot_len = 8.0);
-        translate([96, 48, 0.01]) linear_extrude(height = th) outline2d(0.30) fork_profile_2d(body_r = 6.0, slot_w = 2.5, slot_len = 12.0);
-        translate([246, 48, 0.01]) linear_extrude(height = th) outline2d(0.30) fork_profile_2d(body_r = 5.0, slot_w = 3.0, slot_len = 10.0);
+        translate([38, 182, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = true) part_cpf1();
+        translate([140, 182, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = true) part_cpf2();
+        translate([252, 182, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = true) part_cpf3();
+        translate([348, 182, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = true) part_cpf4();
+        translate([96, 48, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = true) part_cpf5();
+        translate([246, 48, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = true) part_cpf6();
     }
 }

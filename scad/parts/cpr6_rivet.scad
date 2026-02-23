@@ -1,0 +1,14 @@
+// part_id: cp-r6
+// name: Rivet 5D x 4L
+// source_drawing_ids: DRW-005
+// units: mm
+// revision: 0.1
+// SPDX-License-Identifier: MIT
+
+module part_cpr6() {
+    union() {
+        cylinder(d = 5.0, h = 4.0, center = false, $fn = 50);
+        translate([0, 0, 4.0]) cylinder(d = 8.0, h = 1.0, center = false, $fn = 64);
+        translate([0, 0, 5.0]) cylinder(d = 6.0, h = 1.0, center = false, $fn = 56);
+    }
+}
