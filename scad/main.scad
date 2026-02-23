@@ -71,6 +71,7 @@ use <assemblies/drw002_sheet10.scad>
 use <assemblies/drw005_sheet1.scad>
 use <assemblies/drw005_sheet2.scad>
 use <assemblies/drw005_sheet3.scad>
+use <assemblies/parts_inventory.scad>
 
 $fn = quality == "render" ? 160 : 72;
 
@@ -210,6 +211,8 @@ if (mode == "part_a1") {
     drw005_sheet2();
 } else if (mode == "drw005_sheet3") {
     drw005_sheet3();
+} else if (mode == "parts_inventory") {
+    parts_inventory();
 } else if (mode == "assembly") {
     full_mechanism(theta = 0, exploded_gap = 0);
 } else if (mode == "exploded") {

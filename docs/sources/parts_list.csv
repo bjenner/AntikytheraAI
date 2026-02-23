@@ -3,24 +3,24 @@ PRT-A-001,Large circular plate/disc,plate,1,1,1,unknown,bronze,DRW-001,Dominant 
 PRT-A-002,Central shaft/hub,shaft,1,1,1,unknown,bronze,DRW-001;DRW-002,Cylindrical shaft/hub protrudes from plate toward gear subassembly,medium,Is shaft integral with plate or separate part? Merged medium-confidence duplicate PRT-B-003.,needs_review
 PRT-A-003,Small external gear,gear,1,1,1,unknown,bronze,DRW-001;DRW-002,Toothed wheel visible on attached subassembly,medium,Tooth count/module/face width not legible Merged medium-confidence duplicate PRT-B-004.,needs_review
 PRT-A-004,Gear support bracket/cage,other,1,1,1,unknown,bronze,DRW-001,Upright bracket-like structure supports/positions small gear,low,Single piece vs multi-part bracket unclear,inferred
-PRT-A-005,Bracket fasteners/pins,fastener,,2,12,unknown,bronze or steel,DRW-001;DRW-002,At least two small cylindrical fastener/pin-like features visible,medium,"Exact count/type (pins, screws, rivets) uncertain Merged medium-confidence duplicate PRT-B-006.",needs_review
+PRT-A-005,Bracket fasteners/pins,fastener,,2,12,unknown,bronze or steel,DRW-001;DRW-002;DRW-005,At least two small cylindrical fastener/pin-like features visible,medium,"Exact count/type (pins, screws, rivets) uncertain Merged medium-confidence duplicate PRT-B-006.",needs_review
 PRT-B-001,Large spoked ring wheel,gear,1,1,1,unknown,bronze,DRW-002,Dominant large wheel with clear outer teeth and spoke cutouts,medium,Exact tooth count and module not legible,identified
 PRT-B-002,Cross-brace plate,plate,1,1,1,unknown,bronze,DRW-002,Diagonal/crossing brace spans the wheel interior and ties to center,medium,Single plate vs stacked plates unclear,identified
 PRT-B-005,Support stanchions/posts,other,,3,8,unknown,bronze,DRW-002;DRW-003;DRW-004,Vertical posts connect upper and lower structure across B and B1 views,medium,Confirm exact count and whether all posts are identical across both assemblies Merged medium-confidence duplicate PRT-IP-002.,needs_review
-PRT-B1-001,Coaxial gear stack (set),gear,,4,10,unknown,bronze,DRW-003,Multiple distinct toothed discs visible in layered side profile,medium,Need top/section views to split into unique gear IDs and exact counts,inferred
+PRT-B1-001,Coaxial gear stack (set),gear,,4,10,unknown,bronze,DRW-002;DRW-003,Multiple distinct toothed discs visible in layered side profile,medium,Need top/section views to split into unique gear IDs and exact counts,inferred
 PRT-B1-002,Top spindle/indicator shaft,shaft,1,1,1,unknown,bronze,DRW-003,Stepped vertical spindle rises above top plate,medium,Pointer/cap geometry not resolved from side view,identified
 PRT-B1-003,Upper retaining plate/ring,plate,1,1,1,unknown,bronze,DRW-003,Thin upper plate spans over the gear stack and ties supports,medium,Could be segmented frame members instead of single plate,needs_review
 PRT-B1-004,Lower base plate/ring,plate,1,1,1,unknown,bronze,DRW-003,Lower plate supports the stacked gears and frame,medium,May correspond to previously logged ring/plate from DRW-002,needs_review
-PRT-B1-006,Axle spacers/washers,spacer,,1,10,unknown,bronze,DRW-003;DRW-004;DRW-005,Thin intermediate layers between gears suggest spacer elements,medium,Could be gear hubs/flanges rather than separate spacers Merged medium-confidence duplicate PRT-IP-008. Merged medium-confidence duplicate PRT-COM-005.,needs_review
+PRT-B1-006,Axle spacers/washers,spacer,,1,10,unknown,bronze,DRW-001;DRW-002;DRW-003;DRW-004;DRW-005,Thin intermediate layers between gears suggest spacer elements,medium,Could be gear hubs/flanges rather than separate spacers Merged medium-confidence duplicate PRT-IP-008. Merged medium-confidence duplicate PRT-COM-005.,needs_review
 PRT-IP-001,Rectangular base plate,plate,1,1,1,unknown,bronze,DRW-004,Large rectangular plate visible in both top and underside views,high,Thickness and hole pattern dimensions not yet measured,identified
 PRT-IP-003,Circular ring track/annulus,gear,1,1,1,unknown,bronze,DRW-004,Large circular toothed/ring feature around central assembly,medium,"Whether fully toothed gear, ring track, or both is unresolved",needs_review
 PRT-IP-004,Primary spur gear pair,gear,,2,3,unknown,bronze,DRW-004,Two to three meshing spur gears clearly visible near center-left,medium,Need higher fidelity views to split into unique gear IDs,inferred
-PRT-IP-005,Secondary small pinion(s),gear,,1,3,unknown,bronze,DRW-004,Small pinion-like gears visible inboard of main pair,low,Could overlap with previously logged pinions from DRW-002/003,needs_review
+PRT-IP-005,Secondary small pinion(s),gear,,1,3,unknown,bronze,DRW-002;DRW-004,Small pinion-like gears visible inboard of main pair,low,Could overlap with previously logged pinions from DRW-002/003,needs_review
 PRT-IP-006,Central carrier hub,shaft,1,1,1,unknown,bronze,DRW-004,Central hub/axle region supports rotating elements and linkage,medium,Distinct part vs assembly of multiple collars unresolved,needs_review
 PRT-IP-007,Through shaft or hand-input axle,shaft,1,1,1,unknown,bronze or steel,DRW-004,Long shaft protrudes below plate and through center area,high,"End interface details (handle, square, keyway) not legible",identified
 PRT-COM-001,Plain wheel/disc blank,plate,1,1,1,unknown,bronze,DRW-005,Large plain circular disc with center bore shown as standalone part,medium,Whether this maps to an existing dial/wheel part is unresolved,needs_review
 PRT-COM-002,Rectangular bracket/block,other,1,1,1,unknown,bronze,DRW-005,Box-like rectangular component with an underside tab/hook feature,medium,Mounting orientation and mating parts not yet identified,identified
-PRT-COM-003,Link/tab plate,other,1,1,1,unknown,bronze,DRW-005,Small flat lever/tab with rounded pivot end and tapered arm,medium,"Function (lever, stop, latch) unclear",identified
+PRT-COM-003,Link/tab plate,other,1,1,1,unknown,bronze,DRW-002;DRW-005,Small flat lever/tab with rounded pivot end and tapered arm,medium,"Function (lever, stop, latch) unclear",identified
 PRT-COM-004,Stepped bushing/adapter,spacer,1,1,1,unknown,bronze,DRW-005,One larger stepped cylindrical bushing shown separately,medium,Could be hub adapter rather than spacer,needs_review
 PRT-COM-006,Small collar bushing type B,spacer,,1,3,unknown,bronze,DRW-005,Second collar-like geometry appears distinct from type A,low,May be same part shown from different orientation,needs_review
 PRT-COM-007,Short straight pin/shaft,pin,,2,4,unknown,bronze or steel,DRW-005,Multiple short cylindrical pins/axles displayed on right and left,medium,Exact count and diameters not legible,identified
@@ -199,3 +199,64 @@ PRT-VEN-009,Venus rear support standoffs/posts,other,,4,10,unknown,bronze,DRW-02
 PRT-VEN-010,Venus pivots/arbors and shafts,shaft,,4,12,unknown,bronze or steel,DRW-023,Shaft/pivot elements carry front indicators and rear gears,medium,Need exact split by function,inferred
 PRT-VEN-011,Venus collars/spacers/washers,spacer,,3,16,unknown,bronze or steel,DRW-023,Ring-like collars at shaft and hub interfaces,low,Could be integral shoulders,needs_review
 PRT-VEN-012,Venus mount points/fasteners,pin,,6,24,unknown,bronze or steel,DRW-023,Mount-point and cap-like features on front/rear assemblies,low,Fasteners vs empty holes unresolved,inferred
+
+a1,a1 modeled part,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a1.scad; reconciliation row; maps_to=PRT-A-003,high,maps_to=PRT-A-003,reconciled
+a10,a10 disc,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a10_disc.scad; reconciliation row; maps_to=PRT-A-001,high,maps_to=PRT-A-001,reconciled
+a12,a12 link,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a12_link.scad; reconciliation row; maps_to=PRT-A-004,high,maps_to=PRT-A-004,reconciled
+a2,a2 ring,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a2_ring.scad; reconciliation row; maps_to=PRT-B1-006,high,maps_to=PRT-B1-006,reconciled
+a3,a3 pin,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a3_pin.scad; reconciliation row; maps_to=PRT-A-002,high,maps_to=PRT-A-002,reconciled
+a4,a4 block,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a4_block.scad; reconciliation row; maps_to=PRT-A-004,high,maps_to=PRT-A-004,reconciled
+a5,a5 ring,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a5_ring.scad; reconciliation row; maps_to=PRT-B1-006,high,maps_to=PRT-B1-006,reconciled
+a6,a6 bush,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a6_bush.scad; reconciliation row; maps_to=PRT-A-002,high,maps_to=PRT-A-002,reconciled
+a7,a7 block,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a7_block.scad; reconciliation row; maps_to=PRT-A-004,high,maps_to=PRT-A-004,reconciled
+a8,a8 rivet pin,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a8_rivet_pin.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+a9,a9 axle,modeled_part,1,1,1,from_scad,bronze,DRW-001,scad_file=scad/parts/a9_axle.scad; reconciliation row; maps_to=PRT-A-002,high,maps_to=PRT-A-002,reconciled
+b0,b0 gear,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b0_gear.scad; reconciliation row; maps_to=PRT-B1-001,high,maps_to=PRT-B1-001,reconciled
+b10,b10 disc,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b10_disc.scad; reconciliation row; maps_to=PRT-B1-006,high,maps_to=PRT-B1-006,reconciled
+b11,b11 carrier block,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b11_carrier_block.scad; reconciliation row; maps_to=PRT-B-002,high,maps_to=PRT-B-002,reconciled
+b12,b12 pin,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b12_pin.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+b13,b13 roller,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b13_roller.scad; reconciliation row; maps_to=PRT-IP-005,high,maps_to=PRT-IP-005,reconciled
+b14,b14 pin,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b14_pin.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+b15,b15 wire link,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b15_wire_link.scad; reconciliation row; maps_to=PRT-COM-003,high,maps_to=PRT-COM-003,reconciled
+b16,b16 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b16_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+b17,b17 standoff pin,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b17_standoff_pin.scad; reconciliation row; maps_to=PRT-B-005,high,maps_to=PRT-B-005,reconciled
+b18,b18 link plate,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b18_link_plate.scad; reconciliation row; maps_to=PRT-B-002,high,maps_to=PRT-B-002,reconciled
+b1,b1 main wheel,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b1_main_wheel.scad; reconciliation row; maps_to=PRT-B-001,high,maps_to=PRT-B-001,reconciled
+b2,b2 gear ring,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b2_gear_ring.scad; reconciliation row; maps_to=PRT-B1-001,high,maps_to=PRT-B1-001,reconciled
+b3,b3 gear,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b3_gear.scad; reconciliation row; maps_to=PRT-B1-001,high,maps_to=PRT-B1-001,reconciled
+b4,b4 rivet pin,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b4_rivet_pin.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+b5,b5 post,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b5_post.scad; reconciliation row; maps_to=PRT-B-005,high,maps_to=PRT-B-005,reconciled
+b6,b6 clip,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b6_clip.scad; reconciliation row; maps_to=PRT-COM-003,high,maps_to=PRT-COM-003,reconciled
+b7,b7 hub,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b7_hub.scad; reconciliation row; maps_to=PRT-A-002,high,maps_to=PRT-A-002,reconciled
+b8,b8 rivet pin,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b8_rivet_pin.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+b9,b9 pin,modeled_part,1,1,1,from_scad,bronze,DRW-002,scad_file=scad/parts/b9_pin.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+cp1,cp1 pointer small,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cp1_pointer_small.scad; reconciliation row; maps_to=PRT-COM-003,high,maps_to=PRT-COM-003,reconciled
+cp2,cp2 slider,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cp2_slider.scad; reconciliation row; maps_to=PRT-COM-002,high,maps_to=PRT-COM-002,reconciled
+cp3,cp3 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cp3_rivet.scad; reconciliation row; maps_to=PRT-COM-008,high,maps_to=PRT-COM-008,reconciled
+cp4,cp4 stopper,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cp4_stopper.scad; reconciliation row; maps_to=PRT-COM-004,high,maps_to=PRT-COM-004,reconciled
+cp5,cp5 spacer,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cp5_spacer.scad; reconciliation row; maps_to=PRT-COM-001,high,maps_to=PRT-COM-001,reconciled
+cp6,cp6 bush,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cp6_bush.scad; reconciliation row; maps_to=PRT-COM-006,high,maps_to=PRT-COM-006,reconciled
+cp7,cp7 bush,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cp7_bush.scad; reconciliation row; maps_to=PRT-COM-006,high,maps_to=PRT-COM-006,reconciled
+cp8,cp8 pin,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cp8_pin.scad; reconciliation row; maps_to=PRT-COM-007,high,maps_to=PRT-COM-007,reconciled
+cp9,cp9 pin,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cp9_pin.scad; reconciliation row; maps_to=PRT-COM-007,high,maps_to=PRT-COM-007,reconciled
+cpf1,cpf1 fork,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpf1_fork.scad; reconciliation row; maps_to=PRT-COM-003,high,maps_to=PRT-COM-003,reconciled
+cpf2,cpf2 fork,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpf2_fork.scad; reconciliation row; maps_to=PRT-COM-003,high,maps_to=PRT-COM-003,reconciled
+cpf3,cpf3 fork,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpf3_fork.scad; reconciliation row; maps_to=PRT-COM-003,high,maps_to=PRT-COM-003,reconciled
+cpf4,cpf4 fork,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpf4_fork.scad; reconciliation row; maps_to=PRT-COM-003,high,maps_to=PRT-COM-003,reconciled
+cpf5,cpf5 fork,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpf5_fork.scad; reconciliation row; maps_to=PRT-COM-003,high,maps_to=PRT-COM-003,reconciled
+cpf6,cpf6 fork,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpf6_fork.scad; reconciliation row; maps_to=PRT-COM-003,high,maps_to=PRT-COM-003,reconciled
+cpr1,cpr1 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpr1_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+cpr2,cpr2 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpr2_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+cpr3,cpr3 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpr3_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+cpr4,cpr4 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpr4_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+cpr5,cpr5 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpr5_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+cpr6,cpr6 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpr6_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+sat6,sat6 date pointer axle,modeled_part,1,1,1,from_scad,bronze,DRW-056,scad_file=scad/parts/sat6_date_pointer_axle.scad; reconciliation row; maps_to=PRT-SPP-008,high,maps_to=PRT-SPP-008,reconciled
+sp1,sp1 superior gear,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp1_superior_gear.scad; reconciliation row; maps_to=PRT-SPP-011,high,maps_to=PRT-SPP-011,reconciled
+sp2,sp2 gear axle subassembly,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp2_gear_axle_subassembly.scad; reconciliation row; maps_to=PRT-SPP-012,high,maps_to=PRT-SPP-012,reconciled
+sp3,sp3 superior plate,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp3_superior_plate.scad; reconciliation row; maps_to=PRT-SPP-013,high,maps_to=PRT-SPP-013,reconciled
+sp4,sp4 press pin,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp4_press_pin.scad; reconciliation row; maps_to=PRT-SPP-014,high,maps_to=PRT-SPP-014,reconciled
+sp5,sp5 superior plate,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp5_superior_plate.scad; reconciliation row; maps_to=PRT-SPP-015,high,maps_to=PRT-SPP-015,reconciled
+sp6,sp6 rivet pin,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp6_rivet_pin.scad; reconciliation row; maps_to=PRT-SPP-018,high,maps_to=PRT-SPP-018,reconciled
+sp7,sp7 companion gear,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp7_companion_gear.scad; reconciliation row; maps_to=PRT-SPP-016,high,maps_to=PRT-SPP-016,reconciled
+spp17,spp17 date pointer base,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/spp17_date_pointer_base.scad; reconciliation row; maps_to=PRT-SPP-017,high,maps_to=PRT-SPP-017,reconciled
