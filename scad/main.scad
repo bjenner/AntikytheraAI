@@ -63,12 +63,25 @@ use <parts/dat5_ball_tip_small.scad>
 use <parts/dat6_post_small.scad>
 use <parts/dat9_base_plate.scad>
 use <parts/dat10_spoked_wheel.scad>
+use <parts/i1_gear.scad>
+use <parts/i2_hub.scad>
+use <parts/h1_gear.scad>
+use <parts/h2_pinion.scad>
+use <parts/h3_hub.scad>
+use <parts/exe1_rivet_pin.scad>
+use <parts/g2_pinion.scad>
 use <assemblies/full_mechanism.scad>
 use <assemblies/drw022_sheet5.scad>
 use <assemblies/drw008_sheet5.scad>
 use <assemblies/drw008_sheet4.scad>
 use <assemblies/drw008_sheet3.scad>
 use <assemblies/drw008_sheet2.scad>
+use <assemblies/drw009_sheet6.scad>
+use <assemblies/drw009_sheet5.scad>
+use <assemblies/drw009_sheet4.scad>
+use <assemblies/drw009_sheet3.scad>
+use <assemblies/drw009_sheet2.scad>
+use <assemblies/drw009_sheet1.scad>
 use <assemblies/drw001_sheet1.scad>
 use <assemblies/drw001_sheet2.scad>
 use <assemblies/drw001_sheet4.scad>
@@ -211,12 +224,38 @@ if (mode == "part_a1") {
     part_dat9();
 } else if (mode == "part_dat10") {
     part_dat10();
+} else if (mode == "part_i1") {
+    part_i1();
+} else if (mode == "part_i2") {
+    part_i2();
+} else if (mode == "part_h1") {
+    part_h1();
+} else if (mode == "part_h2") {
+    part_h2();
+} else if (mode == "part_h3") {
+    part_h3();
+} else if (mode == "part_exe1") {
+    part_exe1();
+} else if (mode == "part_g2") {
+    part_g2();
 } else if (mode == "drw022_sheet5") {
     drw022_sheet5();
 } else if (mode == "drw008_sheet3") {
     drw008_sheet3();
 } else if (mode == "drw008_sheet2") {
     drw008_sheet2();
+} else if (mode == "drw009_sheet6") {
+    drw009_sheet6();
+} else if (mode == "drw009_sheet5") {
+    drw009_sheet5();
+} else if (mode == "drw009_sheet4") {
+    drw009_sheet4();
+} else if (mode == "drw009_sheet3") {
+    drw009_sheet3();
+} else if (mode == "drw009_sheet2") {
+    drw009_sheet2();
+} else if (mode == "drw009_sheet1") {
+    drw009_sheet1();
 } else if (mode == "drw008_sheet5") {
     drw008_sheet5();
 } else if (mode == "drw008_sheet4") {

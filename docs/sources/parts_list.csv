@@ -261,6 +261,13 @@ dat7,dat7 friction ring outer,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_f
 dat8,dat8 friction ring inner,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat8_ring.scad; reconciliation row; maps_to=PRT-DATE-002,high,maps_to=PRT-DATE-002,reconciled
 dat9,dat9 base plate,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat9_base_plate.scad; reconciliation row; maps_to=PRT-DATE-001,high,maps_to=PRT-DATE-001,reconciled
 dat10,dat10 spoked date wheel,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat10_spoked_wheel.scad; reconciliation row; maps_to=PRT-DATE-003,high,maps_to=PRT-DATE-003,reconciled
+i1,i1 exeligmos gear,modeled_part,1,1,1,from_scad,bronze,DRW-009,scad_file=scad/parts/i1_gear.scad; reconciliation row; maps_to=PRT-EXE-002,high,maps_to=PRT-EXE-002,reconciled
+i2,i2 exeligmos hub,modeled_part,1,1,1,from_scad,bronze,DRW-009,scad_file=scad/parts/i2_hub.scad; reconciliation row; maps_to=PRT-EXE-004,high,maps_to=PRT-EXE-004,reconciled
+h1,h1 exeligmos main gear,modeled_part,1,1,1,from_scad,bronze,DRW-009,scad_file=scad/parts/h1_gear.scad; reconciliation row; maps_to=PRT-EXE-002,high,maps_to=PRT-EXE-002,reconciled
+h2,h2 exeligmos pinion,modeled_part,1,1,1,from_scad,bronze,DRW-009,scad_file=scad/parts/h2_pinion.scad; reconciliation row; maps_to=PRT-EXE-003,high,maps_to=PRT-EXE-003,reconciled
+h3,h3 exeligmos hub shaft,modeled_part,1,1,1,from_scad,bronze,DRW-009,scad_file=scad/parts/h3_hub.scad; reconciliation row; maps_to=PRT-EXE-004,high,maps_to=PRT-EXE-004,reconciled
+exe1,exe1 exeligmos rivet pin,modeled_part,1,1,1,from_scad,bronze,DRW-009,scad_file=scad/parts/exe1_rivet_pin.scad; reconciliation row; maps_to=PRT-EXE-006,high,maps_to=PRT-EXE-006,reconciled
+g2,g2 exeligmos pinion,modeled_part,1,1,1,from_scad,bronze,DRW-009,scad_file=scad/parts/g2_pinion.scad; reconciliation row; maps_to=PRT-EXE-003,high,maps_to=PRT-EXE-003,reconciled
 sat6,sat6 date pointer axle,modeled_part,1,1,1,from_scad,bronze,DRW-056,scad_file=scad/parts/sat6_date_pointer_axle.scad; reconciliation row; maps_to=PRT-SPP-008,high,maps_to=PRT-SPP-008,reconciled
 sp1,sp1 superior gear,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp1_superior_gear.scad; reconciliation row; maps_to=PRT-SPP-011,high,maps_to=PRT-SPP-011,reconciled
 sp2,sp2 gear axle subassembly,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp2_gear_axle_subassembly.scad; reconciliation row; maps_to=PRT-SPP-012,high,maps_to=PRT-SPP-012,reconciled
