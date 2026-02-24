@@ -277,3 +277,13 @@ sp5,sp5 superior plate,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_
 sp6,sp6 rivet pin,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp6_rivet_pin.scad; reconciliation row; maps_to=PRT-SPP-018,high,maps_to=PRT-SPP-018,reconciled
 sp7,sp7 companion gear,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp7_companion_gear.scad; reconciliation row; maps_to=PRT-SPP-016,high,maps_to=PRT-SPP-016,reconciled
 spp17,spp17 date pointer base,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/spp17_date_pointer_base.scad; reconciliation row; maps_to=PRT-SPP-017,high,maps_to=PRT-SPP-017,reconciled
+fp6,fp6 front plate post long,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp6_post.scad; reconciliation row; maps_to=PRT-FP-008,high,maps_to=PRT-FP-008,reconciled
+fp7,fp7 front plate post short,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp7_post.scad; reconciliation row; maps_to=PRT-FP-008,high,maps_to=PRT-FP-008,reconciled
+fp8,fp8 front plate post tall,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp8_post.scad; reconciliation row; maps_to=PRT-FP-008,high,maps_to=PRT-FP-008,reconciled
+fp9,fp9 zodiac pointer bush,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp9_bush.scad; reconciliation row; maps_to=PRT-FP-004,high,maps_to=PRT-FP-004,reconciled
+fp10,fp10 zodiac angle pointer,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp10_zodiac_pointer.scad; reconciliation row; maps_to=PRT-FP-005,high,maps_to=PRT-FP-005,reconciled
+fp4,fp4 Egyptian dial ring,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp4_egyptian_dial.scad; reconciliation row; maps_to=PRT-FP-002,high,maps_to=PRT-FP-002,reconciled
+fp5,fp5 Egyptian dial rivet,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp5_rivet.scad; reconciliation row; maps_to=PRT-FP-009,high,maps_to=PRT-FP-009,reconciled
+fp1,fp1 front plate base panel,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp1_front_plate.scad; reconciliation row; maps_to=PRT-FP-001,high,maps_to=PRT-FP-001,reconciled
+fp3,fp3 zodiac dial ring,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp3_zodiac_dial.scad; reconciliation row; maps_to=PRT-FP-002,high,maps_to=PRT-FP-002,reconciled
+fp2,fp2 front panel dial frame,modeled_part,1,1,1,from_scad,bronze,DRW-010,scad_file=scad/parts/fp2_front_panel_dial_frame.scad; reconciliation row; maps_to=PRT-FP-010,high,maps_to=PRT-FP-010,reconciled
