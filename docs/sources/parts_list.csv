@@ -251,6 +251,16 @@ cpr3,cpr3 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts
 cpr4,cpr4 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpr4_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
 cpr5,cpr5 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpr5_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
 cpr6,cpr6 rivet,modeled_part,1,1,1,from_scad,bronze,DRW-005,scad_file=scad/parts/cpr6_rivet.scad; reconciliation row; maps_to=PRT-A-005,high,maps_to=PRT-A-005,reconciled
+dat1,dat1 pointer arm,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat1_pointer.scad; reconciliation row; maps_to=PRT-DATE-003,high,maps_to=PRT-DATE-003,reconciled
+dat2,dat2 pin,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat2_pin.scad; reconciliation row; maps_to=PRT-DATE-007,high,maps_to=PRT-DATE-007,reconciled
+dat3,dat3 large ball tip,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat3_ball_tip.scad; reconciliation row; maps_to=PRT-DATE-007,high,maps_to=PRT-DATE-007,reconciled
+dat4,dat4 post large,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat4_post.scad; reconciliation row; maps_to=PRT-DATE-007,high,maps_to=PRT-DATE-007,reconciled
+dat5,dat5 small ball tip,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat5_ball_tip_small.scad; reconciliation row; maps_to=PRT-DATE-007,high,maps_to=PRT-DATE-007,reconciled
+dat6,dat6 post small,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat6_post_small.scad; reconciliation row; maps_to=PRT-DATE-007,high,maps_to=PRT-DATE-007,reconciled
+dat7,dat7 friction ring outer,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat7_ring.scad; reconciliation row; maps_to=PRT-DATE-002,high,maps_to=PRT-DATE-002,reconciled
+dat8,dat8 friction ring inner,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat8_ring.scad; reconciliation row; maps_to=PRT-DATE-002,high,maps_to=PRT-DATE-002,reconciled
+dat9,dat9 base plate,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat9_base_plate.scad; reconciliation row; maps_to=PRT-DATE-001,high,maps_to=PRT-DATE-001,reconciled
+dat10,dat10 spoked date wheel,modeled_part,1,1,1,from_scad,bronze,DRW-008,scad_file=scad/parts/dat10_spoked_wheel.scad; reconciliation row; maps_to=PRT-DATE-003,high,maps_to=PRT-DATE-003,reconciled
 sat6,sat6 date pointer axle,modeled_part,1,1,1,from_scad,bronze,DRW-056,scad_file=scad/parts/sat6_date_pointer_axle.scad; reconciliation row; maps_to=PRT-SPP-008,high,maps_to=PRT-SPP-008,reconciled
 sp1,sp1 superior gear,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp1_superior_gear.scad; reconciliation row; maps_to=PRT-SPP-011,high,maps_to=PRT-SPP-011,reconciled
 sp2,sp2 gear axle subassembly,modeled_part,1,1,1,from_scad,bronze,DRW-022;DRW-056,scad_file=scad/parts/sp2_gear_axle_subassembly.scad; reconciliation row; maps_to=PRT-SPP-012,high,maps_to=PRT-SPP-012,reconciled

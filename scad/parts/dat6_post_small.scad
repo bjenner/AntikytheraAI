@@ -1,0 +1,13 @@
+// part_id: dat6
+// name: Date pointer post (small)
+// source_drawing_ids: DRW-008
+// units: mm
+// revision: 0.1
+// SPDX-License-Identifier: MIT
+
+module part_dat6(post_d = 1.0, post_l = 17.4, head_d = 1.6, head_h = 0.8) {
+    union() {
+        cylinder(d = post_d, h = post_l, center = false, $fn = 24);
+        translate([0, 0, post_l]) cylinder(d1 = head_d, d2 = post_d, h = head_h, center = false, $fn = 24);
+    }
+}
