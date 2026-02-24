@@ -18,3 +18,9 @@ module part_b10(od = 30, thickness = 2.0) {
     linear_extrude(height = thickness)
         b10_profile_2d(od = od);
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b10();
+}

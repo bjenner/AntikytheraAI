@@ -96,3 +96,9 @@ module drw002_sheet7() {
         line2d([331, 197], [317, 194], 0.24);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw002_sheet7();
+}

@@ -19,3 +19,9 @@ module part_sp3(width = 120, depth = 90, thickness = 2.5, drive_bore_d = 8, moun
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_sp3();
+}

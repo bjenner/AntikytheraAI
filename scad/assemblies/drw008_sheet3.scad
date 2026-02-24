@@ -111,3 +111,9 @@ module drw008_sheet3() {
         translate([180, 83]) text("D", size = 7, font = "Liberation Sans:style=Bold");
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw008_sheet3();
+}

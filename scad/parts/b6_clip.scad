@@ -23,3 +23,9 @@ module part_b6(w = 5.0, d = 3.0, h = 5.0,
         translate([-slot_w / 2, -d / 2 - 0.1, pin_h + h - 2.6]) cube([slot_w, d + 0.2, 2.6], center = false);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b6();
+}

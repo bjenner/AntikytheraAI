@@ -40,3 +40,9 @@ module part_fp10(
     translate([74.0, -0.55, thickness - end_hook_h])
         cube([end_hook_l, 1.1, end_hook_h], center = false);
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_fp10();
+}

@@ -20,3 +20,9 @@ module full_mechanism(theta = 0, exploded_gap = 0) {
         }
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    full_mechanism();
+}

@@ -12,3 +12,9 @@ module part_cp4(core_d = 3.0, core_h = 3.0, flange_d = 4.5, flange_h = 1.5, neck
         translate([0, 0, 0]) cylinder(d = neck_d, h = neck_h, center = false, $fn = 30);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_cp4();
+}

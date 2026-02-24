@@ -98,3 +98,9 @@ module drw001_sheet1() {
     translate([108, 67, 18]) rotate([35, 0, 20]) scale([0.72, 0.72, 0.72]) a1_gear_assembly();
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw001_sheet1();
+}

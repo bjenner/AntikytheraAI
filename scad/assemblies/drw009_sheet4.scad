@@ -100,3 +100,9 @@ module drw009_sheet4() {
         translate([336, 158, 0]) linear_extrude(height = th) label("SCALE 2 : 1", sz = 3.6, bold = true);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw009_sheet4();
+}

@@ -15,3 +15,9 @@ module part_sp7(od = 32.0, thickness = 1.0, bore_d = 20.2, bolt_d = 3.0, bolt_r 
         }
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_sp7();
+}

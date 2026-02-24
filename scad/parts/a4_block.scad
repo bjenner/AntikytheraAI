@@ -13,3 +13,9 @@ module part_a4(w = 12, d = 8, h = 24, bore_d = 8) {
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_a4();
+}

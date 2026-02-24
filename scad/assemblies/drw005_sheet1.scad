@@ -102,3 +102,9 @@ module drw005_sheet1() {
     color([0.93, 0.93, 0.93]) translate([360, 28, 0]) linear_extrude(height = th) projection(cut = true) part_cp7();
     color("black") translate([360, 28, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = true) part_cp7();
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw005_sheet1();
+}

@@ -19,3 +19,9 @@ module part_fp9(
             cylinder(d = counterbore_d, h = counterbore_depth + 0.05, center = false, $fn = 64);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_fp9();
+}

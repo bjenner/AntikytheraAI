@@ -35,3 +35,9 @@ module part_b7(base_d = 20, base_h = 3.2,
                     cylinder(d = rivet_d, h = step1_h + step2_h + 1.2, center = false, $fn = 28);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b7();
+}

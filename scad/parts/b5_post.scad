@@ -33,3 +33,9 @@ module part_b5(body_w = 4.0, body_d = 4.0, body_h = 23.6,
                 cube([side_flat, 6, top_stub_h - 0.5], center = true);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b5();
+}

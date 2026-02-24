@@ -20,3 +20,9 @@ module part_b15(run = 17, drop = 4, wire_d = 0.8) {
         wire_segment([run, 0, 0], [run + 2.2, 0, 1.2], wire_d);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b15();
+}

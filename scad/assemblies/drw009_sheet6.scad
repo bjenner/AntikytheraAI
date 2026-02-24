@@ -99,3 +99,9 @@ module drw009_sheet6() {
     color("black") translate([333, 149, 0]) linear_extrude(height = th) label("Tight press fit i1 to i2", sz = 3.0);
     color("black") translate([315, 90, 0]) linear_extrude(height = th) label("i1 sub assembly", sz = 3.0);
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw009_sheet6();
+}

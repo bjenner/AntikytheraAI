@@ -108,3 +108,9 @@ module drw010_sheet1() {
     // Lower-right inset assembly.
     translate([310, 45, 0]) rotate([72, 0, 14]) scale([0.45, 0.45, 0.45]) lower_inset_stack();
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw010_sheet1();
+}

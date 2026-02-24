@@ -11,3 +11,9 @@ module part_b9(pin_d = 2.0, pin_h = 8.0, head_d = 3.5, head_h = 1.0) {
         cylinder(d = head_d, h = head_h, center = false);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b9();
+}

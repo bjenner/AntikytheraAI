@@ -107,3 +107,9 @@ module drw009_sheet1() {
         color([0.42, 0.29, 0.18]) translate([70, 22, 2.0]) rotate([0, 0, 10]) scale([1.05, 1.05, 1.05]) exeligmos_assembly_cluster();
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw009_sheet1();
+}

@@ -54,3 +54,9 @@ module part_fp1(
         }
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_fp1();
+}

@@ -15,3 +15,9 @@ module part_spp17(base_d = 14, base_h = 2.5, boss_d = 7, boss_h = 2, bore_d = 3)
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_spp17();
+}

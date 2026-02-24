@@ -65,25 +65,35 @@ use <../parts/sp6_rivet_pin.scad>
 use <../parts/sp7_companion_gear.scad>
 use <../parts/sat6_date_pointer_axle.scad>
 use <../parts/spp17_date_pointer_base.scad>
+use <../parts/fp1_front_plate.scad>
+use <../parts/fp2_front_panel_dial_frame.scad>
+use <../parts/fp3_zodiac_dial.scad>
+use <../parts/fp4_egyptian_dial.scad>
+use <../parts/fp5_rivet.scad>
+use <../parts/fp6_post.scad>
+use <../parts/fp7_post.scad>
+use <../parts/fp8_post.scad>
+use <../parts/fp9_bush.scad>
+use <../parts/fp10_zodiac_pointer.scad>
 
 module label3(id, name, file) {
     color("black")
     linear_extrude(height = 0.12) {
-        text(id, size = 2.6, halign = "left", valign = "baseline", font = "Liberation Sans:style=Bold");
-        translate([0, -3.2]) text(name, size = 2.0, halign = "left", valign = "baseline", font = "Liberation Sans");
-        translate([0, -5.8]) text(file, size = 1.7, halign = "left", valign = "baseline", font = "Liberation Sans");
+        text(id, size = 2.4, halign = "left", valign = "baseline", font = "Liberation Sans:style=Bold");
+        translate([0, -3.0]) text(name, size = 1.8, halign = "left", valign = "baseline", font = "Liberation Sans");
+        translate([0, -5.2]) text(file, size = 1.5, halign = "left", valign = "baseline", font = "Liberation Sans");
     }
 }
 
 module tile(col, row, id, name, file, sc = 1, rx = 62, ry = 0, rz = 24) {
     sx = 40;
-    sy = 42;
+    sy = 37;
     x = 10 + col * sx;
     y = 252 - row * sy;
     translate([x, y, 0]) {
         label3(id, name, file);
         color([0.45, 0.30, 0.18])
-            translate([14, -16, 13]) rotate([rx, ry, rz]) scale([sc, sc, sc]) children();
+            translate([14, -15, 13]) rotate([rx, ry, rz]) scale([sc, sc, sc]) children();
     }
 }
 
@@ -173,4 +183,22 @@ module parts_inventory() {
     tile(7,5,"sp7","SP7 companion gear","sp7_companion_gear.scad",0.75) part_sp7();
     tile(8,5,"sat6","SAT6 axle","sat6_date_pointer_axle.scad",1.0,68,0,0) part_sat6();
     tile(9,5,"spp17","SPP17 base","spp17_date_pointer_base.scad",0.9) part_spp17();
+
+    // Row 6 (DRW-010 front-plate parts)
+    tile(0,6,"fp1","FP1 front plate","fp1_front_plate.scad",0.11,68,0,0) part_fp1();
+    tile(1,6,"fp2","FP2 dial frame","fp2_front_panel_dial_frame.scad",0.19,68,0,0) part_fp2();
+    tile(2,6,"fp3","FP3 zodiac dial","fp3_zodiac_dial.scad",0.20,68,0,0) part_fp3();
+    tile(3,6,"fp4","FP4 egyptian dial","fp4_egyptian_dial.scad",0.18,68,0,0) part_fp4();
+    tile(4,6,"fp5","FP5 rivet","fp5_rivet.scad",0.9,68,0,0) part_fp5();
+    tile(5,6,"fp6","FP6 post long","fp6_post.scad",0.65,68,0,0) part_fp6();
+    tile(6,6,"fp7","FP7 post short","fp7_post.scad",0.95,68,0,0) part_fp7();
+    tile(7,6,"fp8","FP8 post tall","fp8_post.scad",0.75,68,0,0) part_fp8();
+    tile(8,6,"fp9","FP9 bush","fp9_bush.scad",0.9,68,0,0) part_fp9();
+    tile(9,6,"fp10","FP10 pointer","fp10_zodiac_pointer.scad",0.20,70,0,18) part_fp10();
+}
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    parts_inventory();
 }

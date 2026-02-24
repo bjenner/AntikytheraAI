@@ -12,3 +12,9 @@ module part_b12(d = 3.0, h = 9.0, edge_r = 0.5) {
         sphere(r = edge_r, $fn = 18);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b12();
+}

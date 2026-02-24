@@ -164,3 +164,9 @@ module drw008_sheet5() {
     color("black") translate([247, 148, 0]) linear_extrude(height = th)
         label("Solder date Pointer to date axle for minimum clearance rotating fit.", sz = 2.9);
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw008_sheet5();
+}

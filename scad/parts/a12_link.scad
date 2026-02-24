@@ -18,3 +18,9 @@ module part_a12(th = 1.5) {
         }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_a12();
+}

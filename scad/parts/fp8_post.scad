@@ -18,3 +18,9 @@ module part_fp8(
             cylinder(d = hole_d, h = depth + 0.2, center = true, $fn = 24);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_fp8();
+}

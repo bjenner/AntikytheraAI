@@ -188,3 +188,9 @@ module drw022_sheet5() {
     translate([131, 72, 22]) scale([2.2, 2.2, 2.2]) iso_sp6();
     translate([224, 58, 22]) scale([0.55, 0.55, 0.55]) iso_sp5();
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw022_sheet5();
+}

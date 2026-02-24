@@ -39,3 +39,9 @@ module part_dat7(
         }
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_dat7();
+}

@@ -40,3 +40,9 @@ module part_b1(thickness = 2.0) {
     linear_extrude(height = thickness)
         b1_wheel_2d();
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b1();
+}

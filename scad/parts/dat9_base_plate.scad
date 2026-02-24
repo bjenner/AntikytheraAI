@@ -81,3 +81,9 @@ module part_dat9(thickness = 2.0) {
         }
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_dat9();
+}

@@ -18,3 +18,9 @@ module part_a1(body_d = 64, thickness = 4, bore_d = 8, spoke_count = 6) {
         }
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_a1();
+}

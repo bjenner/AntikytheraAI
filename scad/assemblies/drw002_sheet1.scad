@@ -140,3 +140,9 @@ module drw002_sheet1() {
     // Bottom-right perspective view.
     translate([305, 56, 16]) rotate([68, 0, 26]) scale([0.92, 0.92, 0.92]) b_assembly();
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw002_sheet1();
+}

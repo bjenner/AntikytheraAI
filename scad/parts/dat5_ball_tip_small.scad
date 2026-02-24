@@ -12,3 +12,9 @@ module part_dat5(ball_d = 3.0, pin_d = 1.0, pin_l = 1.0) {
             cylinder(d = pin_d, h = pin_l, center = false, $fn = 24);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_dat5();
+}

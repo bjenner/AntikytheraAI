@@ -36,3 +36,9 @@ module part_fp2(
     linear_extrude(height = thickness)
         fp2_profile_2d();
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_fp2();
+}

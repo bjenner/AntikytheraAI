@@ -33,3 +33,9 @@ module part_b11(w = 16, h = 24, t = 12.1) {
                 cylinder(d = 5.0, h = w + 0.4, center = true);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b11();
+}

@@ -12,3 +12,9 @@ module part_a8(pin_d = 3, pin_h = 11, head_d = 6, head_h = 1.6) {
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_a8();
+}

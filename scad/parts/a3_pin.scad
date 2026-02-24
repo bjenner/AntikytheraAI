@@ -16,3 +16,9 @@ module part_a3(d = 8, h = 15) {
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_a3();
+}

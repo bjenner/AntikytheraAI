@@ -103,3 +103,9 @@ module drw009_sheet5() {
     color("black") translate([335, 80, 0]) linear_extrude(height = th) label("h1 sub assembly", sz = 3.0);
     color("black") translate([334, 67, 0]) linear_extrude(height = th) label("Solder h2 to h3", sz = 3.0);
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw009_sheet5();
+}

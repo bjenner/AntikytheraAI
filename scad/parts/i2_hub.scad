@@ -27,3 +27,9 @@ module part_i2(
         translate([0, 0, flange_h + mid_h + top_h - 2.2]) cube([1.9, 0.9, 2.4], center = true);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_i2();
+}

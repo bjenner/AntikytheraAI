@@ -12,3 +12,9 @@ module part_cpr6() {
         translate([0, 0, 5.0]) cylinder(d = 6.0, h = 1.0, center = false, $fn = 56);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_cpr6();
+}

@@ -16,3 +16,9 @@ module part_exe1(
         translate([0, 0, -head_h]) cylinder(d = head_d, h = head_h, center = false, $fn = 32);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_exe1();
+}

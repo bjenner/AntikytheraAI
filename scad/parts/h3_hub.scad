@@ -29,3 +29,9 @@ module part_h3(
         translate([0, 0, -0.05]) cylinder(d = through_d, h = body_h + lower_h + flange_h + stem_h + tip_h + 0.1, $fn = 30);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_h3();
+}

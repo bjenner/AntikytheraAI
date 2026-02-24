@@ -193,3 +193,9 @@ module drw002_sheet2() {
     callout("b6", [342, 168], [329, 201], [252, 246]);
     callout("b17", [222, 126], [206, 252], [228, 258]);
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw002_sheet2();
+}

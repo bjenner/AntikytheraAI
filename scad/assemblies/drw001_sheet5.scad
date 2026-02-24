@@ -130,3 +130,9 @@ module drw001_sheet5() {
 
     color("black") translate([74, 18, 0]) linear_extrude(height = th) label("a1 sub assembly", sz = 3.3);
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw001_sheet5();
+}

@@ -15,3 +15,9 @@ module part_sp2(gear_od = 28, gear_thickness = 3, bore_d = 4, axle_d = 4, axle_h
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_sp2();
+}

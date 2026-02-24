@@ -115,3 +115,9 @@ module drw008_sheet4() {
         translate([136, 69, 0]) linear_extrude(height = th) label("Tight press fit dat2 to dat3", sz = 2.8);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw008_sheet4();
+}

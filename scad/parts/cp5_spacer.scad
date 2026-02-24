@@ -11,3 +11,9 @@ module part_cp5(od = 12.0, id = 3.0, th = 2.0) {
         translate([0, 0, -0.1]) cylinder(d = id, h = th + 0.2, center = false, $fn = 36);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_cp5();
+}

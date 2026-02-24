@@ -28,3 +28,9 @@ module part_fp4(
                 cube([1.0, tick_d, h], center = true);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_fp4();
+}

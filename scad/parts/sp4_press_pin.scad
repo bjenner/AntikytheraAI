@@ -9,3 +9,9 @@ module part_sp4(pin_d = 2.2, pin_h = 8) {
     cylinder(d = pin_d, h = pin_h, center = false);
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_sp4();
+}

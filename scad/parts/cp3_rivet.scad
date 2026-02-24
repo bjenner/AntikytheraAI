@@ -11,3 +11,9 @@ module part_cp3(pin_d = 1.0, pin_h = 2.0, head_w = 1.0, head_h = 1.0) {
         translate([-head_w / 2, -head_w / 2, pin_h]) cube([head_w, head_w, head_h], center = false);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_cp3();
+}

@@ -29,3 +29,9 @@ module part_g2(
         translate([0, 0, -0.05]) cylinder(d = bore_d, h = thickness + hub_h + 0.1, $fn = 24);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_g2();
+}

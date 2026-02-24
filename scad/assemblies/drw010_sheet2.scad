@@ -115,3 +115,9 @@ module drw010_sheet2() {
         translate([218, 262, 0]) linear_extrude(height = th) label("cp-f2", sz = 2.8, bold = true);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw010_sheet2();
+}

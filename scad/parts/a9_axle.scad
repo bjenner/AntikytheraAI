@@ -14,3 +14,9 @@ module part_a9(body_d = 9, body_h = 32, upper_d = 8, upper_h = 11.4, shoulder_d 
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_a9();
+}

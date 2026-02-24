@@ -19,3 +19,9 @@ module part_fp5(
         translate([0, 0, shank_h + collar_h]) cylinder(d1 = head_d, d2 = head_d * 0.88, h = head_h, center = false, $fn = 52);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_fp5();
+}

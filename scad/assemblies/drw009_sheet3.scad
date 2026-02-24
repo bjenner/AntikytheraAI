@@ -132,3 +132,9 @@ module drw009_sheet3() {
         translate([129, 216, 0]) linear_extrude(height = th) label("g2 to h1 0.2mm gear clearance", sz = 3.0);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw009_sheet3();
+}

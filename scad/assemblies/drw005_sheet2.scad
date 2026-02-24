@@ -89,3 +89,9 @@ module drw005_sheet2() {
         translate([156, 56, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = true) part_cpr6();
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw005_sheet2();
+}

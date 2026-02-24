@@ -21,3 +21,9 @@ module part_a10(od = 111, th = 2, center_hole_d = 9) {
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_a10();
+}

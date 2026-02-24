@@ -100,3 +100,9 @@ module part_sp5_print() {
 module part_sp5_asm() {
     part_sp5();
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_sp5();
+}

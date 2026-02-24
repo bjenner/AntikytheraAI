@@ -24,3 +24,9 @@ module part_i1(
         translate([0, 0, -0.05]) cylinder(d = bore_d, h = thickness + 0.1, $fn = 42);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_i1();
+}

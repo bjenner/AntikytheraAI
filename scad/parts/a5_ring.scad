@@ -12,3 +12,9 @@ module part_a5(od = 12, id = 8, th = 2) {
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_a5();
+}

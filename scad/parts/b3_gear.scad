@@ -22,3 +22,9 @@ module part_b3(thickness = 1.6) {
     linear_extrude(height = thickness)
         b3_gear_2d();
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b3();
+}

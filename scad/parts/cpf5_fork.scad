@@ -18,3 +18,9 @@ module cpf5_profile_2d() {
 module part_cpf5(th = 1.0) {
     linear_extrude(height = th) cpf5_profile_2d();
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_cpf5();
+}

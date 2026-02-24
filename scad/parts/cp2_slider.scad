@@ -24,3 +24,9 @@ module part_cp2(w = 6.2, d = 4.2, h = 4.2,
             cube([slot_w, d + 0.2, slot_h], center = false);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_cp2();
+}

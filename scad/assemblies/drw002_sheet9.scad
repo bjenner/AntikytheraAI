@@ -130,3 +130,9 @@ module drw002_sheet9() {
     color("black") translate([20, 70, 0]) linear_extrude(height = th) label("b9", sz = 2.8);
     color("black") translate([35, 70, 0]) linear_extrude(height = th) label("b10", sz = 2.8);
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw002_sheet9();
+}

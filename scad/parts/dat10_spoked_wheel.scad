@@ -50,3 +50,9 @@ module part_dat10(
         translate([0, 0, -0.05]) cylinder(d = inner_open_d, h = 1.7, center = false, $fn = 60);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_dat10();
+}

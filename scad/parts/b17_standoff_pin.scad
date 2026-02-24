@@ -42,3 +42,9 @@ module part_b17(body_len = 13.3, body_w = 5.0, body_h = 5.0,
                     cylinder(d = 0.8, h = body_w + 0.2, center = true);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b17();
+}

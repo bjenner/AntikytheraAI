@@ -132,3 +132,9 @@ module drw001_sheet4() {
     color("black") translate([248, 38, 0]) linear_extrude(height = th) text("SCALE 1 : 1", size = 7, halign = "left");
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw001_sheet4();
+}

@@ -44,3 +44,9 @@ module part_b18(length = 124, height = 24, thickness = 1.6) {
     linear_extrude(height = thickness)
         b18_profile_2d(length = length, height = height);
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_b18();
+}

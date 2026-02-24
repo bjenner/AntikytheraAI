@@ -82,3 +82,9 @@ module drw010_sheet8() {
         translate([307, 128, 0]) linear_extrude(height = th) label("\u23005.0", sz = 3.0);
     }
 }
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    drw010_sheet8();
+}

@@ -13,3 +13,9 @@ module part_sat6(axle_d = 3, axle_h = 24, tip_chamfer = 0.5) {
     }
 }
 
+
+// ---- "main guard" ----
+// Default to previewing when opened directly:
+if (is_undef(__LIB_MODE__)) {
+    part_sat6();
+}
