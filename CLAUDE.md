@@ -106,5 +106,5 @@ Examples:
 - Primary fidelity priority: `dimensional fidelity`
 - Default render quality: `preview`
 - Preferred checkpoint cadence: `every drawing`
-- Include source PNGs in git: `yes`
+- Include source PNGs in git: `yes` (tracked via Git LFS — `.gitattributes` covers `*.png`, `*.PNG`, `*.csg`)
 - Branching strategy: `main only`
