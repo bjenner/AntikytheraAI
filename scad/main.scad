@@ -80,6 +80,24 @@ use <parts/fp7_post.scad>
 use <parts/fp8_post.scad>
 use <parts/fp9_bush.scad>
 use <parts/fp10_zodiac_pointer.scad>
+use <parts/jup1_gear.scad>
+use <parts/jup3_gear.scad>
+use <parts/mar1_gear.scad>
+use <parts/jup4_gear.scad>
+use <parts/jup9_rivet_pin.scad>
+use <parts/jup10_hub.scad>
+use <parts/jup13_pointer_arm.scad>
+use <parts/jup14_orb_large.scad>
+use <parts/jup15_orb_rod_large.scad>
+use <parts/jup16_orb_small.scad>
+use <parts/jup17_orb_rod_small.scad>
+use <parts/jup18_pointer_ring_outer.scad>
+use <parts/jup19_pointer_ring_inner.scad>
+use <parts/jup5_gear.scad>
+use <parts/jup11_sleeve.scad>
+use <parts/jup2_gear.scad>
+use <parts/jup7_hub.scad>
+use <parts/jup8_spacer.scad>
 use <assemblies/full_mechanism.scad>
 use <assemblies/drw022_sheet5.scad>
 use <assemblies/drw010_sheet1.scad>
@@ -89,7 +107,14 @@ use <assemblies/drw010_sheet6.scad>
 use <assemblies/drw010_sheet7.scad>
 use <assemblies/drw010_sheet8.scad>
 use <assemblies/drw010_sheet9.scad>
+use <assemblies/drw012_sheet2.scad>
+use <assemblies/drw012_sheet4.scad>
+use <assemblies/drw012_sheet5.scad>
+use <assemblies/drw012_sheet6.scad>
 use <assemblies/drw010_sheet2.scad>
+use <assemblies/drw012_sheet7.scad>
+use <assemblies/drw012_sheet8.scad>
+use <assemblies/drw012_sheet9.scad>
 use <assemblies/drw008_sheet5.scad>
 use <assemblies/drw008_sheet4.scad>
 use <assemblies/drw008_sheet3.scad>
@@ -276,8 +301,58 @@ if (mode == "part_a1") {
     part_fp9();
 } else if (mode == "part_fp10") {
     part_fp10();
+} else if (mode == "part_jup1") {
+    part_jup1();
+} else if (mode == "part_jup3") {
+    part_jup3();
+} else if (mode == "part_jup4") {
+    part_jup4();
+} else if (mode == "part_jup9") {
+    part_jup9();
+} else if (mode == "part_jup10") {
+    part_jup10();
+} else if (mode == "part_jup5") {
+    part_jup5();
+} else if (mode == "part_jup2") {
+    part_jup2();
+} else if (mode == "part_jup7") {
+    part_jup7();
+} else if (mode == "part_jup8") {
+    part_jup8();
+} else if (mode == "part_jup11") {
+    part_jup11();
+} else if (mode == "part_mar1") {
+    part_mar1();
+} else if (mode == "part_jup13") {
+    part_jup13();
+} else if (mode == "part_jup14") {
+    part_jup14();
+} else if (mode == "part_jup15") {
+    part_jup15();
+} else if (mode == "part_jup16") {
+    part_jup16();
+} else if (mode == "part_jup17") {
+    part_jup17();
+} else if (mode == "part_jup18") {
+    part_jup18();
+} else if (mode == "part_jup19") {
+    part_jup19();
 } else if (mode == "drw022_sheet5") {
     drw022_sheet5();
+} else if (mode == "drw012_sheet2") {
+    drw012_sheet2();
+} else if (mode == "drw012_sheet4") {
+    drw012_sheet4();
+} else if (mode == "drw012_sheet5") {
+    drw012_sheet5();
+} else if (mode == "drw012_sheet6") {
+    drw012_sheet6();
+} else if (mode == "drw012_sheet7") {
+    drw012_sheet7();
+} else if (mode == "drw012_sheet8") {
+    drw012_sheet8();
+} else if (mode == "drw012_sheet9") {
+    drw012_sheet9();
 } else if (mode == "drw010_sheet1") {
     drw010_sheet1();
 } else if (mode == "drw010_sheet4") {
