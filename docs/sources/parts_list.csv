@@ -305,3 +305,20 @@ jup17,jup17 jupiter orb rod small,modeled_part,1,1,1,from_scad,bronze,DRW-012,sc
 jup18,jup18 jupiter pointer ring outer,modeled_part,1,1,1,from_scad,bronze,DRW-012,scad_file=scad/parts/jup18_pointer_ring_outer.scad; reconciliation row; maps_to=PRT-JUP-008,high,maps_to=PRT-JUP-008,reconciled
 jup19,jup19 jupiter pointer ring inner,modeled_part,1,1,1,from_scad,bronze,DRW-012,scad_file=scad/parts/jup19_pointer_ring_inner.scad; reconciliation row; maps_to=PRT-JUP-008,high,maps_to=PRT-JUP-008,reconciled
 mar1,mar1 mars companion gear (provisional),modeled_part,1,1,1,from_scad,bronze,DRW-012,scad_file=scad/parts/mar1_gear.scad; provisional fit for DRW-012 Sheet 4 context,medium,maps_to=PRT-MAR-001,provisional
+mar2,mar2 mars transfer gear,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar2_gear.scad; reconciliation row; maps_to=PRT-MAR-005,high,maps_to=PRT-MAR-005,reconciled
+mar3,mar3 mars gear,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar3_gear.scad; reconciliation row; maps_to=PRT-MAR-004,high,maps_to=PRT-MAR-004,reconciled
+mar4,mar4 mars gear with slotted window,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar4_gear.scad; reconciliation row; maps_to=PRT-MAR-005,high,maps_to=PRT-MAR-005,reconciled
+mar6,mar6 mars press-fit hub,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar6_hub.scad; reconciliation row; maps_to=PRT-MAR-009,high,maps_to=PRT-MAR-009,reconciled
+mar7,mar7 mars stepped axle,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar7_axle.scad; reconciliation row; maps_to=PRT-MAR-010,high,maps_to=PRT-MAR-010,reconciled
+mar8,mar8 mars rivet pin,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar8_rivet_pin.scad; reconciliation row; maps_to=PRT-MAR-010,high,maps_to=PRT-MAR-010,reconciled
+mar9,mar9 mars stepped hub,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar9_hub.scad; reconciliation row; maps_to=PRT-MAR-009,high,maps_to=PRT-MAR-009,reconciled
+mar10,mar10 mars center disc,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar10_disc.scad; reconciliation row; maps_to=PRT-MAR-008,high,maps_to=PRT-MAR-008,reconciled
+mar5,mar5 mars pointer drive gear,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar5_gear.scad; reconciliation row; maps_to=PRT-MAR-005,high,maps_to=PRT-MAR-005,reconciled
+mar11,mar11 mars pointer sleeve,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar11_sleeve.scad; reconciliation row; maps_to=PRT-MAR-011,high,maps_to=PRT-MAR-011,reconciled
+mar12,mar12 mars pointer arm,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar12_pointer_arm.scad; reconciliation row; maps_to=PRT-MAR-006,high,maps_to=PRT-MAR-006,reconciled
+mar13,mar13 mars orb large,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar13_orb_large.scad; reconciliation row; maps_to=PRT-MAR-006,high,maps_to=PRT-MAR-006,reconciled
+mar14,mar14 mars orb rod large,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar14_orb_rod_large.scad; reconciliation row; maps_to=PRT-MAR-007,high,maps_to=PRT-MAR-007,reconciled
+mar15,mar15 mars orb small,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar15_orb_small.scad; reconciliation row; maps_to=PRT-MAR-006,high,maps_to=PRT-MAR-006,reconciled
+mar16,mar16 mars orb rod small,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar16_orb_rod_small.scad; reconciliation row; maps_to=PRT-MAR-007,high,maps_to=PRT-MAR-007,reconciled
+mar17,mar17 mars pointer ring outer,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar17_pointer_ring_outer.scad; reconciliation row; maps_to=PRT-MAR-008,high,maps_to=PRT-MAR-008,reconciled
+mar18,mar18 mars pointer ring inner,modeled_part,1,1,1,from_scad,bronze,DRW-013,scad_file=scad/parts/mar18_pointer_ring_inner.scad; reconciliation row; maps_to=PRT-MAR-009,high,maps_to=PRT-MAR-009,reconciled

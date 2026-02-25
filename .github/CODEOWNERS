@@ -1,0 +1,8 @@
+# Protect project policy and core modeling areas.
+AGENTS.md @bjenner
+.github/workflows/agents-policy.yml @bjenner
+.github/CODEOWNERS @bjenner
+scripts/check_agents_policy.sh @bjenner
+
+scad/** @bjenner
+docs/sources/** @bjenner

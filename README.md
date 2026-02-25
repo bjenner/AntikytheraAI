@@ -48,3 +48,12 @@ Attribution and third-party license details:
 - `THIRD_PARTY_NOTICES.md`
 
 Licensed under CC BY 4.0
+
+## Agent Policy Enforcement
+
+- Project agent policy file: `AGENTS.md` (root).
+- Policy validation script: `scripts/check_agents_policy.sh`.
+- CI gate: `.github/workflows/agents-policy.yml`.
+- Local pre-commit hook support:
+  - Run once: `scripts/install-hooks.sh`
+  - This sets `core.hooksPath` to `.githooks` and runs policy checks on commit.
