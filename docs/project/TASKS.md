@@ -28,10 +28,10 @@ Assembly files: `scad/assemblies/drwXXX_sheetY.scad` · Parts: `scad/parts/<id>_
 | DRW-019 | saros | `Saros_page_*.png` | 5 | not started | — |
 | DRW-020 | saturn | `Saturn_page_*.png` | 8 | not started | — |
 | DRW-021 | sun | `Sun_page_*.png` | 8 | not started | — |
-| DRW-022 | superior planet plate | `Superior_Planet_Plate_page_*.png` | 7 | partial | 5 — missing p1,2,3,4,6,7 |
+| DRW-022 | superior planet plate | `Superior_Planet_Plate_page_*.png` | 7 | **complete** | all |
 | DRW-023 | venus | `Venus_page_*.png` | 9 | not started | — |
 
-**Summary:** 2 complete · 6 partial · 15 not started · 46 / 134 sheets done (34%)
+**Summary:** 3 complete · 5 partial · 15 not started · 52 / 134 sheets done (39%)
 
 ---
 
@@ -42,7 +42,7 @@ Assembly files: `scad/assemblies/drwXXX_sheetY.scad` · Parts: `scad/parts/<id>_
       - [x] tag all touched parts with `source_drawing_ids` including `DRW-056`
       - [x] record uncertainties/assumptions in `docs/decisions/`
       - [x] define initial OpenSCAD part-file targets under `scad/parts/` using the naming convention
-      - [ ] resolve naming conflict between manual `SP4` pins and drawing `SP6` pins
+      - [x] resolve naming conflict between manual `SP4` pins and drawing `SP6` pins
       - [ ] refine placeholder geometry using section dimensions/tolerances from drawings
 
 ## Now (do next)

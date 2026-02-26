@@ -51,6 +51,9 @@ use <parts/sp4_press_pin.scad>
 use <parts/sp5_superior_plate.scad>
 use <parts/sp6_rivet_pin.scad>
 use <parts/sp7_companion_gear.scad>
+use <parts/sp8_large_gear.scad>
+use <parts/sp9_latch.scad>
+use <parts/sp10_disc.scad>
 use <parts/sat6_date_pointer_axle.scad>
 use <parts/spp17_date_pointer_base.scad>
 use <parts/dat7_ring.scad>
@@ -116,7 +119,13 @@ use <parts/mar16_orb_rod_small.scad>
 use <parts/mar17_pointer_ring_outer.scad>
 use <parts/mar18_pointer_ring_inner.scad>
 use <assemblies/full_mechanism.scad>
+use <assemblies/drw022_sheet1.scad>
+use <assemblies/drw022_sheet2.scad>
+use <assemblies/drw022_sheet3.scad>
+use <assemblies/drw022_sheet4.scad>
 use <assemblies/drw022_sheet5.scad>
+use <assemblies/drw022_sheet6.scad>
+use <assemblies/drw022_sheet7.scad>
 use <assemblies/drw010_sheet1.scad>
 use <assemblies/drw010_sheet4.scad>
 use <assemblies/drw010_sheet5.scad>
@@ -264,6 +273,12 @@ if (mode == "part_a1") {
     part_sp6();
 } else if (mode == "part_sp7") {
     part_sp7();
+} else if (mode == "part_sp8") {
+    part_sp8();
+} else if (mode == "part_sp9") {
+    part_sp9();
+} else if (mode == "part_sp10") {
+    part_sp10();
 } else if (mode == "part_sat6") {
     part_sat6();
 } else if (mode == "part_spp17") {
@@ -392,8 +407,20 @@ if (mode == "part_a1") {
     part_jup18();
 } else if (mode == "part_jup19") {
     part_jup19();
+} else if (mode == "drw022_sheet1") {
+    drw022_sheet1();
+} else if (mode == "drw022_sheet2") {
+    drw022_sheet2();
+} else if (mode == "drw022_sheet3") {
+    drw022_sheet3();
+} else if (mode == "drw022_sheet4") {
+    drw022_sheet4();
 } else if (mode == "drw022_sheet5") {
     drw022_sheet5();
+} else if (mode == "drw022_sheet6") {
+    drw022_sheet6();
+} else if (mode == "drw022_sheet7") {
+    drw022_sheet7();
 } else if (mode == "drw012_sheet2") {
     drw012_sheet2();
 } else if (mode == "drw012_sheet4") {
