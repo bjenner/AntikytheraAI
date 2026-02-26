@@ -17,7 +17,10 @@ exports/dxf/*
 !exports/png/.gitkeep
 !exports/dxf/.gitkeep
 
-# Source materials (defer to Git LFS workflow later)
+# Source materials — generated from PDFs, not tracked in git
+docs/sources/Drawings/
+
+# Source PDFs
 docs/sources/*/*.pdf
 
 # Temporary and logs
