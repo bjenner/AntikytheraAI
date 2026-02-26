@@ -41,4 +41,14 @@
 - Whether newly explicit `SP*` parts should merge with existing generic `PRT-SPP-005/006/008/009` rows.
 - Whether `PRT-SPP-017` is the same physical part as previously modeled date pointer base items.
 - Whether `SP5` should remain `shaft` category or be split into hub + shaft + bearing surfaces.
-- Whether manual `SP4` pin naming and drawing `SP6` pin naming refer to the same physical pin set.
+
+## Resolved: SP4 vs SP6 Naming Conflict
+
+**Decision:** SP4 and SP6 are confirmed as two distinct physical pins used in different operations of the superior planet plate sub-assembly.
+
+| Part ID | Label | Source | Dimensions | Operation |
+|---|---|---|---|---|
+| PRT-SPP-014 | SP4 | Manual sec 8.11.5 (DRW-056) | 2.2 mm dia × 8 mm | Press-fit SP1 + SP7 to SP5; filed flush after |
+| PRT-SPP-018 | SP6 | Drawing DRW-022 sheet 5 | 3.0 mm dia × 5.0 mm | Rivet SP1 to SP5 (4× pins) |
+
+Both SCAD files (`sp4_press_pin.scad`, `sp6_rivet_pin.scad`) and both CSV rows are kept. Both are wired in `main.scad`. The naming difference (manual calls SP4; drawing calls SP6) reflects two separate assembly steps, not the same pin labeled differently.
