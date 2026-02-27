@@ -5,7 +5,7 @@
 // revision: 0.1-placeholder
 // SPDX-License-Identifier: MIT
 
-module part_a6(od = 12, id = 8, h = 17) {
+module part_a6(od = 11.8, id = 8, h = 9.4) {
     difference() {
         union() {
             cylinder(d = od, h = h, center = false);

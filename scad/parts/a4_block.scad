@@ -5,7 +5,7 @@
 // revision: 0.1-placeholder
 // SPDX-License-Identifier: MIT
 
-module part_a4(w = 12, d = 8, h = 24, bore_d = 8) {
+module part_a4(w = 16, d = 8, h = 24, bore_d = 10.0) {
     difference() {
         translate([-w / 2, -d / 2, 0]) cube([w, d, h], center = false);
         translate([0, 0, h * 0.55]) rotate([90, 0, 0]) cylinder(d = bore_d, h = d + 0.2, center = true);

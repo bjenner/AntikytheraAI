@@ -1,7 +1,7 @@
 // Part A1: starter gear-like disc with center bore and spoke cutouts.
 // SPDX-License-Identifier: MIT
 
-module part_a1(body_d = 64, thickness = 4, bore_d = 8, spoke_count = 6) {
+module part_a1(body_d = 28.2, thickness = 2.0, bore_d = 8, spoke_count = 6) {
     difference() {
         cylinder(d = body_d, h = thickness, center = false);
         translate([0, 0, -0.1]) {

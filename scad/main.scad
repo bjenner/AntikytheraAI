@@ -13,6 +13,7 @@ use <parts/a7_block.scad>
 use <parts/a8_rivet_pin.scad>
 use <parts/a9_axle.scad>
 use <parts/a10_disc.scad>
+use <parts/a11_gear_lock.scad>
 use <parts/a12_link.scad>
 use <parts/b0_gear.scad>
 use <parts/b1_main_wheel.scad>
@@ -167,6 +168,7 @@ use <assemblies/drw009_sheet2.scad>
 use <assemblies/drw009_sheet1.scad>
 use <assemblies/drw001_sheet1.scad>
 use <assemblies/drw001_sheet2.scad>
+use <assemblies/drw001_sheet3.scad>
 use <assemblies/drw001_sheet4.scad>
 use <assemblies/drw001_sheet5.scad>
 use <assemblies/drw001_sheet6.scad>
@@ -210,6 +212,8 @@ if (mode == "part_a1") {
     part_a9();
 } else if (mode == "part_a10") {
     part_a10();
+} else if (mode == "part_a11") {
+    part_a11();
 } else if (mode == "part_a12") {
     part_a12();
 } else if (mode == "part_b0") {
@@ -516,6 +520,8 @@ if (mode == "part_a1") {
     drw001_sheet1();
 } else if (mode == "drw001_sheet2") {
     drw001_sheet2();
+} else if (mode == "drw001_sheet3") {
+    drw001_sheet3();
 } else if (mode == "drw001_sheet4") {
     drw001_sheet4();
 } else if (mode == "drw001_sheet5") {
