@@ -35,15 +35,39 @@ Assembly files: `scad/assemblies/drwXXX_sheetY.scad` · Parts: `scad/parts/<id>_
 
 ---
 
-## Active Focus (start here)
-- [ ] Section `8.11.5 Superior Planet Plate` (`DRW-056`):
-      - [x] extract part candidates and functional notes from pages `106-109`
-      - [x] map candidate parts to canonical IDs in `docs/sources/parts_list.csv`
-      - [x] tag all touched parts with `source_drawing_ids` including `DRW-056`
-      - [x] record uncertainties/assumptions in `docs/decisions/`
-      - [x] define initial OpenSCAD part-file targets under `scad/parts/` using the naming convention
-      - [x] resolve naming conflict between manual `SP4` pins and drawing `SP6` pins
-      - [ ] refine placeholder geometry using section dimensions/tolerances from drawings
+## Active Focus — Quality Pass (Option A)
+
+Goal: bring existing 125 parts and 52 assembly sheets up to a solid, accurate baseline
+before processing new drawings. Work drawing-by-drawing, comparing SCAD output against
+source PNGs and correcting geometry, wiring, and metadata issues.
+
+### QA pass order (most-reused parts first)
+- [ ] **Wire a-series orphans** — add `use` + mode branches in `main.scad` for all 11
+      `a1`–`a12` part files (currently unreachable via mode selector)
+- [ ] **DRW-005 common parts** — visual check cp/cpr/cpf families against source PNGs;
+      correct any obvious dimension errors
+- [ ] **DRW-002 b-series** — compare b0–b18 geometry to `b_page*.png`; fix proportions;
+      complete missing sheets 3, 4, 5
+- [ ] **DRW-001 a-series** — compare a1–a12 geometry to `a_page*.png`; fix proportions;
+      complete missing sheet 3
+- [ ] **DRW-008 date dial** — compare dat1–dat10 to `Date_page*.png`; complete missing sheet 1
+- [ ] **DRW-009 exeligmos** — visual check exe1 and assembly sheets against source PNGs
+- [ ] **DRW-010 front plate** — compare fp1–fp10 to `Front_Plate_page*.png`; complete missing sheet 3
+- [ ] **DRW-012 jupiter** — compare jup1–jup19 to `Jupiter_page*.png`; identify missing jup6/jup12;
+      complete missing sheets 1, 3
+- [ ] **DRW-013 mars** — compare mar1–mar18 to `Mars_page*.png`; complete missing sheets 1, 2, 3
+- [ ] **DRW-022 superior planet plate** — refine sp1–sp10 placeholder geometry using
+      section dimensions from sheets 4, 6, 7
+
+### Per-drawing QA checklist (repeat for each drawing above)
+1. Read source PNG(s) for the drawing
+2. Compare key dimensions in SCAD file against drawing callouts
+3. Fix any obvious geometry errors (wrong OD/ID, thickness, tooth count, hole pattern)
+4. Verify part renders correctly via main guard (`openscad -D '__LIB_MODE__=1'`)
+5. Check assembly sheet layout matches source PNG arrangement
+6. Confirm `main.scad` wiring (use + mode branch) for every part and assembly
+7. Confirm `parts_list.csv` row has accurate dimensions in description
+8. Tick off checklist in `docs/review_checklist.md`
 
 ## Now (do next)
 - [x] Split manual into section PDFs (append page ranges in filenames):
@@ -95,14 +119,18 @@ Assembly files: `scad/assemblies/drwXXX_sheetY.scad` · Parts: `scad/parts/<id>_
       - promote/reject candidates with rationale
 - [ ] Record key conflicts/assumptions in `docs/decisions/`
 
-## Soon
+## Soon (after quality pass)
+- [ ] Process drawing gaps: DRW-001 p3, DRW-002 p3/4/5, DRW-008 p1, DRW-010 p3,
+      DRW-012 p1/3, DRW-013 p1/2/3 (these overlap with quality pass above)
+- [ ] Begin unstarted drawings in dependency order:
+      DRW-003 → DRW-006 → DRW-011 → DRW-007 → DRW-004 → planet drawings
 - [ ] Map canonical part IDs from `docs/sources/parts_list.csv` to planned `scad/parts/*.scad` files
 - [ ] Add automated traceability check: every part maps to one or more drawing IDs
-- [ ] Normalize naming/aliases (single preferred name per part + synonyms)
-- [ ] Add coverage summary: total drawings indexed, total parts identified, low-confidence items
 - [ ] Add simple validation script (`scripts/validate_sources.py`) for CSV lint checks
 
 ## Later
+- [ ] Normalize naming/aliases (single preferred name per part + synonyms)
+- [ ] Add coverage summary: total drawings indexed, total parts identified, low-confidence items
 - [ ] Freeze Milestone B baseline (versioned metadata + parts list)
 - [ ] Prepare handoff package for resumed modeling (Milestone A continuation)
 
