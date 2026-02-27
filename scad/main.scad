@@ -4,6 +4,16 @@
 
 include <configs/presets.scad>
 use <parts/a1.scad>
+use <parts/a2_ring.scad>
+use <parts/a3_pin.scad>
+use <parts/a4_block.scad>
+use <parts/a5_ring.scad>
+use <parts/a6_bush.scad>
+use <parts/a7_block.scad>
+use <parts/a8_rivet_pin.scad>
+use <parts/a9_axle.scad>
+use <parts/a10_disc.scad>
+use <parts/a12_link.scad>
 use <parts/b0_gear.scad>
 use <parts/b1_main_wheel.scad>
 use <parts/b2_gear_ring.scad>
@@ -179,6 +189,26 @@ spin_theta = mode == "animate" ? 360 * spin_turns * $t : 0;
 
 if (mode == "part_a1") {
     part_a1();
+} else if (mode == "part_a2") {
+    part_a2();
+} else if (mode == "part_a3") {
+    part_a3();
+} else if (mode == "part_a4") {
+    part_a4();
+} else if (mode == "part_a5") {
+    part_a5();
+} else if (mode == "part_a6") {
+    part_a6();
+} else if (mode == "part_a7") {
+    part_a7();
+} else if (mode == "part_a8") {
+    part_a8();
+} else if (mode == "part_a9") {
+    part_a9();
+} else if (mode == "part_a10") {
+    part_a10();
+} else if (mode == "part_a12") {
+    part_a12();
 } else if (mode == "part_b0") {
     part_b0();
 } else if (mode == "part_b1") {
