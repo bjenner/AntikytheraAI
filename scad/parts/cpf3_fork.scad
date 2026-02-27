@@ -11,7 +11,7 @@ module cpf3_profile_2d() {
             circle(r = 5.0, $fn = 80);
             translate([0, 5.3]) square([5.2, 8.0], center = true);
         }
-        translate([0, 7.3]) square([2.0, 8.0], center = true);
+        translate([0, 9.3]) square([2.0, 4.0], center = true);
     }
 }
 
