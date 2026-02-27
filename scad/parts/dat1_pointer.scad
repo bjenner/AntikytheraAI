@@ -9,7 +9,7 @@ module dat1_profile_2d(
     arm_len = 63.5,
     arm_w = 4.0,
     hub_od = 25.0,
-    hub_id = 18.5,
+    hub_id = 23.0,
     end_hole_d = 1.0
 ) {
     difference() {

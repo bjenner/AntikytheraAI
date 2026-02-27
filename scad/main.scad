@@ -157,6 +157,7 @@ use <assemblies/drw013_sheet5.scad>
 use <assemblies/drw013_sheet6.scad>
 use <assemblies/drw013_sheet7.scad>
 use <assemblies/drw008_sheet5.scad>
+use <assemblies/drw008_sheet1.scad>
 use <assemblies/drw008_sheet4.scad>
 use <assemblies/drw008_sheet3.scad>
 use <assemblies/drw008_sheet2.scad>
@@ -496,6 +497,8 @@ if (mode == "part_a1") {
     drw010_sheet8();
 } else if (mode == "drw010_sheet9") {
     drw010_sheet9();
+} else if (mode == "drw008_sheet1") {
+    drw008_sheet1();
 } else if (mode == "drw008_sheet3") {
     drw008_sheet3();
 } else if (mode == "drw008_sheet2") {
