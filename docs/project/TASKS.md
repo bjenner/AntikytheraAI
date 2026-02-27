@@ -8,7 +8,7 @@ Assembly files: `scad/assemblies/drwXXX_sheetY.scad` · Parts: `scad/parts/<id>_
 | DRW | Title | PNG Prefix | Pages | SCAD Status | Sheets Done |
 |-----|-------|-----------|-------|-------------|-------------|
 | DRW-001 | a assembly | `a_page*.png` | 7 | partial | 1,2,4,5,6,7 — missing p3 |
-| DRW-002 | b wheel/frame | `b_page*.png` | 10 | partial | 1,2,6,7,8,9,10 — missing p3,4,5 |
+| DRW-002 | b wheel/frame | `b_page*.png` | 10 | **complete** | all |
 | DRW-003 | b1 gear assembly | `b1_gear_assembly_page*.png` | 1 | not started | — |
 | DRW-004 | ip plate/gear | `ip_page*.png` | 20 | not started | — |
 | DRW-005 | common parts | `Common_Parts_page*.png` | 3 | **complete** | all |
@@ -31,7 +31,7 @@ Assembly files: `scad/assemblies/drwXXX_sheetY.scad` · Parts: `scad/parts/<id>_
 | DRW-022 | superior planet plate | `Superior_Planet_Plate_page_*.png` | 7 | **complete** | all |
 | DRW-023 | venus | `Venus_page_*.png` | 9 | not started | — |
 
-**Summary:** 3 complete · 5 partial · 15 not started · 52 / 134 sheets done (39%)
+**Summary:** 4 complete · 4 partial · 15 not started · 55 / 134 sheets done (41%)
 
 ---
 
@@ -42,11 +42,11 @@ before processing new drawings. Work drawing-by-drawing, comparing SCAD output a
 source PNGs and correcting geometry, wiring, and metadata issues.
 
 ### QA pass order (most-reused parts first)
-- [ ] **Wire a-series orphans** — add `use` + mode branches in `main.scad` for all 11
+- [x] **Wire a-series orphans** — add `use` + mode branches in `main.scad` for all 11
       `a1`–`a12` part files (currently unreachable via mode selector)
-- [ ] **DRW-005 common parts** — visual check cp/cpr/cpf families against source PNGs;
+- [x] **DRW-005 common parts** — visual check cp/cpr/cpf families against source PNGs;
       correct any obvious dimension errors
-- [ ] **DRW-002 b-series** — compare b0–b18 geometry to `b_page*.png`; fix proportions;
+- [x] **DRW-002 b-series** — compare b0–b18 geometry to `b_page*.png`; fix proportions;
       complete missing sheets 3, 4, 5
 - [ ] **DRW-001 a-series** — compare a1–a12 geometry to `a_page*.png`; fix proportions;
       complete missing sheet 3

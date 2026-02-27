@@ -5,14 +5,14 @@
 // revision: 0.1
 // SPDX-License-Identifier: MIT
 
-module b0_gear_2d(outer_d = 11.5, root_d = 9.2, tooth_count = 16, bore_d = 4.6) {
+module b0_gear_2d(outer_d = 11.5, root_d = 9.2, tooth_count = 20, bore_d = 4.6) {
     difference() {
         union() {
             circle(d = root_d, $fn = 80);
             for (i = [0 : tooth_count - 1])
                 rotate(i * 360 / tooth_count)
-                    translate([outer_d / 2 - 0.6, 0])
-                        square([1.2, 0.8], center = true);
+                    translate([outer_d / 2 - 0.5, 0])
+                        square([0.85, 0.65], center = true);
         }
         circle(d = bore_d, $fn = 42);
     }
