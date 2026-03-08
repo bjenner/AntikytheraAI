@@ -1,148 +1,61 @@
 # Tasks (next actions)
 
-## OpenSCAD Drawing Processing Status
+## Active Milestone
+- `Milestone C`: complete and normalize `DRW-001` (`a assembly`) in strict sheet order.
 
-Source PNGs live in `docs/sources/Drawings/` (gitignored — regenerate from PDFs as needed).
-Assembly files: `scad/assemblies/drwXXX_sheetY.scad` · Parts: `scad/parts/<id>_<slug>.scad`
+## DRW-001 snapshot
+- Source drawing: `docs/sources/Antikythera Mechanism Bronze Rev 8.1/a.pdf`
+- PNG prefix: `a_page*.png`
+- Target sheets: `1,2,3,4,5,6,7`
+- Current file presence: all 7 assembly sheet files exist
+- Current priority: quality + ordering + metadata consistency
 
-| DRW | Title | PNG Prefix | Pages | SCAD Status | Sheets Done |
-|-----|-------|-----------|-------|-------------|-------------|
-| DRW-001 | a assembly | `a_page*.png` | 7 | partial | 1,2,4,5,6,7 — missing p3 |
-| DRW-002 | b wheel/frame | `b_page*.png` | 10 | **complete** | all |
-| DRW-003 | b1 gear assembly | `b1_gear_assembly_page*.png` | 1 | not started | — |
-| DRW-004 | ip plate/gear | `ip_page*.png` | 20 | not started | — |
-| DRW-005 | common parts | `Common_Parts_page*.png` | 3 | **complete** | all |
-| DRW-006 | back plate | `Back_Plate_page*.png` | 7 | not started | — |
-| DRW-007 | callippic | `Callippic_page*.png` | 5 | not started | — |
-| DRW-008 | date dial | `Date_page*.png` | 5 | partial | 2,3,4,5 — missing p1 |
-| DRW-009 | exeligmos | `Exeligmos_page*.png` | 6 | **complete** | all |
-| DRW-010 | front plate | `Front_Plate_page*.png` | 9 | partial | 1,2,4,5,6,7,8,9 — missing p3 |
-| DRW-011 | housing | `Housing_page*.png` | 9 | not started | — |
-| DRW-012 | jupiter | `Jupiter_page*.png` | 9 | partial | 2,4,5,6,7,8,9 — missing p1,3 |
-| DRW-013 | mars | `Mars_page*.png` | 7 | partial | 4,5,6,7 — missing p1,2,3 |
-| DRW-014 | mercury | `Mercury_page_*.png` | 10 | not started | — |
-| DRW-015 | metonic | `Metonic_page_*.png` | 6 | not started | — |
-| DRW-016 | moon | `Moon_page_*.png` | 10 | not started | — |
-| DRW-017 | node | `Node_page_*.png` | 6 | not started | — |
-| DRW-018 | olympiad | `Olympiad_page_*.png` | 4 | not started | — |
-| DRW-019 | saros | `Saros_page_*.png` | 5 | not started | — |
-| DRW-020 | saturn | `Saturn_page_*.png` | 8 | not started | — |
-| DRW-021 | sun | `Sun_page_*.png` | 8 | not started | — |
-| DRW-022 | superior planet plate | `Superior_Planet_Plate_page_*.png` | 7 | **complete** | all |
-| DRW-023 | venus | `Venus_page_*.png` | 9 | not started | — |
+## Ordered execution plan (do in sequence)
 
-**Summary:** 4 complete · 4 partial · 15 not started · 55 / 134 sheets done (41%)
+### 1) Baseline and ordering
+- [ ] Verify `drw001_sheet1..drw001_sheet7.scad` each compile standalone.
+- [ ] Normalize assembly module naming and main-guard consistency in all 7 sheet files.
+- [ ] Reorder `use <assemblies/drw001_sheetX.scad>` lines in `scad/main.scad` to 1..7 (contiguous).
+- [ ] Ensure `mode == "drw001_sheetX"` branches are present and ordered 1..7 in `scad/main.scad`.
+- [ ] Ensure `presets.scad` mode comment list contains ordered `drw001_sheet1..drw001_sheet7`.
 
----
+### 2) Part quality pass (a-series only)
+- [ ] Review `a1..a12` against `a_page*.png` references for obvious proportion and feature mismatches.
+- [ ] Fix high-confidence geometry issues only (OD/ID, thickness, hole locations, tooth count where legible).
+- [ ] Keep each part file compliant with project standard:
+  - [ ] `part_<id>()` top-level module.
+  - [ ] main guard block present.
 
-## Active Focus — Quality Pass (Option A)
+### 3) Sheet quality pass (1 to 7)
+- [ ] Sheet 1: composition and label sanity.
+- [ ] Sheet 2: composition and label sanity.
+- [ ] Sheet 3: composition and label sanity.
+- [ ] Sheet 4: composition and label sanity.
+- [ ] Sheet 5: composition and label sanity.
+- [ ] Sheet 6: composition and label sanity.
+- [ ] Sheet 7: composition and label sanity.
+- [ ] Ensure sheet files reuse part modules and do not duplicate part geometry.
 
-Goal: bring existing 125 parts and 52 assembly sheets up to a solid, accurate baseline
-before processing new drawings. Work drawing-by-drawing, comparing SCAD output against
-source PNGs and correcting geometry, wiring, and metadata issues.
+### 4) Metadata synchronization
+- [ ] Confirm `drawing_index.csv` row `DRW-001` has:
+  - `scad_status=complete`
+  - `scad_sheets_done="1,2,3,4,5,6,7"`
+- [ ] Confirm `parts_list.csv` contains stable rows for `a`-series IDs used in `DRW-001`.
+- [ ] Add/update `scad_file=...` evidence for updated/added entries.
 
-### QA pass order (most-reused parts first)
-- [x] **Wire a-series orphans** — add `use` + mode branches in `main.scad` for all 11
-      `a1`–`a12` part files (currently unreachable via mode selector)
-- [x] **DRW-005 common parts** — visual check cp/cpr/cpf families against source PNGs;
-      correct any obvious dimension errors
-- [x] **DRW-002 b-series** — compare b0–b18 geometry to `b_page*.png`; fix proportions;
-      complete missing sheets 3, 4, 5
-- [ ] **DRW-001 a-series** — compare a1–a12 geometry to `a_page*.png`; fix proportions;
-      complete missing sheet 3
-- [ ] **DRW-008 date dial** — compare dat1–dat10 to `Date_page*.png`; complete missing sheet 1
-- [ ] **DRW-009 exeligmos** — visual check exe1 and assembly sheets against source PNGs
-- [ ] **DRW-010 front plate** — compare fp1–fp10 to `Front_Plate_page*.png`; complete missing sheet 3
-- [ ] **DRW-012 jupiter** — compare jup1–jup19 to `Jupiter_page*.png`; identify missing jup6/jup12;
-      complete missing sheets 1, 3
-- [ ] **DRW-013 mars** — compare mar1–mar18 to `Mars_page*.png`; complete missing sheets 1, 2, 3
-- [ ] **DRW-022 superior planet plate** — refine sp1–sp10 placeholder geometry using
-      section dimensions from sheets 4, 6, 7
+### 5) QA gate
+- [ ] Run OpenSCAD compile checks for changed a-series parts (`__LIB_MODE__=1`).
+- [ ] Run OpenSCAD compile checks for all 7 `drw001_sheetX` modes.
+- [ ] Validate no broken mode routing for `DRW-001` in `main.scad` and `presets.scad`.
 
-### Per-drawing QA checklist (repeat for each drawing above)
-1. Read source PNG(s) for the drawing
-2. Compare key dimensions in SCAD file against drawing callouts
-3. Fix any obvious geometry errors (wrong OD/ID, thickness, tooth count, hole pattern)
-4. Verify part renders correctly via main guard (`openscad -D '__LIB_MODE__=1'`)
-5. Check assembly sheet layout matches source PNG arrangement
-6. Confirm `main.scad` wiring (use + mode branch) for every part and assembly
-7. Confirm `parts_list.csv` row has accurate dimensions in description
-8. Tick off checklist in `docs/review_checklist.md`
+## Definition of done for Milestone C
+- [ ] All seven `DRW-001` sheets render from their own files and via `main.scad` modes.
+- [ ] `DRW-001` routing and mode declarations are in strict numeric order everywhere.
+- [ ] `a`-series parts used by `DRW-001` pass compile checks.
+- [ ] Metadata rows for `DRW-001` and its parts are consistent and traceable.
+- [ ] Checkpoint commit created.
 
-## Now (do next)
-- [x] Split manual into section PDFs (append page ranges in filenames):
-      - `manual_sec6_assembly_disassembly_pXXX-YYY.pdf`
-      - `manual_sec61_main_assembly_pXXX-YYY.pdf`
-      - `manual_sec62_back_internal_plate_subassembly_pXXX-YYY.pdf`
-      - `manual_sec63_planet_gear_box_assembly_pXXX-YYY.pdf`
-      - `manual_sec64_superior_planet_subassembly_pXXX-YYY.pdf`
-      - `manual_sec641_saturn_sun_subassembly_pXXX-YYY.pdf`
-      - `manual_sec642_jupiter_subassembly_pXXX-YYY.pdf`
-      - `manual_sec643_mars_subassembly_pXXX-YYY.pdf`
-      - `manual_sec644_sun_slot_axle_subassembly_pXXX-YYY.pdf`
-      - `manual_sec65_b1_subassembly_pXXX-YYY.pdf`
-      - `manual_sec66_housing_subassembly_pXXX-YYY.pdf`
-- [x] Split manufacturing-order PDFs (append page ranges in filenames):
-      - `manual_sec811_manufacturing_order_pXXX-YYY.pdf`
-      - `manual_sec811x_subsections_pXXX-YYY.pdf` (or one PDF per subsection)
-- [x] Split supporting-reference PDFs (append page ranges in filenames):
-      - `manual_sec83_engineering_manufacturing_drawings_pXXX-YYY.pdf`
-      - `manual_sec88_gear_teeth_profile_pXXX-YYY.pdf`
-      - `manual_sec75_gear_ratio_size_estimates_pXXX-YYY.pdf`
-      - `manual_sec74_3d_computer_models_pXXX-YYY.pdf`
-- [x] Place extracted page-range PDFs in `docs/sources/Antikythera Mechanism/extracted/`
-- [x] Add each extracted PDF to `docs/sources/drawing_index.csv` with page-range in title/notes
-- [x] Define part-file convention for `scad/parts/`:
-      - one physical part per file
-      - canonical module name per part ID
-      - standard origin/orientation convention
-      - documented in `docs/decisions/part_naming_convention.md`
-- [ ] Create usage-mode scene stubs in `scad/assemblies/`:
-      - single-part scene
-      - engineering-drawing scene
-      - assembly-process scene
-      - assembled-motion scene
-      - exploded-view scene
-- [ ] Define scene-selection contract in `scad/main.scad` (mode -> module mapping)
-- [x] Run QA pass on `docs/sources/drawing_index.csv` for consistency:
-      - `date_estimate` completeness (`unknown` vs extracted dates)
-      - naming consistency for `fragment_scope`
-      - duplicate/near-duplicate description cleanup
-- [x] Run QA pass on `docs/sources/parts_list.csv`:
-      - category consistency
-      - quantity/min-max consistency
-      - low-confidence rows needing immediate clarification
-- [x] Resolve QA finding: `PRT-HOU-004` quantity/max range mismatch
-- [x] Attempt secondary extraction for missing `date_estimate` on `DRW-009` and `DRW-017`
-- [x] Perform next dedup pass:
-      - resolve medium-confidence candidates in `docs/sources/parts_dedup_map.csv`
-      - promote/reject candidates with rationale
-- [ ] Record key conflicts/assumptions in `docs/decisions/`
-
-## Soon (after quality pass)
-- [ ] Process drawing gaps: DRW-001 p3, DRW-002 p3/4/5, DRW-008 p1, DRW-010 p3,
-      DRW-012 p1/3, DRW-013 p1/2/3 (these overlap with quality pass above)
-- [ ] Begin unstarted drawings in dependency order:
-      DRW-003 → DRW-006 → DRW-011 → DRW-007 → DRW-004 → planet drawings
-- [ ] Map canonical part IDs from `docs/sources/parts_list.csv` to planned `scad/parts/*.scad` files
-- [ ] Add automated traceability check: every part maps to one or more drawing IDs
-- [ ] Add simple validation script (`scripts/validate_sources.py`) for CSV lint checks
-
-## Later
-- [ ] Normalize naming/aliases (single preferred name per part + synonyms)
-- [ ] Add coverage summary: total drawings indexed, total parts identified, low-confidence items
-- [ ] Freeze Milestone B baseline (versioned metadata + parts list)
-- [ ] Prepare handoff package for resumed modeling (Milestone A continuation)
-
-## Done
-- [x] Pause Milestone A and switch active goal to Milestone B
-- [x] Define canonical drawing index format in `docs/sources/drawing_index.csv`
-- [x] Define canonical parts list format in `docs/sources/parts_list.csv`
-- [x] Create source-data field documentation in `docs/sources/README.md`
-- [x] Inventory and index all current source PDFs in scope (23 drawings: `DRW-001` to `DRW-023`)
-- [x] Create per-drawing metadata records for all currently indexed drawings
-- [x] Build first full draft parts list from all currently indexed drawings
-- [x] Add initial dedup map in `docs/sources/parts_dedup_map.csv`
-- [x] Apply high-confidence dedup merge pass (merged `PRT-B1-005` into `PRT-B-005`)
-- [x] Run QA Round 1 and record findings in `docs/decisions/qa_round_1.md`
-- [x] Complete low-confidence dedup pass (mark unresolved pairs as rejected pending stronger evidence)
+## Commit cadence (for this milestone)
+- [ ] `checkpoint 1`: ordering + routing cleanup
+- [ ] `checkpoint 2`: part quality fixes
+- [ ] `checkpoint 3`: sheet quality + metadata + QA

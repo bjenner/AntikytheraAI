@@ -1,36 +1,23 @@
-# Current Goal: Source-drawing analysis and parts inventory (Milestone B)
+# Current Goal: DRW-001 completion and ordering (Milestone C)
 
 ## Status update
-- Milestone A (animated scaffold) is on hold.
+- Milestone B is paused.
+- Active focus is narrowed to `DRW-001` only.
 
 ## Outcome
-Create a reliable analysis baseline from source drawings that includes:
-- structured metadata for each drawing
-- a normalized, traceable master parts list for the full device
-- explicit links from parts to drawing evidence
+Deliver a clean, complete, and ordered Drawing 1 implementation across parts, assembly sheets, router modes, and metadata.
 
 ## Acceptance criteria
-- A metadata record exists for every drawing currently in scope, with at least:
-  - drawing ID
-  - title/description
-  - source/citation
-  - file path or URL
-  - revision/version (if known)
-  - scale and units (if known)
-  - legibility/confidence notes
-- A complete parts list exists for the full mechanism in machine-readable form (CSV or JSON), including at least:
-  - part ID
-  - name
-  - category (gear, shaft, plate, pin, pointer, fastener, spacer, other)
-  - quantity
-  - key dimensions (or unknown markers)
-  - source drawing references
-  - confidence level and open questions
-- Every part entry is traceable to one or more drawing references.
-- A short assumptions/ambiguities section documents unresolved conflicts between drawings.
+- `DRW-001` sheets `1..7` compile and render through `scad/main.scad` modes.
+- `DRW-001` page order is consistent across:
+  - `scad/assemblies/`
+  - `scad/main.scad` `use` lines
+  - `scad/main.scad` mode branches
+  - `scad/configs/presets.scad` mode comment list
+- All `a`-series part files used by Drawing 1 compile in library mode.
+- `docs/sources/drawing_index.csv` has correct `scad_status` and ordered `scad_sheets_done` for `DRW-001`.
+- `docs/sources/parts_list.csv` entries for Drawing 1 parts contain stable IDs and `scad_file` evidence.
+- Checkpoint commits are made at agreed milestones.
 
-## Milestone A (on hold)
-Animated scaffold work remains paused until Milestone B is accepted.
-
-## Next milestone (after B)
-Resume animation/modeling using the validated parts inventory as the source of truth.
+## Next milestone (after C)
+Proceed to `DRW-002` cleanup using the same page-ordered workflow.

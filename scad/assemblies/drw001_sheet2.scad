@@ -12,7 +12,10 @@ use <../parts/a7_block.scad>
 use <../parts/a8_rivet_pin.scad>
 use <../parts/a9_axle.scad>
 use <../parts/a10_disc.scad>
-use <../parts/a12_link.scad>
+use <../parts/a11_gear_lock.scad>
+use <../parts/cpr5_rivet.scad>
+use <../parts/cpf5_fork.scad>
+use <../parts/cpf6_fork.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.3) {
     hull() {
@@ -137,8 +140,11 @@ module drw001_sheet2() {
     color([0.55, 0.46, 0.40]) translate([234, 136, 18]) rotate([0, 90, 0]) part_a3();
     color([0.28, 0.23, 0.20]) translate([246, 136, 18]) rotate([0, 90, 0]) part_a2();
     color([0.45, 0.30, 0.18]) translate([260, 136, 18]) rotate([0, 90, 0]) part_a1(body_d = 30, thickness = 2, bore_d = 4, spoke_count = 0);
-    // a11 approximation with existing link.
-    color([0.30, 0.24, 0.20]) translate([207, 94, 18]) rotate([0, 0, -8]) part_a12();
+    // Remaining listed hardware parts.
+    color([0.30, 0.24, 0.20]) translate([214, 92, 18]) rotate([90, 0, -10]) part_a11();
+    color([0.38, 0.30, 0.22]) translate([194, 60, 18]) rotate([90, 0, 0]) part_cpr5();
+    color([0.45, 0.30, 0.18]) translate([183, 126, 18]) rotate([90, 0, 18]) part_cpf5();
+    color([0.45, 0.30, 0.18]) translate([171, 126, 18]) rotate([90, 0, -14]) part_cpf6();
 
     // Callouts (IDs visible in source sheet).
     callout("a10", [55, 98], [66, 182], [68, 233]);
@@ -153,6 +159,7 @@ module drw001_sheet2() {
     callout("a2", [246, 136], [246, 186], [230, 230]);
     callout("a1", [260, 136], [262, 185], [249, 230]);
     callout("cp-r5", [209, 93], [201, 74], [194, 60]);
+    callout("cp-f5", [183, 126], [177, 176], [151, 230]);
     callout("a11", [214, 92], [226, 73], [232, 60]);
 }
 
