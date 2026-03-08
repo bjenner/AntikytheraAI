@@ -33,7 +33,7 @@ module label(s, sz = 3.0, bold = false) {
 
 module a1_subassembly() {
     color([0.45, 0.30, 0.18]) rotate([90, 0, 0]) part_a1(body_d = 30, thickness = 2.0, bore_d = 4, spoke_count = 0);
-    color([0.28, 0.23, 0.20]) translate([0, -0.8, 0]) rotate([90, 0, 0]) part_a2(od = 10, id = 6, th = 1.5);
+    color([0.28, 0.23, 0.20]) translate([0, -0.8, 0]) rotate([90, 0, 0]) part_a2();
     color([0.55, 0.46, 0.40]) translate([0, -1.6, 0]) rotate([90, 0, 0]) part_a3(d = 6, h = 9);
     color([0.45, 0.30, 0.18]) translate([0, -2.2, 0]) rotate([0, 0, 0]) part_a4(w = 9, d = 6, h = 9, bore_d = 5);
 }

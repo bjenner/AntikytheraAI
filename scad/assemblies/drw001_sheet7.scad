@@ -31,7 +31,7 @@ module label(s, sz = 3.0, bold = false) {
 module a1_subassembly() {
     // Simplified left subassembly cluster.
     color([0.45, 0.30, 0.18]) rotate([90, 0, 0]) part_a1(body_d = 30, thickness = 2.0, bore_d = 4, spoke_count = 0);
-    color([0.25, 0.25, 0.25]) translate([0, -0.6, 0]) rotate([90, 0, 0]) part_a2(od = 10, id = 6, th = 1.6);
+    color([0.25, 0.25, 0.25]) translate([0, -0.6, 0]) rotate([90, 0, 0]) part_a2();
     color([0.45, 0.30, 0.18]) translate([0, -1.6, 0]) rotate([90, 0, 0]) part_a4(w = 9, d = 6, h = 7, bore_d = 5);
 }
 
