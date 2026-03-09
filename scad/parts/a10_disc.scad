@@ -2,22 +2,27 @@
 // name: A10 disc
 // source_drawing_ids: DRW-001
 // units: mm
-// revision: 0.1-placeholder
+// revision: 0.2
 // SPDX-License-Identifier: MIT
 
-module a10_center_slot(slot_l = 4.2, slot_w = 1.6, pin_d = 3.0) {
-    hull() {
-        translate([ slot_l / 2, 0]) circle(d = slot_w, $fn = 32);
-        translate([-slot_l / 2, 0]) circle(d = slot_w, $fn = 32);
+module a10_center_profile_2d(center_hole_d = 9.0, detent_r = 1.5) {
+    // Center cutout profile from drawing:
+    // Ø9.0 with two offset R1.5 circles.
+    union() {
+        circle(d = center_hole_d, $fn = 72);
+        // Slight overlap avoids zero-thickness point contact at exact tangency.
+        detent_offset = center_hole_d / 2 + detent_r - 0.02;
+        translate([0,  detent_offset]) circle(r = detent_r, $fn = 36);
+        translate([0, -detent_offset]) circle(r = detent_r, $fn = 36);
     }
-    circle(d = pin_d, $fn = 36);
 }
 
-module part_a10(od = 111, th = 2, center_hole_d = 9) {
+module part_a10(od = 111, th = 2, center_hole_d = 9, center_detent_r = 1.5) {
     difference() {
-        cylinder(d = od, h = th, center = false);
-        translate([0, 0, -0.1]) cylinder(d = center_hole_d, h = th + 0.2, center = false);
-        translate([0, 0, -0.1]) linear_extrude(height = th + 0.2) a10_center_slot();
+        cylinder(d = od, h = th, center = false, $fn = 160);
+        translate([0, 0, -0.1])
+            linear_extrude(height = th + 0.2)
+                a10_center_profile_2d(center_hole_d = center_hole_d, detent_r = center_detent_r);
     }
 }
 

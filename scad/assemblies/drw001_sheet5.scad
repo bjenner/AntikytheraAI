@@ -7,6 +7,7 @@ use <../parts/a4_block.scad>
 use <../parts/a5_ring.scad>
 use <../parts/a6_bush.scad>
 use <../parts/a12_link.scad>
+use <./drw001_a1_subassembly.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.32) {
     hull() {
@@ -139,6 +140,9 @@ module drw001_sheet5() {
 
     if (show_thumbs) {
         // 3D thumbnails similar to source sheet.
+        // Reusable A1 subassembly callout view.
+        translate([76, 74, 20]) rotate([66, 0, 28]) scale([0.85, 0.85, 0.85]) drw001_a1_subassembly();
+
         color([0.45, 0.30, 0.18]) translate([56, 226, 20]) rotate([65, 0, 35]) scale([1.2, 1.2, 1.2]) a1_gear();
         color([0.28, 0.23, 0.20]) translate([129, 234, 18]) rotate([68, 0, 25]) scale([1.0, 1.0, 1.0]) part_a2();
         color([0.55, 0.46, 0.40]) translate([206, 226, 18]) rotate([0, 0, 0]) scale([1.0, 1.0, 1.0]) part_a3();
