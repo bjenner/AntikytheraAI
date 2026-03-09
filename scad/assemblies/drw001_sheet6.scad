@@ -5,6 +5,7 @@ use <../parts/a7_block.scad>
 use <../parts/a8_rivet_pin.scad>
 use <../parts/a9_axle.scad>
 use <../parts/a10_disc.scad>
+use <./drw001_a8_subassembly.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.3) {
     hull() {
@@ -22,14 +23,6 @@ module outline2d(w = 0.38) {
 
 module label(s, sz = 3.1, bold = false) {
     text(s, size = sz, halign = "left", valign = "center", font = bold ? "Liberation Sans:style=Bold" : "Liberation Sans");
-}
-
-module a8_subassembly() {
-    // Disc + axle + two rivet pins (simplified placement).
-    color([0.45, 0.30, 0.18]) part_a10();
-    color([0.52, 0.43, 0.34]) translate([0, 0, 2]) part_a9();
-    color([0.25, 0.25, 0.25]) translate([6, 0, 3.5]) rotate([90, 0, 0]) part_a8();
-    color([0.25, 0.25, 0.25]) translate([-6, 0, 3.5]) rotate([90, 0, 0]) part_a8();
 }
 
 module drw001_sheet6() {
@@ -82,7 +75,7 @@ module drw001_sheet6() {
     color([0.45, 0.30, 0.18]) translate([235, 50, 18]) rotate([68, 0, 12]) scale([0.45, 0.45, 0.45]) part_a10();
 
     // a8 subassembly area.
-    translate([142, 50, 18]) rotate([90, 0, 35]) scale([0.75, 0.75, 0.75]) a8_subassembly();
+    translate([142, 50, 18]) rotate([90, 0, 35]) scale([0.75, 0.75, 0.75]) drw001_a8_subassembly();
     color("black") translate([154, 20, 0]) linear_extrude(height = th) label("a8 sub assembly", sz = 3.2);
 
     // Simple callout leaders to match sheet feel.
