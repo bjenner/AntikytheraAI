@@ -168,6 +168,7 @@ use <assemblies/drw009_sheet3.scad>
 use <assemblies/drw009_sheet2.scad>
 use <assemblies/drw009_sheet1.scad>
 use <assemblies/drw001_sheet1.scad>
+use <assemblies/drw001_a1_subassembly.scad>
 use <assemblies/drw001_sheet2.scad>
 use <assemblies/drw001_sheet3.scad>
 use <assemblies/drw001_sheet4.scad>
@@ -521,6 +522,12 @@ if (mode == "part_a1") {
     drw008_sheet4();
 } else if (mode == "drw001_sheet1") {
     drw001_sheet1();
+} else if (mode == "drw001_a1_subassembly") {
+    drw001_a1_subassembly();
+} else if (mode == "drw001_a1_subassembly_exploded") {
+    drw001_a1_subassembly_exploded(explode = exploded_gap);
+} else if (mode == "drw001_a1_subassembly_animate") {
+    drw001_a1_subassembly_spin(explode = exploded_gap, turns = spin_turns);
 } else if (mode == "drw001_sheet2") {
     drw001_sheet2();
 } else if (mode == "drw001_sheet3") {
