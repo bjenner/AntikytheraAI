@@ -125,42 +125,42 @@ module drw001_sheet2() {
     // Parts list table.
     parts_table(290, 185);
 
-    // Exploded horizontal arrangement (existing parts only).
-    // a10 disc on left.
-    color([0.45, 0.30, 0.18]) translate([55, 62, 18]) rotate([90, 0, 90]) scale([1.1, 1.1, 1.1]) part_a10();
-    // a9 axle.
-    color([0.52, 0.43, 0.34]) translate([102, 136, 18]) rotate([0, 90, 0]) part_a9();
-    // a8 pin near a9.
-    color([0.25, 0.25, 0.25]) translate([117, 136, 19]) rotate([90, 0, 0]) part_a8();
-    // a7 + a6 + a5 + a4 + a3 + a2 + a1 cluster.
-    color([0.45, 0.30, 0.18]) translate([158, 128, 18]) rotate([0, 0, 0]) part_a7();
-    color([0.38, 0.30, 0.22]) translate([178, 136, 18]) rotate([0, 90, 0]) part_a6();
-    color([0.28, 0.23, 0.20]) translate([194, 136, 18]) rotate([0, 90, 0]) part_a5();
-    color([0.45, 0.30, 0.18]) translate([214, 128, 18]) part_a4();
-    color([0.55, 0.46, 0.40]) translate([234, 136, 18]) rotate([0, 90, 0]) part_a3();
-    color([0.28, 0.23, 0.20]) translate([246, 136, 18]) rotate([0, 90, 0]) part_a2();
-    color([0.45, 0.30, 0.18]) translate([260, 136, 18]) rotate([0, 90, 0]) part_a1(body_d = 30, thickness = 2, bore_d = 4, spoke_count = 0);
-    // Remaining listed hardware parts.
-    color([0.30, 0.24, 0.20]) translate([214, 92, 18]) rotate([90, 0, -10]) part_a11();
-    color([0.38, 0.30, 0.22]) translate([194, 60, 18]) rotate([90, 0, 0]) part_cpr5();
-    color([0.45, 0.30, 0.18]) translate([183, 126, 18]) rotate([90, 0, 18]) part_cpf5();
-    color([0.45, 0.30, 0.18]) translate([171, 126, 18]) rotate([90, 0, -14]) part_cpf6();
+    // Exploded horizontal arrangement (tuned to match sheet reference layout).
+    // Left anchor: a10 disc.
+    color([0.45, 0.30, 0.18]) translate([54, 62, 18]) rotate([90, 0, 90]) scale([1.05, 1.05, 1.05]) part_a10();
+    // a9 axle + a8 pin.
+    color([0.52, 0.43, 0.34]) translate([112, 136, 18]) rotate([0, 90, 0]) part_a9();
+    color([0.25, 0.25, 0.25]) translate([129, 136, 19]) rotate([90, 0, 0]) part_a8();
+    // Mid-chain parts.
+    color([0.45, 0.30, 0.18]) translate([170, 128, 18]) part_a7();
+    color([0.45, 0.30, 0.18]) translate([154, 126, 18]) rotate([90, 0, 24]) part_cpf5();
+    color([0.45, 0.30, 0.18]) translate([186, 126, 18]) rotate([90, 0, -18]) part_cpf6();
+    color([0.38, 0.30, 0.22]) translate([204, 136, 18]) rotate([0, 90, 0]) part_a6();
+    color([0.28, 0.23, 0.20]) translate([222, 136, 18]) rotate([0, 90, 0]) part_a5();
+    color([0.45, 0.30, 0.18]) translate([241, 128, 18]) part_a4();
+    // Right chain: a3/a2/a1.
+    color([0.55, 0.46, 0.40]) translate([259, 136, 18]) rotate([0, 90, 0]) part_a3();
+    color([0.28, 0.23, 0.20]) translate([274, 136, 18]) rotate([0, 90, 0]) part_a2();
+    color([0.45, 0.30, 0.18]) translate([292, 136, 18]) rotate([0, 90, 0]) part_a1(body_d = 30, thickness = 2, bore_d = 4, spoke_count = 0);
+    // Remaining listed hardware parts (lower callouts).
+    color([0.30, 0.24, 0.20]) translate([222, 92, 18]) rotate([90, 0, -12]) part_a11();
+    color([0.38, 0.30, 0.22]) translate([201, 88, 18]) rotate([90, 0, 0]) part_cpr5();
 
     // Callouts (IDs visible in source sheet).
-    callout("a10", [55, 98], [66, 182], [68, 233]);
-    callout("a9", [103, 136], [103, 184], [87, 233]);
-    callout("a8", [117, 136], [117, 178], [107, 233]);
-    callout("a7", [158, 128], [149, 178], [127, 230]);
-    callout("cp-f6", [171, 126], [162, 182], [143, 230]);
-    callout("a6", [178, 136], [176, 187], [159, 230]);
-    callout("a5", [194, 136], [193, 186], [175, 230]);
-    callout("a4", [214, 128], [214, 188], [196, 230]);
-    callout("a3", [234, 136], [234, 188], [212, 230]);
-    callout("a2", [246, 136], [246, 186], [230, 230]);
-    callout("a1", [260, 136], [262, 185], [249, 230]);
-    callout("cp-r5", [209, 93], [201, 74], [194, 60]);
-    callout("cp-f5", [183, 126], [177, 176], [151, 230]);
-    callout("a11", [214, 92], [226, 73], [232, 60]);
+    callout("a10", [54, 98], [62, 182], [62, 233]);
+    callout("a9", [112, 136], [110, 184], [84, 233]);
+    callout("a8", [129, 136], [129, 178], [106, 233]);
+    callout("cp-f5", [154, 126], [150, 176], [126, 230]);
+    callout("a7", [170, 128], [166, 178], [146, 230]);
+    callout("cp-f6", [186, 126], [182, 182], [166, 230]);
+    callout("a6", [204, 136], [202, 186], [186, 230]);
+    callout("a5", [222, 136], [221, 186], [206, 230]);
+    callout("a4", [241, 128], [240, 188], [226, 230]);
+    callout("a3", [259, 136], [259, 188], [246, 230]);
+    callout("a2", [274, 136], [274, 186], [266, 230]);
+    callout("a1", [292, 136], [294, 185], [286, 230]);
+    callout("cp-r5", [201, 88], [198, 74], [194, 60]);
+    callout("a11", [222, 92], [230, 73], [232, 60]);
 }
 
 
