@@ -1,18 +1,60 @@
 # Agents Configuration
 
-Use this file to define the AI/human agent workflow for the project.
-Customize sections marked with `[EDIT ME]`.
+This repository is an OpenSCAD-first codebase for modeling parts and recreating engineering drawing sheets.
+Agents should keep changes checkpoint-friendly and preserve drawing/part traceability.
 
 ## Project
 
 - Name: `AntikytheraAI`
-- Primary stack: `OpenSCAD`, Markdown, CSV metadata
+- Primary stack: OpenSCAD (`.scad`), Markdown (`.md`), CSV metadata (`.csv`)
+- Supporting tools: Bash scripts, small Python utilities, GitHub Actions, Git LFS
 - Core folders:
-  - `scad/parts` one file per part
-  - `scad/assemblies` one file per drawing/sheet or assembly scene
+  - `scad/parts/` one file per reusable part
+  - `scad/assemblies/` one file per drawing sheet or assembly scene
   - `scad/configs/presets.scad` render mode selector
-  - `docs/sources/drawing_index.csv` drawing metadata
-  - `docs/sources/parts_list.csv` part metadata and reconciliation
+  - `scad/main.scad` top-level router for all modes
+  - `docs/sources/drawing_index.csv` drawing coverage metadata
+  - `docs/sources/parts_list.csv` part metadata and reconciliation evidence
+
+## Commands
+
+Prerequisites:
+- `openscad` in `PATH`, or the macOS app at `/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD`
+- `bash`
+- `python3` for helper scripts
+- `git-lfs` if using repo hooks or working with tracked LFS assets
+
+Build / export:
+- Full compile check: `bash scripts/check_all.sh`
+- Stop on first compile failure: `bash scripts/check_all.sh --stop-on-error`
+- Placeholder export script: `bash scripts/export.sh`
+- Placeholder Python export helper: `python3 scripts/export.py`
+- Example direct STL export: `openscad -o exports/stl/part_a1.stl scad/parts/a1.scad`
+- Example direct PNG export: `openscad -o exports/png/drw001_sheet1.png scad/assemblies/drw001_sheet1.scad`
+
+Lint / policy:
+- Validate root agent policy file: `bash scripts/check_agents_policy.sh`
+
+Tests in this repo are primarily compile checks:
+- Compile one part file: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/parts/<file>.scad`
+- Compile one assembly file: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/assemblies/<file>.scad`
+- Compile one router mode through `main.scad`: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' -D 'mode="part_a1"' scad/main.scad`
+- Compile one sheet mode through `main.scad`: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' -D 'mode="drw001_sheet1"' scad/main.scad`
+
+Single-test guidance:
+- For part geometry issues, compile the part file directly first.
+- For wiring issues, compile `scad/main.scad` with the relevant `mode` override.
+- For broad QA before handoff, run `bash scripts/check_all.sh`.
+
+Local hooks:
+- Install repo hooks: `bash scripts/install-hooks.sh`
+- Current hooks run AGENTS policy checks and Git LFS integration.
+
+CI:
+- GitHub Actions validates AGENTS policy via `.github/workflows/agents-policy.yml`.
+
+Cursor / Copilot rules:
+- No `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md` files exist in this repository at the time of writing.
 
 ## Goals
 
@@ -35,17 +77,17 @@ Customize sections marked with `[EDIT ME]`.
 
 ### 2) `part_modeler`
 
-- Purpose: create/update part files under `scad/parts`.
+- Purpose: create/update part files under `scad/parts/`.
 - Outputs: `part_<id>()` modules with main-guard preview behavior.
 - Rules:
-  - File naming: `<part_id>_<slug>.scad` (example: `mar5_gear.scad`).
+  - File naming: `<part_id>_<slug>.scad`.
   - Keep units in mm.
-  - Include header metadata comments.
+  - Include short header metadata comments.
   - Keep geometry parametric where practical.
 
 ### 3) `assembly_modeler`
 
-- Purpose: create/update drawing sheet scenes under `scad/assemblies`.
+- Purpose: create/update drawing sheet scenes under `scad/assemblies/`.
 - Outputs: `drwXXX_sheetY()` module + main guard.
 - Rules:
   - Reuse part modules; do not duplicate part geometry in assembly files.
@@ -59,34 +101,71 @@ Customize sections marked with `[EDIT ME]`.
   - `drawing_index.csv` rows for newly covered drawings/sheets.
   - `parts_list.csv` rows for new part IDs and reconciliation fields.
 - Rules:
-  - Always add/update `scad_file=...` in evidence notes or equivalent column.
+  - Always add/update `scad_file=...` evidence or equivalent notes.
   - Keep part IDs stable once introduced.
 
 ### 5) `qa_reviewer`
 
 - Purpose: run compile and consistency checks.
-- Outputs: pass/fail status + issues list.
+- Outputs: pass/fail status + issue list.
 - Minimum checks:
-  - `openscad` compile check for changed part modes.
-  - `openscad` compile check for changed assembly mode.
-  - Validate `main.scad` wiring and `presets.scad` mode list.
-  - Confirm CSV rows exist for new parts.
+  - `bash scripts/check_agents_policy.sh`
+  - `bash scripts/check_all.sh`
+  - Compile changed router modes through `scad/main.scad` when wiring was touched.
+  - Confirm CSV rows exist for new parts and new sheets.
 
-## Coding Standards
+## Code Style Guidelines
 
-- Parts:
-  - Must expose a top-level `part_<id>()` module.
-  - Must include:
-    - `// ---- "main guard" ----`
-    - `if (is_undef(__LIB_MODE__)) { part_<id>(); }`
-- Assemblies:
-  - Must expose `drwXXX_sheetY()` or clear assembly module name.
-  - Must include same main-guard pattern.
-- Main router:
-  - Add `use <parts/...>` / `use <assemblies/...>` in `scad/main.scad`.
-  - Add mode branches for new parts/sheets.
-- Presets:
-  - Keep mode comment list updated in `scad/configs/presets.scad`.
+General:
+- Prefer small, local edits over broad refactors.
+- Keep source files ASCII unless an existing file already requires otherwise.
+- Use millimeters for all dimensions.
+- Favor explicit geometry and readable layout over clever compactness.
+
+Formatting:
+- Use 4-space indentation.
+- Keep braces on the same line for `module`, `if`, `for`, `union`, `difference`, and `intersection`.
+- Split long parameter lists across lines when readability improves.
+- Preserve existing style in touched files when it is already consistent.
+
+Imports and includes:
+- Use `use <...>` for part and assembly dependencies.
+- Use `include <...>` only when importing shared variables/configs such as presets.
+- In assembly files, prefer relative paths such as `use <../parts/a1.scad>`.
+- When adding a new file, wire it in `scad/main.scad` and update the mode comment list in `scad/configs/presets.scad`.
+
+Types and parameters:
+- OpenSCAD is dynamically typed; use clear parameter names instead of relying on implicit meaning.
+- Suffix dimensions consistently where practical: `_d`, `_r`, `_h`, `_w`, `_th`, `_count`.
+- Prefer parameters over magic numbers for dimensions that are likely to change.
+- Use helper functions/modules for repeated geometric patterns.
+
+Naming conventions:
+- Part files: lowercase snake_case, ASCII only, no spaces.
+- Part IDs should preserve source IDs when available: `a1`, `b1`, `sp3`, `mar12`.
+- Part modules: `part_<part_id>()`.
+- Assembly files: `drwXXX_sheetY.scad`.
+- Assembly modules: `drwXXX_sheetY()` or a clearly scoped assembly name.
+- Helper modules/functions: lowercase snake_case.
+
+Headers and main guards:
+- Start files with a brief description and `SPDX-License-Identifier: MIT` when matching surrounding files.
+- Every part file must include:
+  - `// ---- "main guard" ----`
+  - `if (is_undef(__LIB_MODE__)) { part_<id>(); }`
+- Every assembly file must include the same main-guard pattern for its top-level module.
+
+Error handling:
+- Bash scripts should use `set -euo pipefail`.
+- Fail fast on invalid project state or missing prerequisites.
+- Print actionable error messages to stderr.
+- In OpenSCAD, use `assert(...)` only when invalid inputs would otherwise create misleading geometry.
+
+Metadata and traceability:
+- New parts must be reflected in `docs/sources/parts_list.csv`.
+- New drawing coverage must be reflected in `docs/sources/drawing_index.csv`.
+- Keep `scad_file=...` evidence populated for traceability.
+- Do not rename stable part IDs casually; metadata continuity matters.
 
 ## Workflow Per Drawing Sheet
 
@@ -105,12 +184,15 @@ Customize sections marked with `[EDIT ME]`.
 - Sheet assembly renders from its own file and via `main.scad` mode.
 - CSV metadata updated for new parts and drawing coverage.
 - No syntax/compile errors in modified files.
-- Checkpoint commit created with clear message.
+- `bash scripts/check_agents_policy.sh` passes.
+- `bash scripts/check_all.sh` passes.
+- Checkpoint commit created with a clear message when the user asks for one.
 
 ## Commit Conventions
 
-- Suggested format:
-  - `feat(drw013-s5): add mar3/mar4/mar8-mar10 and sheet assembly`
+- Suggested format: `type(scope): why`
+- Examples:
+  - `feat(drw013-s5): add mar3 mar4 and sheet assembly`
   - `chore(metadata): reconcile parts_list for DRW-013 Sheet 5`
   - `fix(scad): repair manifold issue in mar3 tooth ring`
 
@@ -125,10 +207,10 @@ When an agent finishes, report:
 - Validation run + result
 - Known gaps / next recommended sheet
 
-## Project-Specific Overrides [EDIT ME]
+## Project-Specific Defaults
 
-- Primary fidelity priority: `[EDIT ME: visual match | dimensional fidelity | mixed]`
-- Default render quality: `[EDIT ME]`
-- Preferred checkpoint cadence: `[EDIT ME: every sheet | every 2 sheets | daily]`
-- Include source PNGs in git: `[EDIT ME: yes/no]`
-- Branching strategy: `[EDIT ME: main only | feature branches]`
+- Primary fidelity priority: dimensional fidelity
+- Default render quality: preview
+- Preferred checkpoint cadence: every drawing sheet
+- Include source PNGs in git: yes, via Git LFS where tracked
+- Branching strategy: main only unless the user requests otherwise
