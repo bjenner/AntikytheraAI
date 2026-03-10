@@ -34,6 +34,17 @@ Artifact behavior:
 - Use `bash scripts/export.sh --all` to rebuild all current parts and assemblies
 - Use `bash scripts/export.sh --render` for higher-quality PNG previews
 
+## QA Preview
+
+- Open source + recreated drawing side by side in Preview: `python3 scripts/qa_preview.py drw001_sheet2`
+- Alternate form: `python3 scripts/qa_preview.py DRW-001 2`
+- Dry-run path resolution only: `python3 scripts/qa_preview.py drw001_sheet2 --dry-run`
+
+Behavior:
+- Prefers a local extracted source page PNG when available under `docs/sources/`
+- Falls back to the source PDF from `docs/sources/drawing_index.csv` and jumps to the requested sheet page
+- Opens the recreated PNG from `exports/png/` and arranges source left / recreation right in Preview on macOS
+
 ## Current Starter Modules
 
 - `scad/parts/a1.scad`: placeholder driven gear/disc.
