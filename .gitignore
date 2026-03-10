@@ -13,9 +13,14 @@ __pycache__/
 exports/stl/*
 exports/png/*
 exports/dxf/*
+exports/csg/*
 !exports/stl/.gitkeep
 !exports/png/.gitkeep
 !exports/dxf/.gitkeep
+!exports/csg/.gitkeep
+
+# OpenSCAD customizer sidecars
+scad/assemblies/*.json
 
 # Source materials — generated from PDFs, not tracked in git
 docs/sources/Drawings/
