@@ -27,8 +27,9 @@ Prerequisites:
 Build / export:
 - Full compile check: `bash scripts/check_all.sh`
 - Stop on first compile failure: `bash scripts/check_all.sh --stop-on-error`
-- Placeholder export script: `bash scripts/export.sh`
-- Placeholder Python export helper: `python3 scripts/export.py`
+- Export changed `.scad` files: `bash scripts/export.sh --changed`
+- Export one file explicitly: `bash scripts/export.sh --file scad/parts/a1.scad`
+- Python wrapper for local exports: `python3 scripts/export.py --changed`
 - Example direct STL export: `openscad -o exports/stl/part_a1.stl scad/parts/a1.scad`
 - Example direct PNG export: `openscad -o exports/png/drw001_sheet1.png scad/assemblies/drw001_sheet1.scad`
 

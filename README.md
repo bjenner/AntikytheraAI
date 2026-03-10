@@ -18,6 +18,22 @@ OpenSCAD project for building and animating an Antikythera-inspired mechanism wi
 3. Press Preview (`F5`) for interactive checks.
 4. For animation mode, use Design -> Animate and set FPS/Steps as needed. `spin_turns` controls revolutions per cycle.
 
+## Build And Test Cycle
+
+- Compile-check all parts and assemblies: `bash scripts/check_all.sh`
+- Compile-check one file:
+  - Part: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/parts/<file>.scad`
+  - Assembly: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/assemblies/<file>.scad`
+- Export artifacts for changed `.scad` files: `bash scripts/export.sh --changed`
+- Export one file explicitly: `bash scripts/export.sh --file scad/parts/a1.scad`
+- Export one assembly preview explicitly: `bash scripts/export.sh --file scad/assemblies/drw001_sheet1.scad`
+
+Artifact behavior:
+- Part files export to `exports/stl/part_<id>.stl`
+- Assembly files export to `exports/png/<basename>.png`
+- Use `bash scripts/export.sh --all` to rebuild all current parts and assemblies
+- Use `bash scripts/export.sh --render` for higher-quality PNG previews
+
 ## Current Starter Modules
 
 - `scad/parts/a1.scad`: placeholder driven gear/disc.
