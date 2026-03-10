@@ -31,6 +31,7 @@ OpenSCAD project for building and animating an Antikythera-inspired mechanism wi
 Artifact behavior:
 - Part files export to `exports/stl/part_<id>.stl`
 - Assembly files export to `exports/png/<basename>.png`
+- Drawing-sheet exports use a fixed orthographic top-down camera so they line up with the source sheets more closely
 - Use `bash scripts/export.sh --all` to rebuild all current parts and assemblies
 - Use `bash scripts/export.sh --render` for higher-quality PNG previews
 

@@ -45,6 +45,10 @@ IMG_H=1200
 PNG_QUALITY="preview"
 MODE="changed"
 FILES=()
+SHEET_W=420
+SHEET_H=297
+SHEET_CAM_Z=600
+SHEET_CAM_DIST=800
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -133,13 +137,27 @@ export_assembly() {
     stem="$(basename "$file" .scad)"
     out="$PNG_DIR/$stem.png"
     echo "[png] $(basename "$file") -> ${out#$REPO_ROOT/}"
-    "$OPENSCAD" \
-        --imgsize="$IMG_W","$IMG_H" \
-        --viewall \
-        --autocenter \
-        -D "quality=\"$PNG_QUALITY\"" \
-        -o "$out" \
-        "$file"
+
+    case "$stem" in
+        drw*_sheet*|parts_inventory)
+            "$OPENSCAD" \
+                --imgsize="$IMG_W","$IMG_H" \
+                --projection=o \
+                --camera="$((SHEET_W / 2)),$((SHEET_H / 2)),$SHEET_CAM_Z,0,0,0,$SHEET_CAM_DIST" \
+                -D "quality=\"$PNG_QUALITY\"" \
+                -o "$out" \
+                "$file"
+            ;;
+        *)
+            "$OPENSCAD" \
+                --imgsize="$IMG_W","$IMG_H" \
+                --viewall \
+                --autocenter \
+                -D "quality=\"$PNG_QUALITY\"" \
+                -o "$out" \
+                "$file"
+            ;;
+    esac
 }
 
 FILES_TO_EXPORT=()
