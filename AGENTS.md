@@ -31,6 +31,7 @@ Build / export:
 - Export one file explicitly: `bash scripts/export.sh --file scad/parts/a1.scad`
 - Python wrapper for local exports: `python3 scripts/export.py --changed`
 - Side-by-side QA preview: `python3 scripts/qa_preview.py drw001_sheet2`
+- Cycle all rendered sheets for one drawing: `python3 scripts/qa_preview.py DRW-001`
 - Sheet PNG exports use a fixed orthographic camera for closer source-drawing alignment
 - Example direct STL export: `openscad -o exports/stl/part_a1.stl scad/parts/a1.scad`
 - Example direct PNG export: `openscad -o exports/png/drw001_sheet1.png scad/assemblies/drw001_sheet1.scad`
