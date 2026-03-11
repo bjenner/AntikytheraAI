@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Open source and recreated drawing previews side by side for QA."""
+"""Open source and recreated drawing or part previews side by side for QA."""
 
 from __future__ import annotations
 
@@ -13,15 +13,16 @@ from pathlib import Path
 
 
 RE_DRAWING = re.compile(r"^drw(\d{3})_sheet(\d+)$", re.IGNORECASE)
+RE_PART_MODE = re.compile(r"^part_([a-z0-9]+)$", re.IGNORECASE)
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Open a source drawing page and recreated preview side by side in Preview."
+        description="Open a source drawing/part image and recreated preview side by side in Preview."
     )
     parser.add_argument(
         "target",
-        help="Drawing target like drw001_sheet2 or DRW-001",
+        help="Target like drw001_sheet2, DRW-001, b0_gear, b0, or part_b0",
     )
     parser.add_argument(
         "sheet",
@@ -34,11 +35,37 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Print resolved source/rendered paths without opening Preview",
     )
+    parser.add_argument(
+        "--refresh",
+        action="store_true",
+        help="Force re-render of part previews before opening them",
+    )
     return parser.parse_args()
 
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parent.parent
+
+
+def openscad_binary() -> str:
+    candidates = [
+        "openscad",
+        "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD",
+        "/Applications/OpenSCAD-2021.01.app/Contents/MacOS/OpenSCAD",
+    ]
+    for candidate in candidates:
+        try:
+            result = subprocess.run(
+                [candidate, "--version"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                check=True,
+            )
+            if result.returncode == 0:
+                return candidate
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            continue
+    raise SystemExit("OpenSCAD not found in PATH or standard macOS app locations.")
 
 
 def normalize_target(target: str, sheet: int | None) -> tuple[str, int | None, str | None]:
@@ -58,6 +85,39 @@ def normalize_target(target: str, sheet: int | None) -> tuple[str, int | None, s
     return normalized, sheet, f"drw{drawing_num}_sheet{sheet}"
 
 
+def resolve_part_file(root: Path, target: str) -> Path:
+    parts_dir = root / "scad" / "parts"
+    raw = target.strip()
+    direct = Path(raw)
+    if direct.is_absolute() and direct.exists():
+        return direct
+
+    if (root / raw).exists():
+        return root / raw
+
+    stem = Path(raw).stem.lower()
+    match = RE_PART_MODE.match(stem)
+    if match:
+        part_id = match.group(1)
+        candidates = sorted(parts_dir.glob(f"{part_id}_*.scad"))
+        if candidates:
+            return candidates[0]
+
+    candidate = parts_dir / f"{stem}.scad"
+    if candidate.exists():
+        return candidate
+
+    candidates = sorted(parts_dir.glob(f"{stem}_*.scad"))
+    if candidates:
+        return candidates[0]
+
+    candidates = sorted(parts_dir.glob(f"{stem}.scad"))
+    if candidates:
+        return candidates[0]
+
+    raise SystemExit(f"Could not resolve a part file for target: {target}")
+
+
 def load_drawing_index(csv_path: Path) -> dict[str, dict[str, str]]:
     with csv_path.open(newline="", encoding="utf-8") as handle:
         rows = csv.DictReader(handle)
@@ -75,6 +135,50 @@ def find_rendered_preview(root: Path, rendered_name: str) -> Path:
     raise SystemExit(
         f"Rendered preview not found for {rendered_name}. Run `bash scripts/export.sh --file scad/assemblies/{rendered_name}.scad` first."
     )
+
+
+def find_part_source_image(root: Path, stem: str) -> Path:
+    candidates = [
+        root / "docs" / "sources" / "Parts" / f"{stem}.png",
+        root / "docs" / "sources" / "parts" / f"{stem}.png",
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+
+    matches = sorted((root / "docs" / "sources").rglob(f"{stem}.png"))
+    if matches:
+        return matches[0]
+    raise SystemExit(f"Could not find a source part image for {stem}.")
+
+
+def render_part_preview(root: Path, part_file: Path, out_path: Path) -> None:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    openscad = openscad_binary()
+    subprocess.run(
+        [
+            openscad,
+            "--imgsize=1200,1200",
+            "--projection=o",
+            "--viewall",
+            "--autocenter",
+            "-D",
+            'quality="preview"',
+            "-o",
+            str(out_path),
+            str(part_file),
+        ],
+        cwd=root,
+        check=True,
+    )
+
+
+def prepare_part_preview(root: Path, part_file: Path, refresh: bool) -> Path:
+    out_path = root / "exports" / "png" / f"{part_file.stem}.png"
+    if refresh or not out_path.exists():
+        print(f"render:   {part_file.relative_to(root)} -> {out_path.relative_to(root)}")
+        render_part_preview(root, part_file, out_path)
+    return out_path
 
 
 def parse_sheet_list(row: dict[str, str]) -> list[int]:
@@ -236,6 +340,22 @@ def show_pair(
     arrange_preview_windows(source_path, rendered_path)
 
 
+def show_part_pair(root: Path, part_file: Path, source_path: Path, rendered_path: Path, dry_run: bool) -> int:
+    print(f"part:     {part_file.stem}")
+    print(f"source:   {source_path.relative_to(root)}")
+    print(f"rendered: {rendered_path.relative_to(root)}")
+
+    if dry_run:
+        return 0
+
+    open_in_preview(source_path)
+    time.sleep(1.0)
+    open_in_preview(rendered_path)
+    time.sleep(1.0)
+    arrange_preview_windows(source_path, rendered_path)
+    return 0
+
+
 def cycle_sheets(root: Path, drawing_id: str, row: dict[str, str], dry_run: bool) -> int:
     sheets = parse_sheet_list(row)
     shown = 0
@@ -284,6 +404,15 @@ def cycle_sheets(root: Path, drawing_id: str, row: dict[str, str], dry_run: bool
 def main() -> int:
     args = parse_args()
     root = repo_root()
+
+    if not args.target.lower().startswith("drw"):
+        part_file = resolve_part_file(root, args.target)
+        source_path = find_part_source_image(root, part_file.stem)
+        rendered_path = root / "exports" / "png" / f"{part_file.stem}.png"
+        if not args.dry_run:
+            rendered_path = prepare_part_preview(root, part_file, args.refresh)
+        return show_part_pair(root, part_file, source_path, rendered_path, args.dry_run)
+
     drawing_id, sheet, rendered_name = normalize_target(args.target, args.sheet)
     index = load_drawing_index(root / "docs" / "sources" / "drawing_index.csv")
 

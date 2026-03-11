@@ -40,6 +40,7 @@ Artifact behavior:
 - Open source + recreated drawing side by side in Preview: `python3 scripts/qa_preview.py drw001_sheet2`
 - Alternate form: `python3 scripts/qa_preview.py DRW-001 2`
 - Cycle all available sheets for a drawing: `python3 scripts/qa_preview.py DRW-001`
+- Open a source part image + rendered part side by side: `python3 scripts/qa_preview.py b0_gear`
 - Dry-run path resolution only: `python3 scripts/qa_preview.py drw001_sheet2 --dry-run`
 
 Behavior:
@@ -47,6 +48,7 @@ Behavior:
 - Falls back to the source PDF from `docs/sources/drawing_index.csv` and jumps to the requested sheet page
 - Opens the recreated PNG from `exports/png/` and arranges source left / recreation right in Preview on macOS
 - In drawing-wide mode, pauses after each sheet until you press Enter, then closes the old pair and opens the next one
+- In part mode, renders a fresh orthographic PNG to `exports/png/<part>.png` before opening it
 
 ## Current Starter Modules
 
