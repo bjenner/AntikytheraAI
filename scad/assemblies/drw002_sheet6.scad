@@ -6,6 +6,7 @@ use <../parts/b1_main_wheel.scad>
 use <../parts/b2_gear_ring.scad>
 use <../parts/b3_gear.scad>
 use <../parts/b4_rivet_pin.scad>
+use <drw002_b2_subassembly.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.3) {
     hull() {
@@ -23,13 +24,6 @@ module outline2d(w = 0.38) {
 
 module label(s, sz = 3.0, bold = false) {
     text(s, size = sz, halign = "left", valign = "center", font = bold ? "Liberation Sans:style=Bold" : "Liberation Sans");
-}
-
-module b2_subassembly() {
-    color([0.45, 0.30, 0.18]) part_b2();
-    color([0.25, 0.25, 0.25])
-    for (a = [0, 90, 180, 270])
-        rotate([0, 0, a]) translate([10, 0, 1.7]) part_b4();
 }
 
 module drw002_sheet6() {
@@ -87,7 +81,7 @@ module drw002_sheet6() {
     // b2 and b4 lower-right.
     color([0.93, 0.93, 0.93]) translate([314, 116, 0]) linear_extrude(height = th) b2_gear_2d();
     color("black") translate([314, 116, 0.01]) linear_extrude(height = th) outline2d(0.30) b2_gear_2d();
-    translate([332, 58, 16]) rotate([66, 0, 26]) scale([1.4, 1.4, 1.4]) b2_subassembly();
+    translate([332, 58, 16]) rotate([66, 0, 26]) scale([1.4, 1.4, 1.4]) drw002_b2_subassembly();
 
     color([0.25, 0.25, 0.25]) translate([276, 84, 16]) rotate([90, 0, 0]) part_b4();
     color("black") translate([264, 80, 0]) linear_extrude(height = th) label("b4 x 4", sz = 3.0, bold = true);
