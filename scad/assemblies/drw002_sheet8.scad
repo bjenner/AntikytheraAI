@@ -5,6 +5,7 @@ use <../parts/b7_hub.scad>
 use <../parts/b8_rivet_pin.scad>
 use <../parts/b9_pin.scad>
 use <../parts/b10_disc.scad>
+use <drw002_b7_subassembly.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.3) {
     hull() {
@@ -22,15 +23,6 @@ module outline2d(w = 0.38) {
 
 module label(s, sz = 3.0, bold = false) {
     text(s, size = sz, halign = "left", valign = "center", font = bold ? "Liberation Sans:style=Bold" : "Liberation Sans");
-}
-
-module b8_subassembly() {
-    // Rivet b8 and b9 to b7.
-    color([0.45, 0.30, 0.18]) part_b7();
-    color([0.20, 0.20, 0.20]) {
-        rotate([0, 0, 45]) translate([4.5, 0, 6.0]) part_b8();
-        rotate([0, 0, 225]) translate([4.5, 0, 6.0]) part_b9(pin_h = 6.8, head_d = 3.0);
-    }
 }
 
 module drw002_sheet8() {
@@ -78,7 +70,7 @@ module drw002_sheet8() {
     color("black") translate([278, 112, 0.01]) linear_extrude(height = th) outline2d(0.32) b10_profile_2d();
 
     // Combined subassembly render.
-    translate([186, 56, 16]) rotate([20, 0, -20]) scale([2.0, 2.0, 2.0]) b8_subassembly();
+    translate([186, 56, 16]) rotate([20, 0, -20]) scale([2.0, 2.0, 2.0]) drw002_b7_subassembly();
     color("black") translate([166, 50, 0]) linear_extrude(height = th) label("Rivet b8 and b9 to b7.", sz = 3.0);
 
     // Labels + leaders.

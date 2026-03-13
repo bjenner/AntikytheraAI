@@ -172,6 +172,7 @@ use <assemblies/drw001_a1_subassembly.scad>
 use <assemblies/drw001_a1_gear_assembly.scad>
 use <assemblies/drw001_a8_subassembly.scad>
 use <assemblies/drw002_b2_subassembly.scad>
+use <assemblies/drw002_b7_subassembly.scad>
 use <assemblies/drw001_sheet2.scad>
 use <assemblies/drw001_sheet3.scad>
 use <assemblies/drw001_sheet4.scad>
@@ -535,6 +536,8 @@ if (mode == "part_a1") {
     drw001_a8_subassembly();
 } else if (mode == "drw002_b2_subassembly") {
     drw002_b2_subassembly();
+} else if (mode == "drw002_b7_subassembly") {
+    drw002_b7_subassembly();
 } else if (mode == "drw001_a1_subassembly_exploded") {
     drw001_a1_subassembly_exploded(explode = exploded_gap);
 } else if (mode == "drw001_a1_subassembly_animate") {
