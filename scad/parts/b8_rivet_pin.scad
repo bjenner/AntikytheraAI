@@ -5,11 +5,8 @@
 // revision: 0.1
 // SPDX-License-Identifier: MIT
 
-module part_b8(pin_d = 1.5, pin_h = 6.2, head_d = 2.4, head_h = 0.9) {
-    union() {
-        cylinder(d = pin_d, h = pin_h, center = false, $fn = 30);
-        cylinder(d = head_d, h = head_h, center = false, $fn = 30);
-    }
+module part_b8(pin_d = 1.5, pin_h = 6.2) {
+    cylinder(d = pin_d, h = pin_h, center = false, $fn = 30);
 }
 
 // ---- "main guard" ----
