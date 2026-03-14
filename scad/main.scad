@@ -173,6 +173,7 @@ use <assemblies/drw001_a1_gear_assembly.scad>
 use <assemblies/drw001_a8_subassembly.scad>
 use <assemblies/drw002_b2_subassembly.scad>
 use <assemblies/drw002_b7_subassembly.scad>
+use <assemblies/drw002_b9_subassembly.scad>
 use <assemblies/drw001_sheet2.scad>
 use <assemblies/drw001_sheet3.scad>
 use <assemblies/drw001_sheet4.scad>
@@ -258,6 +259,12 @@ if (mode == "part_a1") {
     part_b16();
 } else if (mode == "part_b17") {
     part_b17();
+} else if (mode == "drw002_b2_subassembly") {
+    drw002_b2_subassembly();
+} else if (mode == "drw002_b7_subassembly") {
+    drw002_b7_subassembly();
+} else if (mode == "drw002_b9_subassembly") {
+    drw002_b9_subassembly();
 } else if (mode == "part_b18") {
     part_b18();
 } else if (mode == "part_cp1") {

@@ -10,6 +10,7 @@ use <../parts/b14_pin.scad>
 use <../parts/b15_wire_link.scad>
 use <../parts/b16_rivet.scad>
 use <../parts/b17_standoff_pin.scad>
+use <./drw002_b9_subassembly.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.3) {
     hull() {
@@ -27,30 +28,6 @@ module outline2d(w = 0.38) {
 
 module label(s, sz = 3.0, bold = false) {
     text(s, size = sz, halign = "left", valign = "center", font = bold ? "Liberation Sans:style=Bold" : "Liberation Sans");
-}
-
-module b9_subassembly() {
-    // Core block.
-    color([0.40, 0.29, 0.19]) translate([0, 0, 0]) part_b11();
-
-    // Two b12 guide pins on top.
-    color([0.45, 0.34, 0.23]) {
-        translate([5.2, 20.0, 11.2]) rotate([0, 0, 0]) part_b12();
-        translate([10.8, 20.0, 11.2]) rotate([0, 0, 0]) part_b12();
-    }
-
-    // Lateral roller b13 riveted to b12 axis region.
-    color([0.35, 0.25, 0.18]) translate([16, 12, 8.6]) rotate([0, 0, 0]) part_b13();
-
-    // Fine pin and rivet near lower side.
-    color([0.70, 0.70, 0.70]) translate([8.0, 6.0, 9.0]) rotate([90, 0, 0]) part_b14();
-    color([0.25, 0.25, 0.25]) translate([12.0, 5.0, 2.2]) rotate([90, 0, 0]) part_b16();
-
-    // Wire link.
-    color([0.72, 0.72, 0.72]) translate([8.0, 8.0, 6.4]) rotate([0, 90, -20]) part_b15();
-
-    // Reference rivet from b17 note (sheet 10 linkage callout).
-    color([0.15, 0.15, 0.15]) translate([13.8, 4.8, 1.0]) rotate([0, 90, 0]) cylinder(d = 1.5, h = 2.0, center = false);
 }
 
 module drw002_sheet9() {
@@ -101,8 +78,8 @@ module drw002_sheet9() {
     color("black") translate([324, 148, 0]) linear_extrude(height = th) label("b16", sz = 3.0, bold = true);
 
     // Bottom assembly views.
-    translate([200, 40, 16]) rotate([22, 0, -28]) scale([1.2, 1.2, 1.2]) b9_subassembly();
-    translate([285, 58, 16]) rotate([35, 0, -35]) scale([1.25, 1.25, 1.25]) b9_subassembly();
+    translate([200, 40, 16]) rotate([22, 0, -28]) scale([1.2, 1.2, 1.2]) drw002_b9_subassembly();
+    translate([285, 58, 16]) rotate([35, 0, -35]) scale([1.25, 1.25, 1.25]) drw002_b9_subassembly();
 
     color("black") translate([215, 36, 0]) linear_extrude(height = th) label("b9 sub assembly", sz = 3.2);
 
