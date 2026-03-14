@@ -1,9 +1,10 @@
-// part_id: a7
-// name: A7 block
-// source_drawing_ids: DRW-001
-// units: mm
-// revision: 0.2
+// Part A7: block with transverse bore and top post.
 // SPDX-License-Identifier: MIT
+//
+// Local origin convention:
+// - XY origin is the body centerline.
+// - Z origin is the body midplane, excluding the top post.
+// - Assembly placement and animation should be applied outside this file.
 
 module a7_body_2d(base_r = 8.0, trim_half = 4.0) {
     // Drawing-driven base profile:
@@ -34,29 +35,32 @@ module part_a7(
     base_r = 8.0,
     trim_half = 4.0
 ) {
+    z_min = -body_h / 2;
+
     difference() {
         union() {
             // Main block.
-            linear_extrude(height = body_h)
-                a7_body_2d(base_r = base_r, trim_half = trim_half);
+            translate([0, 0, z_min])
+                linear_extrude(height = body_h)
+                    a7_body_2d(base_r = base_r, trim_half = trim_half);
 
             // Simple top column.
-            translate([0, 0, body_h])
+            translate([0, 0, z_min + body_h])
                 cylinder(d = top_post_d, h = top_post_h, center = false, $fn = 64);
         }
 
         // Main transverse bore (Ø12), dimension-driven location.
-        translate([0, 0, bore_center_z])
+        translate([0, 0, z_min + bore_center_z])
             rotate([90, 0, 0])
                 cylinder(d = bore_d, h = d + 0.4, center = true, $fn = 96);
 
         // Bottom blind vertical hole up to side-bore centerline.
-        translate([0, 0, -0.1])
+        translate([0, 0, z_min - 0.1])
             cylinder(d = bottom_hole_d, h = bore_center_z + 0.2, center = false, $fn = 56);
 
         // Side grooves only on the two wide faces (deeper), not wrapping around short ends.
         for (sy = [-1, 1])
-            translate([0, sy * (trim_half - groove_depth_wide / 2), groove_z + groove_h / 2])
+            translate([0, sy * (trim_half - groove_depth_wide / 2), z_min + groove_z + groove_h / 2])
                 cube([2 * (base_r + 0.4), groove_depth_wide, groove_h + 0.04], center = true);
 
         // Matching slot pair in the middle of the upper pin.
@@ -65,7 +69,7 @@ module part_a7(
             translate([
                 0,
                 sy * (top_post_d / 2 - top_post_slot_depth / 2),
-                body_h + top_post_h / 2
+                z_min + body_h + top_post_h / 2
             ])
                 cube([top_post_d + 0.4, top_post_slot_depth, top_post_slot_h], center = true);
 

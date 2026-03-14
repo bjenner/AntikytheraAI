@@ -1,9 +1,10 @@
-// part_id: a3
-// name: A3 pin
-// source_drawing_ids: DRW-001
-// units: mm
-// revision: 0.2
+// Part A3: stepped pin with lobed top.
 // SPDX-License-Identifier: MIT
+//
+// Local origin convention:
+// - XY origin is the pin axis.
+// - Z origin is the part midplane.
+// - Assembly placement and animation should be applied outside this file.
 
 module a3_lobed_top_2d(d = 9.8) {
     r_major = d * (2.5 / 9.8); // center R2.5
@@ -18,15 +19,17 @@ module a3_lobed_top_2d(d = 9.8) {
 }
 
 module a3_height_ruler(total_h = 16.6, tick_step = 1, major_step = 2, x = 8.5, y = 0) {
+    z_min = -total_h / 2;
+
     // Vertical spine
     color([0.15, 0.15, 0.15])
-        translate([x, y, 0]) cube([0.25, 0.25, total_h], center = false);
+        translate([x, y, z_min]) cube([0.25, 0.25, total_h], center = false);
 
     // Tick marks (1 mm minor, 2 mm major)
     for (z = [0 : tick_step : ceil(total_h)]) {
         tick_len = (z % major_step == 0) ? 2.2 : 1.2;
         color([0.05, 0.05, 0.05])
-            translate([x - tick_len, y, z]) cube([tick_len, 0.25, 0.15], center = false);
+            translate([x - tick_len, y, z_min + z]) cube([tick_len, 0.25, 0.15], center = false);
     }
 }
 
@@ -39,13 +42,13 @@ module part_a3(d = 9.8, h = 16.6, show_ruler = false) {
     upper_h = 8.8; // orange
     top_h   = 2.0; // blue
 
-    z0 = 0;
+    z0 = -h / 2;
     z1 = z0 + lower_h;
     z2 = z1 + waist_h;
     // Wide body is positioned from the top:
     // starts 2.0 mm down and runs for 8.8 mm.
-    z3 = h - (top_h + upper_h);
-    z4 = h - top_h;
+    z3 = h / 2 - (top_h + upper_h);
+    z4 = h / 2 - top_h;
 
     waist_d = d * (8.0 / 9.8);     // Ø8.0 region callout
     slot_w = d * (3.0 / 9.8);      // 3.0 slot callout
@@ -55,7 +58,7 @@ module part_a3(d = 9.8, h = 16.6, show_ruler = false) {
         union() {
             // Lower stepped stack.
             color("green")
-            cylinder(d = waist_d, h = lower_h, center = false);
+            translate([0, 0, z0]) cylinder(d = waist_d, h = lower_h, center = false);
             color("red")
             translate([0, 0, z1]) cylinder(d = waist_d, h = waist_h, center = false);
             color("purple")

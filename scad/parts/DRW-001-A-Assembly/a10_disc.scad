@@ -1,8 +1,4 @@
-// part_id: a10
-// name: A10 disc
-// source_drawing_ids: DRW-001
-// units: mm
-// revision: 0.2
+// Part A10: disc with keyed center cutout.
 // SPDX-License-Identifier: MIT
 
 module a10_center_profile_2d(center_hole_d = 9.0, detent_r = 1.5) {
@@ -19,8 +15,8 @@ module a10_center_profile_2d(center_hole_d = 9.0, detent_r = 1.5) {
 
 module part_a10(od = 111, th = 2, center_hole_d = 9, center_detent_r = 1.5) {
     difference() {
-        cylinder(d = od, h = th, center = false, $fn = 160);
-        translate([0, 0, -0.1])
+        cylinder(d = od, h = th, center = true, $fn = 160);
+        translate([0, 0, -th / 2 - 0.1])
             linear_extrude(height = th + 0.2)
                 a10_center_profile_2d(center_hole_d = center_hole_d, detent_r = center_detent_r);
     }

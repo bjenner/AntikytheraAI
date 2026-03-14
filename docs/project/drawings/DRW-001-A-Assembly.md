@@ -42,6 +42,7 @@
 - Modeled parts used: `a2, a3, a4, a5, a6, a12` plus local `a1_gear()` helper
 - Notes: includes orthographic + isometric style layout and sample dimensions.
 - Note: source callout for the small A1-side subassembly is treated as a drawing error; use `a3` (not `a4`) as the riveted/fit mate to `a1`.
+- Note: Sheet 5 dimensions and geometry are currently treated as `a12`, even though the source sheet appears to label that part as `a11` in at least one view. No local dimension set for a distinct `a11` part has been found in the project sources.
 
 ### Sheet 6 (`drw001_sheet6`)
 - Intent: detailed part views (`a7` to `a10`)
@@ -81,7 +82,9 @@ Dimensions below are the current default parameters in each part file (mm).
 - `a3` still needs a fine-tuning pass for exact contour radii and height segmentation against the engineering dimensions.
 - `a4` has completed a first correction pass: top bosses are now additive (`Ø2.9`, `2.0` high), overall height is dimensioned (`32.2`), bore is dimension-positioned (`Ø10.0` at `z=17.6`), and lower cutouts were added as a first-pass interpretation.
 - `a4` still needs a contour/detail pass to better match the drawing end radii/edge transitions and exact lower cutout profile.
-- `a7` top feature is currently simplified to a plain `Ø3.5 x 5.0` column as a baseline; top slot/groove details are intentionally deferred for a later refinement pass.
+- `a6` currently has a known modeling issue: the top slots do not yet cut fully through the cylinder wall; defer this to the later part-correction pass.
+- `a7` has a known unfinished top feature: the current top post is only a simplified baseline, and the intended top slot/groove details are not yet modeled; defer this to the later part-correction pass.
+- `a11` remains semantically uncertain: the active DRW-001 project treats it as a lock ring / gear lock tied to `b1 Gear Lock.ipt` on Sheet 2, while the Sheet 5 dimensioned part is currently modeled and tracked as `a12`.
 
 ## Cross-Sheet Part Coverage
 

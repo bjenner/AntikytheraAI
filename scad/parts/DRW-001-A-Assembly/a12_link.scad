@@ -1,9 +1,10 @@
-// part_id: a12
-// name: A12 link
-// source_drawing_ids: DRW-001
-// units: mm
-// revision: 0.2
+// Part A12: link plate with two holes and tapered tongue.
 // SPDX-License-Identifier: MIT
+//
+// Local origin convention:
+// - XY origin is the center of the larger left eye.
+// - Z origin is the plate midplane.
+// - Assembly placement and animation should be applied outside this file.
 
 // 2D profile based on DRW-001 sheet 5 callouts:
 // - left eye outer R5 with center hole d=3
@@ -50,9 +51,14 @@ module a12_profile_2d(
     }
 }
 
-module part_a12(th = 1.0) {
-    linear_extrude(height = th)
-        a12_profile_2d();
+module part_a12(
+    th = 1.0,
+    c2c = 19.5,
+    offset = 2.5
+) {
+    translate([0, 0, -th / 2])
+        linear_extrude(height = th)
+            a12_profile_2d(c2c = c2c, offset = offset);
 }
 
 // ---- "main guard" ----

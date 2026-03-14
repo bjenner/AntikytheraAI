@@ -1,14 +1,15 @@
-// part_id: a2
-// name: A2 ring
-// source_drawing_ids: DRW-001
-// units: mm
-// revision: 0.2
+// Part A2: thin spacer ring.
 // SPDX-License-Identifier: MIT
+//
+// Local origin convention:
+// - XY origin is the ring axis.
+// - Z origin is the part midplane.
+// - Assembly placement and animation should be applied outside this file.
 
 module part_a2(od = 16, id = 10, th = 0.7) {
     difference() {
-        cylinder(d = od, h = th, center = false);
-        translate([0, 0, -0.1]) cylinder(d = id, h = th + 0.2, center = false);
+        cylinder(d = od, h = th, center = true);
+        cylinder(d = id, h = th + 0.2, center = true);
     }
 }
 

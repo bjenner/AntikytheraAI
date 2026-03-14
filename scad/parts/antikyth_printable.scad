@@ -71,14 +71,14 @@ module part_a10(
 }
 
 // -----------------------------
-// a11: Long rod (Ø3.0) with R1 ends (rounded)
-// (Drawing shows a long 3.0 rod; length not explicitly readable here -> parameter)
+// a11: Gear lock ring / split lock washer
+// Aligned with the active DRW-001 `a11_gear_lock.scad` interpretation.
 // -----------------------------
-module part_a11(d=3.0, L=120.0) {
-    // rod with rounded ends
-    hull() {
-        translate([0,0,0]) sphere(d=d);
-        translate([L,0,0]) sphere(d=d);
+module part_a11(od=18.0, id=9.0, th=1.5, gap_w=2.0) {
+    difference() {
+        cylinder(d=od, h=th, center=false);
+        translate([0,0,-0.5]) cylinder(d=id, h=th+1.0, center=false);
+        translate([0,-gap_w/2,-0.5]) cube([od/2 + 1, gap_w, th + 1.0], center=false);
     }
 }
 
@@ -297,7 +297,7 @@ module render_part(name) {
         translate([-40,-40,0]) part_a2();
         translate([  0,-40,0]) part_a5();
         translate([ 40,-40,0]) part_a12();
-        translate([  0,-65,0]) part_a11(L=120);
+        translate([  0,-65,0]) part_a11();
         translate([ 60,-65,0]) part_a8();
         translate([ 70,-65,0]) part_a8();
     }

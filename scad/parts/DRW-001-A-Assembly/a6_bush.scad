@@ -1,9 +1,10 @@
-// part_id: a6
-// name: A6 bush
-// source_drawing_ids: DRW-001
-// units: mm
-// revision: 0.2
+// Part A6: slotted bush with top band cut.
 // SPDX-License-Identifier: MIT
+//
+// Local origin convention:
+// - XY origin is the tube axis.
+// - Z origin is the part midplane.
+// - Assembly placement and animation should be applied outside this file.
 
 module part_a6(
     od = 11.8,
@@ -26,14 +27,16 @@ module part_a6(
     u_slot_r = u_slot_w / 2;
     // Height where rounded cap of the U-slot starts.
     u_slot_rect_h = max(0, u_slot_h - u_slot_r);
-    band_z = h - top_band_offset - top_band_h;
+    z_min = -h / 2;
+    band_z = z_min + h - top_band_offset - top_band_h;
 
     difference() {
         // Main tube body.
-        cylinder(d = od, h = h, center = false, $fn = 96);
+        translate([0, 0, z_min])
+            cylinder(d = od, h = h, center = false, $fn = 96);
 
         // Through inner bore (R4.0 / Ø8.0).
-        translate([0, 0, -0.1]) cylinder(d = id, h = h + 0.2, center = false, $fn = 72);
+        translate([0, 0, z_min - 0.1]) cylinder(d = id, h = h + 0.2, center = false, $fn = 72);
 
         // Inverted interpretation: cut most of the top band annulus,
         // leaving two opposite tabs centered at 0/180 degrees.
@@ -51,15 +54,15 @@ module part_a6(
 
         // Bottom U-slot, open from one side (front view behavior).
         // Build from a rectangular stem plus rounded cap.
-        translate([-u_slot_w / 2, -od / 2 - 0.1, 0])
+        translate([-u_slot_w / 2, -od / 2 - 0.1, z_min])
             cube([u_slot_w, od + 0.2, u_slot_rect_h], center = false);
-        translate([0, 0, u_slot_rect_h])
+        translate([0, 0, z_min + u_slot_rect_h])
             rotate([90, 0, 0])
                 cylinder(r = u_slot_r, h = od + 0.2, center = true, $fn = 48);
 
         // Small top detent/hole (Ø1.5), fully through one side wall into the bore.
         wall_t = (od - id) / 2;
-        translate([0, od / 2 + 0.05, top_hole_z])
+        translate([0, od / 2 + 0.05, z_min + top_hole_z])
             rotate([90, 0, 0])
                 cylinder(d = top_hole_d, h = wall_t + 0.2, center = false, $fn = 36);
     }

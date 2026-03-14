@@ -1,9 +1,10 @@
-// part_id: a4
-// name: A4 block
-// source_drawing_ids: DRW-001
-// units: mm
-// revision: 0.2
+// Part A4: block with transverse bore and top pins.
 // SPDX-License-Identifier: MIT
+//
+// Local origin convention:
+// - XY origin is the body centerline.
+// - Z origin is the body midplane, excluding the top pins.
+// - Assembly placement and animation should be applied outside this file.
 
 module a4_body_2d(w = 16, d = 8, corner_r = 1.0) {
     // First correction pass: rectangular body with softened corners.
@@ -30,20 +31,23 @@ module part_a4(
     lower_cut_gap = 8.0,
     corner_r = 1.0
 ) {
+    z_min = -body_h / 2;
+
     difference() {
         union() {
             // Main block
-            linear_extrude(height = body_h)
+            translate([0, 0, z_min])
+                linear_extrude(height = body_h)
                 a4_body_2d(w = w, d = d, corner_r = corner_r);
 
             // Two top protruding bosses (were incorrectly modeled as holes).
             for (x = [-pin_spacing / 2, pin_spacing / 2])
-                translate([x, 0, body_h])
+                translate([x, 0, z_min + body_h])
                     cylinder(d = top_pin_d, h = top_pin_h, center = false, $fn = 36);
         }
 
         // Main transverse bore (dimension-driven center height).
-        translate([0, 0, bore_center_z])
+        translate([0, 0, z_min + bore_center_z])
             rotate([90, 0, 0])
                 cylinder(d = bore_d, h = d + 0.4, center = true, $fn = 64);
 
@@ -52,7 +56,7 @@ module part_a4(
             translate([
                 sx * (lower_cut_gap / 2 + lower_cut_w / 2),
                 d / 2 - lower_cut_depth,
-                0
+                z_min + lower_cut_h / 2
             ])
                 cube([lower_cut_w, lower_cut_depth + 0.2, lower_cut_h], center = true);
     }
