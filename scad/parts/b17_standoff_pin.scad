@@ -5,41 +5,49 @@
 // revision: 0.1
 // SPDX-License-Identifier: MIT
 
-// Axis is +X for easier placement on plate assemblies.
-module part_b17(body_len = 13.3, body_w = 5.0, body_h = 5.0,
-                left_pin_d = 3.0, left_pin_len = 3.6,
-                left_collar_d = 4.2, left_collar_len = 1.6,
-                right_pin_d = 3.0, right_pin_len = 1.5,
-                top_tab_w = 1.8, top_tab_h = 1.8) {
-    difference() {
-        union() {
-            // Main rectangular body.
-            translate([0, -body_w / 2, -body_h / 2])
-                cube([body_len, body_w, body_h], center = false);
+module rounded_rect_2d(w = 6.0, d = 4.0, corner_r = 0.5) {
+    hull() {
+        for (sx = [-1, 1])
+            for (sy = [-1, 1])
+                translate([sx * (w / 2 - corner_r), sy * (d / 2 - corner_r)])
+                    circle(r = corner_r, $fn = 24);
+    }
+}
 
-            // Left-side fitted shaft and collar.
-            translate([-left_pin_len - left_collar_len, 0, 0])
-                rotate([0, 90, 0])
-                    cylinder(d = left_pin_d, h = left_pin_len, center = false);
-            translate([-left_collar_len, 0, 0])
-                rotate([0, 90, 0])
-                    cylinder(d = left_collar_d, h = left_collar_len, center = false);
+// Axis is +Z following the drawing side view.
+module part_b17(
+    body_w = 5.0,
+    body_d = 4.0,
+    body_corner_to_corner_d = 6.0,
+    body_h = 13.3,
+    top_pin_d = 3.0,
+    top_pin_h = 1.8,
+    lower_neck_d = 3.0,
+    lower_neck_h = 1.6,
+    lower_pin_d = 1.5,
+    lower_pin_h = 1.0,
+    lower_end_d = 3.0,
+    lower_end_h = 1.0
+) {
+    union() {
+        intersection() {
+            linear_extrude(height = body_h)
+                rounded_rect_2d(w = body_w, d = body_d, corner_r = 0.5);
 
-            // Right-side short pin.
-            translate([body_len, 0, 0])
-                rotate([0, 90, 0])
-                    cylinder(d = right_pin_d, h = right_pin_len, center = false);
-
-            // Small anti-rotation tab shown in drawing side detail.
-            translate([body_len - top_tab_w, -body_w / 2, body_h / 2])
-                cube([top_tab_w, body_w, top_tab_h], center = false);
+            cylinder(d = body_corner_to_corner_d, h = body_h, center = false, $fn = 64);
         }
 
-        // Light edge relief to match machined profile impression.
-        for (sx = [1.8, body_len - 1.8])
-            translate([sx, 0, 0])
-                rotate([0, 90, 0])
-                    cylinder(d = 0.8, h = body_w + 0.2, center = true);
+        translate([0, 0, body_h])
+            cylinder(d = top_pin_d, h = top_pin_h, center = false, $fn = 32);
+
+        translate([0, 0, -lower_neck_h])
+            cylinder(d = lower_neck_d, h = lower_neck_h, center = false, $fn = 32);
+
+        translate([0, 0, -lower_neck_h - lower_pin_h])
+            cylinder(d = lower_pin_d, h = lower_pin_h, center = false, $fn = 24);
+
+        translate([0, 0, -lower_neck_h - lower_pin_h - lower_end_h])
+            cylinder(d = lower_end_d, h = lower_end_h, center = false, $fn = 32);
     }
 }
 
