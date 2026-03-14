@@ -4,7 +4,8 @@ OpenSCAD project for building and animating an Antikythera-inspired mechanism wi
 
 ## Project Layout
 
-- `docs/`: sources, design decisions, and assembly notes.
+- `ref/`: source drawings, part reference images, manuals, and metadata.
+- `docs/`: project notes, planning, and design decisions.
 - `scad/`: reusable libraries, parts, assemblies, configs, and top-level entrypoint.
 - `exports/`: generated STL, PNG, and DXF output.
 - `scripts/`: helper scripts for exports and automation.
@@ -22,15 +23,15 @@ OpenSCAD project for building and animating an Antikythera-inspired mechanism wi
 
 - Compile-check all parts and assemblies: `bash scripts/check_all.sh`
 - Compile-check one file:
-  - Part: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/parts/<file>.scad`
-  - Assembly: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/assemblies/<file>.scad`
+  - Part: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/parts/<drawing-folder>/<file>.scad`
+  - Assembly: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/assemblies/<drawing-folder>/<file>.scad`
 - Export artifacts for changed `.scad` files: `bash scripts/export.sh --changed`
-- Export one file explicitly: `bash scripts/export.sh --file scad/parts/a1.scad`
-- Export one assembly preview explicitly: `bash scripts/export.sh --file scad/assemblies/drw001_sheet1.scad`
+- Export one file explicitly: `bash scripts/export.sh --file scad/parts/DRW-001-A-Assembly/a1.scad`
+- Export one assembly preview explicitly: `bash scripts/export.sh --file scad/assemblies/DRW-001-A-Assembly/drw001_sheet1.scad`
 
 Artifact behavior:
-- Part files export to `exports/stl/part_<id>.stl`
-- Assembly files export to `exports/png/<basename>.png`
+- Part files export to `exports/<drawing-folder>/part_<id>.stl`
+- Assembly files export to `exports/<drawing-folder>/<basename>.png`
 - Drawing-sheet exports use a fixed orthographic top-down camera so they line up with the source sheets more closely
 - Use `bash scripts/export.sh --all` to rebuild all current parts and assemblies
 - Use `bash scripts/export.sh --render` for higher-quality PNG previews
@@ -44,23 +45,23 @@ Artifact behavior:
 - Dry-run path resolution only: `python3 scripts/qa_preview.py drw001_sheet2 --dry-run`
 
 Behavior:
-- Prefers a local extracted source page PNG when available under `docs/sources/`
-- Falls back to the source PDF from `docs/sources/drawing_index.csv` and jumps to the requested sheet page
-- Opens the recreated PNG from `exports/png/` and arranges source left / recreation right in Preview on macOS
+- Prefers a local extracted source page PNG when available under `ref/`
+- Falls back to the source PDF from `ref/meta/drawing_index.csv` and jumps to the requested sheet page
+- Opens the recreated PNG from `exports/<drawing-folder>/` and arranges source left / recreation right in Preview on macOS
 - In drawing-wide mode, pauses after each sheet until you press Enter, then closes the old pair and opens the next one
-- In part mode, renders a fresh orthographic PNG to `exports/png/<part>.png` before opening it
+- In part mode, renders a fresh orthographic PNG to `exports/<drawing-folder>/<part>.png` before opening it
 
 ## Current Starter Modules
 
-- `scad/parts/a1.scad`: placeholder driven gear/disc.
+- `scad/parts/DRW-001-A-Assembly/a1.scad`: placeholder driven gear/disc.
 - `scad/assemblies/full_mechanism.scad`: base plate + rotating A1 placement.
 - `scad/main.scad`: top-level selector and animation driver.
 
 ## Next Build Targets
 
 - Add tooth-profiled gears in `scad/lib/` and swap placeholders.
-- Add additional historical part files under `scad/parts/`.
-- Add kinematic links for coupled gear trains in `scad/assemblies/`.
+- Add additional historical part files under `scad/parts/<drawing-folder>/`.
+- Add kinematic links for coupled gear trains in `scad/assemblies/<drawing-folder>/`.
 
 ## Source References
 

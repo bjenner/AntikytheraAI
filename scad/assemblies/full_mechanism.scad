@@ -1,7 +1,7 @@
 // First assembly template with one driven part.
 // SPDX-License-Identifier: MIT
 
-use <../parts/a1.scad>
+use <../parts/DRW-001-A-Assembly/a1.scad>
 
 module full_mechanism(theta = 0, exploded_gap = 0) {
     // Base reference plate placeholder.

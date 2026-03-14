@@ -9,12 +9,12 @@ Agents should keep changes checkpoint-friendly and preserve drawing/part traceab
 - Primary stack: OpenSCAD (`.scad`), Markdown (`.md`), CSV metadata (`.csv`)
 - Supporting tools: Bash scripts, small Python utilities, GitHub Actions, Git LFS
 - Core folders:
-  - `scad/parts/` one file per reusable part
-  - `scad/assemblies/` one file per drawing sheet or assembly scene
+  - `scad/parts/<drawing-folder>/` reusable parts grouped by origin drawing
+  - `scad/assemblies/<drawing-folder>/` drawing sheets and subassemblies grouped by drawing
   - `scad/configs/presets.scad` render mode selector
   - `scad/main.scad` top-level router for all modes
-  - `docs/sources/drawing_index.csv` drawing coverage metadata
-  - `docs/sources/parts_list.csv` part metadata and reconciliation evidence
+  - `ref/meta/drawing_index.csv` drawing coverage metadata
+  - `ref/meta/parts_list.csv` part metadata and reconciliation evidence
 
 ## Commands
 
@@ -28,21 +28,21 @@ Build / export:
 - Full compile check: `bash scripts/check_all.sh`
 - Stop on first compile failure: `bash scripts/check_all.sh --stop-on-error`
 - Export changed `.scad` files: `bash scripts/export.sh --changed`
-- Export one file explicitly: `bash scripts/export.sh --file scad/parts/a1.scad`
+- Export one file explicitly: `bash scripts/export.sh --file scad/parts/DRW-001-A-Assembly/a1.scad`
 - Python wrapper for local exports: `python3 scripts/export.py --changed`
 - Side-by-side QA preview: `python3 scripts/qa_preview.py drw001_sheet2`
 - Cycle all rendered sheets for one drawing: `python3 scripts/qa_preview.py DRW-001`
 - Side-by-side part QA preview: `python3 scripts/qa_preview.py b0_gear`
 - Sheet PNG exports use a fixed orthographic camera for closer source-drawing alignment
-- Example direct STL export: `openscad -o exports/stl/part_a1.stl scad/parts/a1.scad`
-- Example direct PNG export: `openscad -o exports/png/drw001_sheet1.png scad/assemblies/drw001_sheet1.scad`
+- Example direct STL export: `openscad -o exports/DRW-001-A-Assembly/part_a1.stl scad/parts/DRW-001-A-Assembly/a1.scad`
+- Example direct PNG export: `openscad -o exports/DRW-001-A-Assembly/drw001_sheet1.png scad/assemblies/DRW-001-A-Assembly/drw001_sheet1.scad`
 
 Lint / policy:
 - Validate root agent policy file: `bash scripts/check_agents_policy.sh`
 
 Tests in this repo are primarily compile checks:
-- Compile one part file: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/parts/<file>.scad`
-- Compile one assembly file: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/assemblies/<file>.scad`
+- Compile one part file: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/parts/<drawing-folder>/<file>.scad`
+- Compile one assembly file: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' scad/assemblies/<drawing-folder>/<file>.scad`
 - Compile one router mode through `main.scad`: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' -D 'mode="part_a1"' scad/main.scad`
 - Compile one sheet mode through `main.scad`: `openscad --export-format csg -o /tmp/scad_check.csg -D '__LIB_MODE__=1' -D 'mode="drw001_sheet1"' scad/main.scad`
 
@@ -82,7 +82,7 @@ Cursor / Copilot rules:
 
 ### 2) `part_modeler`
 
-- Purpose: create/update part files under `scad/parts/`.
+- Purpose: create/update part files under `scad/parts/<drawing-folder>/`.
 - Outputs: `part_<id>()` modules with main-guard preview behavior.
 - Rules:
   - File naming: `<part_id>_<slug>.scad`.
@@ -92,7 +92,7 @@ Cursor / Copilot rules:
 
 ### 3) `assembly_modeler`
 
-- Purpose: create/update drawing sheet scenes under `scad/assemblies/`.
+- Purpose: create/update drawing sheet scenes under `scad/assemblies/<drawing-folder>/`.
 - Outputs: `drwXXX_sheetY()` module + main guard.
 - Rules:
   - Reuse part modules; do not duplicate part geometry in assembly files.
@@ -167,8 +167,8 @@ Error handling:
 - In OpenSCAD, use `assert(...)` only when invalid inputs would otherwise create misleading geometry.
 
 Metadata and traceability:
-- New parts must be reflected in `docs/sources/parts_list.csv`.
-- New drawing coverage must be reflected in `docs/sources/drawing_index.csv`.
+- New parts must be reflected in `ref/meta/parts_list.csv`.
+- New drawing coverage must be reflected in `ref/meta/drawing_index.csv`.
 - Keep `scad_file=...` evidence populated for traceability.
 - Do not rename stable part IDs casually; metadata continuity matters.
 

@@ -1,25 +1,25 @@
 // DRW-002 part router.
 // SPDX-License-Identifier: MIT
 
-use <../parts/b0_gear.scad>
-use <../parts/b1_main_wheel.scad>
-use <../parts/b2_gear_ring.scad>
-use <../parts/b3_gear.scad>
-use <../parts/b4_rivet_pin.scad>
-use <../parts/b5_post.scad>
-use <../parts/b6_clip.scad>
-use <../parts/b7_hub.scad>
-use <../parts/b8_rivet_pin.scad>
-use <../parts/b9_pin.scad>
-use <../parts/b10_disc.scad>
-use <../parts/b11_carrier_block.scad>
-use <../parts/b12_pin.scad>
-use <../parts/b13_roller.scad>
-use <../parts/b14_pin.scad>
-use <../parts/b15_wire_link.scad>
-use <../parts/b16_rivet.scad>
-use <../parts/b17_standoff_pin.scad>
-use <../parts/b18_link_plate.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b0_gear.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b1_main_wheel.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b2_gear_ring.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b3_gear.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b4_rivet_pin.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b5_post.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b6_clip.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b7_hub.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b8_rivet_pin.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b9_pin.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b10_disc.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b11_carrier_block.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b12_pin.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b13_roller.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b14_pin.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b15_wire_link.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b16_rivet.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b17_standoff_pin.scad>
+use <../parts/DRW-002-B-Wheel-Frame-Assembly/b18_link_plate.scad>
 
 PART_MODES_DRW002 = [
     "part_b0", "part_b1", "part_b2", "part_b3", "part_b4", "part_b5",

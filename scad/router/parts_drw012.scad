@@ -1,23 +1,23 @@
 // DRW-012 part router.
 // SPDX-License-Identifier: MIT
 
-use <../parts/jup1_gear.scad>
-use <../parts/jup2_gear.scad>
-use <../parts/jup3_gear.scad>
-use <../parts/jup4_gear.scad>
-use <../parts/jup5_gear.scad>
-use <../parts/jup7_hub.scad>
-use <../parts/jup8_spacer.scad>
-use <../parts/jup9_rivet_pin.scad>
-use <../parts/jup10_hub.scad>
-use <../parts/jup11_sleeve.scad>
-use <../parts/jup13_pointer_arm.scad>
-use <../parts/jup14_orb_large.scad>
-use <../parts/jup15_orb_rod_large.scad>
-use <../parts/jup16_orb_small.scad>
-use <../parts/jup17_orb_rod_small.scad>
-use <../parts/jup18_pointer_ring_outer.scad>
-use <../parts/jup19_pointer_ring_inner.scad>
+use <../parts/DRW-012-Jupiter/jup1_gear.scad>
+use <../parts/DRW-012-Jupiter/jup2_gear.scad>
+use <../parts/DRW-012-Jupiter/jup3_gear.scad>
+use <../parts/DRW-012-Jupiter/jup4_gear.scad>
+use <../parts/DRW-012-Jupiter/jup5_gear.scad>
+use <../parts/DRW-012-Jupiter/jup7_hub.scad>
+use <../parts/DRW-012-Jupiter/jup8_spacer.scad>
+use <../parts/DRW-012-Jupiter/jup9_rivet_pin.scad>
+use <../parts/DRW-012-Jupiter/jup10_hub.scad>
+use <../parts/DRW-012-Jupiter/jup11_sleeve.scad>
+use <../parts/DRW-012-Jupiter/jup13_pointer_arm.scad>
+use <../parts/DRW-012-Jupiter/jup14_orb_large.scad>
+use <../parts/DRW-012-Jupiter/jup15_orb_rod_large.scad>
+use <../parts/DRW-012-Jupiter/jup16_orb_small.scad>
+use <../parts/DRW-012-Jupiter/jup17_orb_rod_small.scad>
+use <../parts/DRW-012-Jupiter/jup18_pointer_ring_outer.scad>
+use <../parts/DRW-012-Jupiter/jup19_pointer_ring_inner.scad>
 
 PART_MODES_DRW012 = [
     "part_jup1", "part_jup2", "part_jup3", "part_jup4", "part_jup5", "part_jup7",

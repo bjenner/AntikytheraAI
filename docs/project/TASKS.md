@@ -4,7 +4,7 @@
 - `Milestone C`: complete and normalize `DRW-001` (`a assembly`) in strict sheet order.
 
 ## DRW-001 snapshot
-- Source drawing: `docs/sources/Antikythera Mechanism Bronze Rev 8.1/a.pdf`
+- Source drawing: `ref/drawings/DRW-001-A-Assembly/a.pdf`
 - PNG prefix: `a_page*.png`
 - Target sheets: `1,2,3,4,5,6,7`
 - Current file presence: all 7 assembly sheet files exist

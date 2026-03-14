@@ -1,16 +1,16 @@
 // DRW-010 part router.
 // SPDX-License-Identifier: MIT
 
-use <../parts/fp1_front_plate.scad>
-use <../parts/fp2_front_panel_dial_frame.scad>
-use <../parts/fp3_zodiac_dial.scad>
-use <../parts/fp4_egyptian_dial.scad>
-use <../parts/fp5_rivet.scad>
-use <../parts/fp6_post.scad>
-use <../parts/fp7_post.scad>
-use <../parts/fp8_post.scad>
-use <../parts/fp9_bush.scad>
-use <../parts/fp10_zodiac_pointer.scad>
+use <../parts/DRW-010-Front-Plate/fp1_front_plate.scad>
+use <../parts/DRW-010-Front-Plate/fp2_front_panel_dial_frame.scad>
+use <../parts/DRW-010-Front-Plate/fp3_zodiac_dial.scad>
+use <../parts/DRW-010-Front-Plate/fp4_egyptian_dial.scad>
+use <../parts/DRW-010-Front-Plate/fp5_rivet.scad>
+use <../parts/DRW-010-Front-Plate/fp6_post.scad>
+use <../parts/DRW-010-Front-Plate/fp7_post.scad>
+use <../parts/DRW-010-Front-Plate/fp8_post.scad>
+use <../parts/DRW-010-Front-Plate/fp9_bush.scad>
+use <../parts/DRW-010-Front-Plate/fp10_zodiac_pointer.scad>
 
 PART_MODES_DRW010 = [
     "part_fp1", "part_fp2", "part_fp3", "part_fp4", "part_fp5",

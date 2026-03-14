@@ -7,8 +7,8 @@ traceability of the Antikythera project.
 
 - Work: `Antikyther Mechanism Revision 8.1 Operating-Maintanace-Assembly-Dissasambly and Manufacturing Manual Rev 1.1`
 - Location in this repo:
-  - `docs/sources/Antikythera Mechanism/Antikyther Mechanism Revision 8.1 Operating-Maintanace-Assembly-Dissasambly and Manufacturing Manual Rev 1.1.pdf`
-  - `docs/sources/Antikythera Mechanism/manual_sec*.pdf` (extracted page-range sections)
+  - `ref/manual/pdfs/Antikyther Mechanism Revision 8.1 Operating-Maintanace-Assembly-Dissasambly and Manufacturing Manual Rev 1.1.pdf`
+  - `ref/manual/pdfs/manual_sec*.pdf` (extracted page-range sections)
 - Copyright notice in source:
   - "Copyright Notice"
   - "Except where noted, © the author; distributed under the terms of the Creative Commons Attribution License."

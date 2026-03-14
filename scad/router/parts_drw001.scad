@@ -1,18 +1,18 @@
 // DRW-001 part router.
 // SPDX-License-Identifier: MIT
 
-use <../parts/a1.scad>
-use <../parts/a2_ring.scad>
-use <../parts/a3_pin.scad>
-use <../parts/a4_block.scad>
-use <../parts/a5_ring.scad>
-use <../parts/a6_bush.scad>
-use <../parts/a7_block.scad>
-use <../parts/a8_rivet_pin.scad>
-use <../parts/a9_axle.scad>
-use <../parts/a10_disc.scad>
-use <../parts/a11_gear_lock.scad>
-use <../parts/a12_link.scad>
+use <../parts/DRW-001-A-Assembly/a1.scad>
+use <../parts/DRW-001-A-Assembly/a2_ring.scad>
+use <../parts/DRW-001-A-Assembly/a3_pin.scad>
+use <../parts/DRW-001-A-Assembly/a4_block.scad>
+use <../parts/DRW-001-A-Assembly/a5_ring.scad>
+use <../parts/DRW-001-A-Assembly/a6_bush.scad>
+use <../parts/DRW-001-A-Assembly/a7_block.scad>
+use <../parts/DRW-001-A-Assembly/a8_rivet_pin.scad>
+use <../parts/DRW-001-A-Assembly/a9_axle.scad>
+use <../parts/DRW-001-A-Assembly/a10_disc.scad>
+use <../parts/DRW-001-A-Assembly/a11_gear_lock.scad>
+use <../parts/DRW-001-A-Assembly/a12_link.scad>
 
 PART_MODES_DRW001 = [
     "part_a1", "part_a2", "part_a3", "part_a4", "part_a5", "part_a6",

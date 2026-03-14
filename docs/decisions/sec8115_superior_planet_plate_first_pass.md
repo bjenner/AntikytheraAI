@@ -20,15 +20,15 @@
   - Correction from DRW-022 sheet view: explicit `SP6 x4` rivet pins and `SP1/SP5/SP7` callouts are present on the engineering drawing page.
 
 ## Initial OpenSCAD Targets
-- `scad/parts/sp1_superior_gear.scad` -> `part_sp1()`
-- `scad/parts/sp2_gear_axle_subassembly.scad` -> `part_sp2()`
-- `scad/parts/sp3_superior_plate.scad` -> `part_sp3()`
-- `scad/parts/sp4_press_pin.scad` -> `part_sp4()`
-- `scad/parts/sp5_superior_plate.scad` -> `part_sp5()`
-- `scad/parts/sp6_rivet_pin.scad` -> `part_sp6()`
-- `scad/parts/sp7_companion_gear.scad` -> `part_sp7()`
-- `scad/parts/sat6_date_pointer_axle.scad` -> `part_sat6()`
-- `scad/parts/spp17_date_pointer_base.scad` -> `part_spp17()`
+- `scad/parts/DRW-022-Superior-Planet-Plate/sp1_superior_gear.scad` -> `part_sp1()`
+- `scad/parts/DRW-022-Superior-Planet-Plate/sp2_gear_axle_subassembly.scad` -> `part_sp2()`
+- `scad/parts/DRW-022-Superior-Planet-Plate/sp3_superior_plate.scad` -> `part_sp3()`
+- `scad/parts/DRW-022-Superior-Planet-Plate/sp4_press_pin.scad` -> `part_sp4()`
+- `scad/parts/DRW-022-Superior-Planet-Plate/sp5_superior_plate.scad` -> `part_sp5()`
+- `scad/parts/DRW-022-Superior-Planet-Plate/sp6_rivet_pin.scad` -> `part_sp6()`
+- `scad/parts/DRW-022-Superior-Planet-Plate/sp7_companion_gear.scad` -> `part_sp7()`
+- `scad/parts/DRW-022-Superior-Planet-Plate/sat6_date_pointer_axle.scad` -> `part_sat6()`
+- `scad/parts/DRW-022-Superior-Planet-Plate/spp17_date_pointer_base.scad` -> `part_spp17()`
 
 ## Key Constraints From Text
 - `SP3` has four non-evenly spaced mounting holes and one valid orientation to `B1`.

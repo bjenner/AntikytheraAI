@@ -1,16 +1,16 @@
 // DRW-022 part router.
 // SPDX-License-Identifier: MIT
 
-use <../parts/sp1_superior_gear.scad>
-use <../parts/sp2_gear_axle_subassembly.scad>
-use <../parts/sp3_superior_plate.scad>
-use <../parts/sp4_press_pin.scad>
-use <../parts/sp5_superior_plate.scad>
-use <../parts/sp6_rivet_pin.scad>
-use <../parts/sp7_companion_gear.scad>
-use <../parts/sp8_large_gear.scad>
-use <../parts/sp9_latch.scad>
-use <../parts/sp10_disc.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp1_superior_gear.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp2_gear_axle_subassembly.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp3_superior_plate.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp4_press_pin.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp5_superior_plate.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp6_rivet_pin.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp7_companion_gear.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp8_large_gear.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp9_latch.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sp10_disc.scad>
 
 PART_MODES_DRW022 = [
     "part_sp1", "part_sp2", "part_sp3", "part_sp4", "part_sp5",

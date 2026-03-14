@@ -1,27 +1,27 @@
 // DRW-005 part router.
 // SPDX-License-Identifier: MIT
 
-use <../parts/cp1_pointer_small.scad>
-use <../parts/cp2_slider.scad>
-use <../parts/cp3_rivet.scad>
-use <../parts/cp4_stopper.scad>
-use <../parts/cp5_spacer.scad>
-use <../parts/cp6_bush.scad>
-use <../parts/cp7_bush.scad>
-use <../parts/cp8_pin.scad>
-use <../parts/cp9_pin.scad>
-use <../parts/cpr1_rivet.scad>
-use <../parts/cpr2_rivet.scad>
-use <../parts/cpr3_rivet.scad>
-use <../parts/cpr4_rivet.scad>
-use <../parts/cpr5_rivet.scad>
-use <../parts/cpr6_rivet.scad>
-use <../parts/cpf1_fork.scad>
-use <../parts/cpf2_fork.scad>
-use <../parts/cpf3_fork.scad>
-use <../parts/cpf4_fork.scad>
-use <../parts/cpf5_fork.scad>
-use <../parts/cpf6_fork.scad>
+use <../parts/DRW-005-Common-Parts/cp1_pointer_small.scad>
+use <../parts/DRW-005-Common-Parts/cp2_slider.scad>
+use <../parts/DRW-005-Common-Parts/cp3_rivet.scad>
+use <../parts/DRW-005-Common-Parts/cp4_stopper.scad>
+use <../parts/DRW-005-Common-Parts/cp5_spacer.scad>
+use <../parts/DRW-005-Common-Parts/cp6_bush.scad>
+use <../parts/DRW-005-Common-Parts/cp7_bush.scad>
+use <../parts/DRW-005-Common-Parts/cp8_pin.scad>
+use <../parts/DRW-005-Common-Parts/cp9_pin.scad>
+use <../parts/DRW-005-Common-Parts/cpr1_rivet.scad>
+use <../parts/DRW-005-Common-Parts/cpr2_rivet.scad>
+use <../parts/DRW-005-Common-Parts/cpr3_rivet.scad>
+use <../parts/DRW-005-Common-Parts/cpr4_rivet.scad>
+use <../parts/DRW-005-Common-Parts/cpr5_rivet.scad>
+use <../parts/DRW-005-Common-Parts/cpr6_rivet.scad>
+use <../parts/DRW-005-Common-Parts/cpf1_fork.scad>
+use <../parts/DRW-005-Common-Parts/cpf2_fork.scad>
+use <../parts/DRW-005-Common-Parts/cpf3_fork.scad>
+use <../parts/DRW-005-Common-Parts/cpf4_fork.scad>
+use <../parts/DRW-005-Common-Parts/cpf5_fork.scad>
+use <../parts/DRW-005-Common-Parts/cpf6_fork.scad>
 
 PART_MODES_DRW005 = [
     "part_cp1", "part_cp2", "part_cp3", "part_cp4", "part_cp5", "part_cp6",

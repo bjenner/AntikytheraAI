@@ -10,23 +10,22 @@ __pycache__/
 .venv/
 
 # Generated exports
-exports/stl/*
-exports/png/*
-exports/dxf/*
-exports/csg/*
-!exports/stl/.gitkeep
-!exports/png/.gitkeep
-!exports/dxf/.gitkeep
-!exports/csg/.gitkeep
+exports/**/*.png
+exports/**/*.stl
+exports/**/*.dxf
+exports/**/*.csg
+!exports/.gitkeep
+!exports/**/.gitkeep
 
 # OpenSCAD customizer sidecars
-scad/assemblies/*.json
+scad/assemblies/**/*.json
 
 # Source materials — generated from PDFs, not tracked in git
-docs/sources/Drawings/
+ref/drawings/*/*.png
+ref/drawings/pages/
 
 # Source PDFs
-docs/sources/*/*.pdf
+ref/**/*.pdf
 
 # Temporary and logs
 *.log

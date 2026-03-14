@@ -2,8 +2,8 @@
 
 ## Scope
 - Part: `b1`
-- SCAD file: `scad/parts/b1_main_wheel.scad`
-- Primary source image: `docs/sources/Parts/b1_main_wheel.png`
+- SCAD file: `scad/parts/DRW-002-B-Wheel-Frame-Assembly/b1_main_wheel.scad`
+- Primary source image: `ref/parts/images/b1_main_wheel.png`
 - Drawing set: `DRW-002`
 
 ## Hole Schedule
@@ -37,6 +37,6 @@ The most likely missing features are the rim-adjacent side holes (`H13` to `H15`
 ## Recommended Fix Order
 
 1. Confirm all center-cluster holes (`H05`, `H06`, `H11`, `H12`) from the source image at higher zoom.
-2. Add the rim-adjacent side holes (`H13`, `H14`, `H15`) to `scad/parts/b1_main_wheel.scad`.
+2. Add the rim-adjacent side holes (`H13`, `H14`, `H15`) to `scad/parts/DRW-002-B-Wheel-Frame-Assembly/b1_main_wheel.scad`.
 3. Recheck whether the outer `Ø4.0` holes are intentionally asymmetric or whether the current layout should be shifted to the exact measured coordinates.
 4. After the hole map is stable, do a separate pass on the window contours and tooth profile.

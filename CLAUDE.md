@@ -5,11 +5,11 @@
 - Name: `AntikytheraAI`
 - Primary stack: `OpenSCAD`, Markdown, CSV metadata
 - Core folders:
-  - `scad/parts` — one file per part
-  - `scad/assemblies` — one file per drawing/sheet or assembly scene
+  - `scad/parts/<drawing-folder>` — parts grouped by origin drawing
+  - `scad/assemblies/<drawing-folder>` — drawing/sheet scenes grouped by drawing
   - `scad/configs/presets.scad` — render mode selector
-  - `docs/sources/drawing_index.csv` — drawing metadata
-  - `docs/sources/parts_list.csv` — part metadata and reconciliation
+  - `ref/meta/drawing_index.csv` — drawing metadata
+  - `ref/meta/parts_list.csv` — part metadata and reconciliation
 
 ## Goals
 
@@ -25,21 +25,21 @@
 - Call out assumptions explicitly.
 - Avoid mixing unrelated refactors with drawing work.
 
-### Parts (`scad/parts/`)
+### Parts (`scad/parts/<drawing-folder>/`)
 - File naming: `<part_id>_<slug>.scad` (example: `mar5_gear.scad`).
 - Expose a top-level `part_<id>()` module.
 - Keep units in mm.
 - Include header metadata comments.
 - Keep geometry parametric where practical.
 
-### Assemblies (`scad/assemblies/`)
+### Assemblies (`scad/assemblies/<drawing-folder>/`)
 - File naming: `drwXXX_sheetY.scad`.
 - Expose a `drwXXX_sheetY()` module or clearly named assembly module.
 - Reuse part modules; do not duplicate part geometry in assembly files.
 - Include a simple title block and labels for traceability.
 - Keep layout readable over exact artistic fidelity.
 
-### Metadata (`docs/sources/`)
+### Metadata (`ref/`)
 - Always add/update `scad_file=...` in `parts_list.csv` for new parts.
 - Add rows to `drawing_index.csv` for newly covered drawings/sheets.
 - Keep part IDs stable once introduced.

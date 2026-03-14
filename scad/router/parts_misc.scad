@@ -1,13 +1,13 @@
 // Misc part router.
 // SPDX-License-Identifier: MIT
 
-use <../parts/i1_gear.scad>
-use <../parts/i2_hub.scad>
-use <../parts/h1_gear.scad>
-use <../parts/h2_pinion.scad>
-use <../parts/h3_hub.scad>
-use <../parts/exe1_rivet_pin.scad>
-use <../parts/g2_pinion.scad>
+use <../parts/DRW-009-Exeligmos/i1_gear.scad>
+use <../parts/DRW-009-Exeligmos/i2_hub.scad>
+use <../parts/DRW-009-Exeligmos/h1_gear.scad>
+use <../parts/DRW-009-Exeligmos/h2_pinion.scad>
+use <../parts/DRW-009-Exeligmos/h3_hub.scad>
+use <../parts/DRW-009-Exeligmos/exe1_rivet_pin.scad>
+use <../parts/DRW-009-Exeligmos/g2_pinion.scad>
 
 PART_MODES_MISC = [
     "part_i1", "part_i2", "part_h1", "part_h2", "part_h3", "part_exe1", "part_g2"

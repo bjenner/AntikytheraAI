@@ -5,4 +5,4 @@ AGENTS.md @bjenner
 scripts/check_agents_policy.sh @bjenner
 
 scad/** @bjenner
-docs/sources/** @bjenner
+ref/** @bjenner

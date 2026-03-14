@@ -1,16 +1,16 @@
 // DRW-001 assembly router.
 // SPDX-License-Identifier: MIT
 
-use <../assemblies/drw001_sheet1.scad>
-use <../assemblies/drw001_sheet2.scad>
-use <../assemblies/drw001_sheet3.scad>
-use <../assemblies/drw001_sheet4.scad>
-use <../assemblies/drw001_sheet5.scad>
-use <../assemblies/drw001_sheet6.scad>
-use <../assemblies/drw001_sheet7.scad>
-use <../assemblies/drw001_a1_subassembly.scad>
-use <../assemblies/drw001_a1_gear_assembly.scad>
-use <../assemblies/drw001_a8_subassembly.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_sheet1.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_sheet2.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_sheet3.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_sheet4.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_sheet5.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_sheet6.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_sheet7.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_a1_subassembly.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_a1_gear_assembly.scad>
+use <../assemblies/DRW-001-A-Assembly/drw001_a8_subassembly.scad>
 
 ASSEMBLY_MODES_DRW001 = [
     "drw001_sheet1", "drw001_sheet2", "drw001_sheet3", "drw001_sheet4", "drw001_sheet5",

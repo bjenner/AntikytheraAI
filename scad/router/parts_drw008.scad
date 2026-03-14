@@ -1,18 +1,18 @@
 // DRW-008 part router.
 // SPDX-License-Identifier: MIT
 
-use <../parts/sat6_date_pointer_axle.scad>
-use <../parts/spp17_date_pointer_base.scad>
-use <../parts/dat1_pointer.scad>
-use <../parts/dat2_pin.scad>
-use <../parts/dat3_ball_tip.scad>
-use <../parts/dat4_post.scad>
-use <../parts/dat5_ball_tip_small.scad>
-use <../parts/dat6_post_small.scad>
-use <../parts/dat7_ring.scad>
-use <../parts/dat8_ring.scad>
-use <../parts/dat9_base_plate.scad>
-use <../parts/dat10_spoked_wheel.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/sat6_date_pointer_axle.scad>
+use <../parts/DRW-022-Superior-Planet-Plate/spp17_date_pointer_base.scad>
+use <../parts/DRW-008-Date/dat1_pointer.scad>
+use <../parts/DRW-008-Date/dat2_pin.scad>
+use <../parts/DRW-008-Date/dat3_ball_tip.scad>
+use <../parts/DRW-008-Date/dat4_post.scad>
+use <../parts/DRW-008-Date/dat5_ball_tip_small.scad>
+use <../parts/DRW-008-Date/dat6_post_small.scad>
+use <../parts/DRW-008-Date/dat7_ring.scad>
+use <../parts/DRW-008-Date/dat8_ring.scad>
+use <../parts/DRW-008-Date/dat9_base_plate.scad>
+use <../parts/DRW-008-Date/dat10_spoked_wheel.scad>
 
 PART_MODES_DRW008 = [
     "part_sat6", "part_spp17", "part_dat1", "part_dat2", "part_dat3", "part_dat4",

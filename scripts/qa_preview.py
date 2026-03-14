@@ -47,6 +47,10 @@ def repo_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
+def ref_root(root: Path) -> Path:
+    return root / "ref"
+
+
 def openscad_binary() -> str:
     candidates = [
         "openscad",
@@ -99,19 +103,15 @@ def resolve_part_file(root: Path, target: str) -> Path:
     match = RE_PART_MODE.match(stem)
     if match:
         part_id = match.group(1)
-        candidates = sorted(parts_dir.glob(f"{part_id}_*.scad"))
+        candidates = sorted(parts_dir.rglob(f"{part_id}_*.scad"))
         if candidates:
             return candidates[0]
 
-    candidate = parts_dir / f"{stem}.scad"
-    if candidate.exists():
-        return candidate
+    direct_matches = sorted(parts_dir.rglob(f"{stem}.scad"))
+    if direct_matches:
+        return direct_matches[0]
 
-    candidates = sorted(parts_dir.glob(f"{stem}_*.scad"))
-    if candidates:
-        return candidates[0]
-
-    candidates = sorted(parts_dir.glob(f"{stem}.scad"))
+    candidates = sorted(parts_dir.rglob(f"{stem}_*.scad"))
     if candidates:
         return candidates[0]
 
@@ -124,29 +124,32 @@ def load_drawing_index(csv_path: Path) -> dict[str, dict[str, str]]:
         return {row["drawing_id"]: row for row in rows}
 
 
-def find_rendered_preview(root: Path, rendered_name: str) -> Path:
-    candidates = [
-        root / "exports" / "png" / f"{rendered_name}.png",
-        root / "exports" / "previews" / f"{rendered_name}.png",
-    ]
+def find_rendered_preview(root: Path, rendered_name: str, preferred_group: str | None = None) -> Path:
+    candidates = []
+    if preferred_group:
+        candidates.append(root / "exports" / preferred_group / f"{rendered_name}.png")
+    nested_matches = sorted((root / "exports").rglob(f"{rendered_name}.png"))
+    candidates.extend(nested_matches)
+    candidates.append(root / "exports" / f"{rendered_name}.png")
     for candidate in candidates:
         if candidate.exists():
             return candidate
+
     raise SystemExit(
         f"Rendered preview not found for {rendered_name}. Run `bash scripts/export.sh --file scad/assemblies/{rendered_name}.scad` first."
     )
 
 
 def find_part_source_image(root: Path, stem: str) -> Path:
+    ref_dir = ref_root(root)
     candidates = [
-        root / "docs" / "sources" / "Parts" / f"{stem}.png",
-        root / "docs" / "sources" / "parts" / f"{stem}.png",
+        ref_dir / "parts" / "images" / f"{stem}.png",
     ]
     for candidate in candidates:
         if candidate.exists():
             return candidate
 
-    matches = sorted((root / "docs" / "sources").rglob(f"{stem}.png"))
+    matches = sorted(ref_dir.rglob(f"{stem}.png"))
     if matches:
         return matches[0]
     raise SystemExit(f"Could not find a source part image for {stem}.")
@@ -174,7 +177,8 @@ def render_part_preview(root: Path, part_file: Path, out_path: Path) -> None:
 
 
 def prepare_part_preview(root: Path, part_file: Path, refresh: bool) -> Path:
-    out_path = root / "exports" / "png" / f"{part_file.stem}.png"
+    group = part_file.parent.name if part_file.parent != root / "scad" / "parts" else "_general"
+    out_path = root / "exports" / group / f"{part_file.stem}.png"
     if refresh or not out_path.exists():
         print(f"render:   {part_file.relative_to(root)} -> {out_path.relative_to(root)}")
         render_part_preview(root, part_file, out_path)
@@ -209,14 +213,27 @@ def source_png_candidates(prefix: str, sheet: int) -> list[str]:
 
 
 def find_source_page(root: Path, row: dict[str, str], sheet: int) -> tuple[str, Path, int | None]:
+    ref_dir = ref_root(root)
     prefix = (row.get("png_prefix") or "").strip()
+    source_path = (row.get("file_path_or_url") or "").strip()
+    drawing_dir = None
+    if source_path and not source_path.startswith(("http://", "https://")):
+        drawing_dir = (root / source_path).parent
+
     if prefix:
         candidates = {name.lower() for name in source_png_candidates(prefix, sheet)}
-        for candidate in sorted((root / "docs" / "sources").rglob("*.png")):
-            if candidate.name.lower() in candidates:
-                return "png", candidate, None
+        search_roots = []
+        if drawing_dir is not None and drawing_dir.exists():
+            search_roots.append(drawing_dir)
+        search_roots.append(ref_dir / "drawings")
 
-    source_path = (row.get("file_path_or_url") or "").strip()
+        for search_root in search_roots:
+            if not search_root.exists():
+                continue
+            for candidate in sorted(search_root.rglob("*.png")):
+                if candidate.name.lower() in candidates:
+                    return "png", candidate, None
+
     if source_path and not source_path.startswith(("http://", "https://")):
         pdf_path = root / source_path
         if pdf_path.exists():
@@ -361,11 +378,12 @@ def cycle_sheets(root: Path, drawing_id: str, row: dict[str, str], dry_run: bool
     shown = 0
     previous_source_path: Path | None = None
     previous_rendered_path: Path | None = None
+    preferred_group = Path(row["file_path_or_url"]).parent.name if row.get("file_path_or_url") else None
 
     for index, sheet in enumerate(sheets, start=1):
         rendered_name = f"drw{drawing_id.split('-', 1)[1]}_sheet{sheet}"
         try:
-            rendered_path = find_rendered_preview(root, rendered_name)
+            rendered_path = find_rendered_preview(root, rendered_name, preferred_group)
             source_kind, source_path, pdf_page = find_source_page(root, row, sheet)
         except SystemExit as exc:
             print(f"skip:     {exc}", file=sys.stderr)
@@ -408,13 +426,14 @@ def main() -> int:
     if not args.target.lower().startswith("drw"):
         part_file = resolve_part_file(root, args.target)
         source_path = find_part_source_image(root, part_file.stem)
-        rendered_path = root / "exports" / "png" / f"{part_file.stem}.png"
+        group = part_file.parent.name if part_file.parent != root / "scad" / "parts" else "_general"
+        rendered_path = root / "exports" / group / f"{part_file.stem}.png"
         if not args.dry_run:
             rendered_path = prepare_part_preview(root, part_file, args.refresh)
         return show_part_pair(root, part_file, source_path, rendered_path, args.dry_run)
 
     drawing_id, sheet, rendered_name = normalize_target(args.target, args.sheet)
-    index = load_drawing_index(root / "docs" / "sources" / "drawing_index.csv")
+    index = load_drawing_index(root / "ref" / "meta" / "drawing_index.csv")
 
     if drawing_id not in index:
         raise SystemExit(f"Drawing id not found in drawing_index.csv: {drawing_id}")
@@ -423,7 +442,8 @@ def main() -> int:
     if sheet is None or rendered_name is None:
         return cycle_sheets(root, drawing_id, row, args.dry_run)
 
-    rendered_path = find_rendered_preview(root, rendered_name)
+    preferred_group = Path(row["file_path_or_url"]).parent.name if row.get("file_path_or_url") else None
+    rendered_path = find_rendered_preview(root, rendered_name, preferred_group)
     source_kind, source_path, pdf_page = find_source_page(root, row, sheet)
 
     show_pair(

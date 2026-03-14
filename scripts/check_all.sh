@@ -49,17 +49,15 @@ check_file() {
 }
 
 echo "=== Parts ==="
-for f in "$SCAD_PARTS"/*.scad; do
-    [[ -f "$f" ]] || continue
+while IFS= read -r f; do
     check_file "$f"
-done
+done < <(find "$SCAD_PARTS" -type f -name '*.scad' | sort)
 
 echo ""
 echo "=== Assemblies ==="
-for f in "$SCAD_ASSEMBLIES"/*.scad; do
-    [[ -f "$f" ]] || continue
+while IFS= read -r f; do
     check_file "$f"
-done
+done < <(find "$SCAD_ASSEMBLIES" -type f -name '*.scad' | sort)
 
 echo ""
 echo "=== Summary ==="

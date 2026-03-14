@@ -4,8 +4,7 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PARTS_DIR="$REPO_ROOT/scad/parts"
 ASSEMBLIES_DIR="$REPO_ROOT/scad/assemblies"
-STL_DIR="$REPO_ROOT/exports/stl"
-PNG_DIR="$REPO_ROOT/exports/png"
+EXPORTS_DIR="$REPO_ROOT/exports"
 
 if command -v openscad >/dev/null 2>&1; then
     OPENSCAD="openscad"
@@ -16,15 +15,15 @@ else
     exit 1
 fi
 
-mkdir -p "$STL_DIR" "$PNG_DIR"
+mkdir -p "$EXPORTS_DIR"
 
 usage() {
     cat <<'EOF'
 Usage:
   bash scripts/export.sh --changed
   bash scripts/export.sh --all
-  bash scripts/export.sh --file scad/parts/a1.scad
-  bash scripts/export.sh --file scad/assemblies/drw001_sheet2.scad
+  bash scripts/export.sh --file scad/parts/DRW-001-A-Assembly/a1.scad
+  bash scripts/export.sh --file scad/assemblies/DRW-001-A-Assembly/drw001_sheet2.scad
 
 Options:
   --changed           Export changed/untracked .scad files from git status (default)
@@ -35,8 +34,8 @@ Options:
   --help              Show this message
 
 Behavior:
-  - Part files under scad/parts export to exports/stl/part_<id>.stl
-  - Assembly files under scad/assemblies export to exports/png/<basename>.png
+  - Part files under scad/parts/<drawing-folder>/ export to exports/<drawing-folder>/part_<id>.stl
+  - Assembly files under scad/assemblies/<drawing-folder>/ export to exports/<drawing-folder>/<basename>.png
 EOF
 }
 
@@ -87,33 +86,60 @@ while [ $# -gt 0 ]; do
 done
 
 collect_changed_files() {
-    git -C "$REPO_ROOT" status --short --untracked-files=all -- "scad/parts/*.scad" "scad/assemblies/*.scad" \
-        | while read -r status path; do
-            [ -n "${path:-}" ] || continue
-            printf '%s\n' "$path"
+    git -C "$REPO_ROOT" status --porcelain --untracked-files=all -- scad/parts scad/assemblies \
+        | while IFS= read -r line; do
+            [ -n "$line" ] || continue
+            path="${line:3}"
+            case "$path" in
+                *.scad) printf '%s\n' "$path" ;;
+            esac
         done
 }
 
 collect_all_files() {
-    for file in "$PARTS_DIR"/*.scad "$ASSEMBLIES_DIR"/*.scad; do
-        [ -f "$file" ] || continue
+    while IFS= read -r file; do
         printf '%s\n' "$file"
-    done
+    done < <(find "$PARTS_DIR" "$ASSEMBLIES_DIR" -type f -name '*.scad' | sort)
+}
+
+resolve_scad_file() {
+    local path="$1"
+    local basename_only match
+
+    if [ -f "$path" ]; then
+        printf '%s\n' "$path"
+        return 0
+    fi
+
+    basename_only="$(basename "$path")"
+    while IFS= read -r match; do
+        printf '%s\n' "$match"
+        return 0
+    done < <(find "$PARTS_DIR" "$ASSEMBLIES_DIR" -type f -name "$basename_only" | sort)
+
+    return 1
 }
 
 normalize_file() {
     local path="$1"
+    local candidate
     case "$path" in
         "$REPO_ROOT"/*)
-            printf '%s\n' "$path"
+            candidate="$path"
             ;;
         /*)
-            printf '%s\n' "$path"
+            candidate="$path"
             ;;
         *)
-            printf '%s\n' "$REPO_ROOT/$path"
+            candidate="$REPO_ROOT/$path"
             ;;
     esac
+
+    if resolve_scad_file "$candidate" >/dev/null 2>&1; then
+        resolve_scad_file "$candidate"
+    else
+        printf '%s\n' "$candidate"
+    fi
 }
 
 part_export_name() {
@@ -122,20 +148,37 @@ part_export_name() {
     printf 'part_%s.stl\n' "$part_id"
 }
 
+export_group_dir() {
+    local file="$1"
+    local dir
+    dir="$(dirname "$file")"
+    if [ "$dir" = "$PARTS_DIR" ] || [ "$dir" = "$ASSEMBLIES_DIR" ]; then
+        printf '_general\n'
+    else
+        basename "$dir"
+    fi
+}
+
 export_part() {
     local file="$1"
-    local stem out
+    local stem group out_dir out
     stem="$(basename "$file" .scad)"
-    out="$STL_DIR/$(part_export_name "$stem")"
+    group="$(export_group_dir "$file")"
+    out_dir="$EXPORTS_DIR/$group"
+    mkdir -p "$out_dir"
+    out="$out_dir/$(part_export_name "$stem")"
     echo "[stl] $(basename "$file") -> ${out#$REPO_ROOT/}"
     "$OPENSCAD" -o "$out" "$file"
 }
 
 export_assembly() {
     local file="$1"
-    local stem out
+    local stem group out_dir out
     stem="$(basename "$file" .scad)"
-    out="$PNG_DIR/$stem.png"
+    group="$(export_group_dir "$file")"
+    out_dir="$EXPORTS_DIR/$group"
+    mkdir -p "$out_dir"
+    out="$out_dir/$stem.png"
     echo "[png] $(basename "$file") -> ${out#$REPO_ROOT/}"
 
     case "$stem" in
@@ -201,7 +244,7 @@ for file in "${FILES_TO_EXPORT[@]}"; do
     fi
 
     case "$file" in
-        "$PARTS_DIR"/*.scad)
+        "$PARTS_DIR"/*)
             if export_part "$file"; then
                 ((PASS++)) || true
             else
@@ -209,7 +252,7 @@ for file in "${FILES_TO_EXPORT[@]}"; do
                 ((FAIL++)) || true
             fi
             ;;
-        "$ASSEMBLIES_DIR"/*.scad)
+        "$ASSEMBLIES_DIR"/*)
             if export_assembly "$file"; then
                 ((PASS++)) || true
             else
