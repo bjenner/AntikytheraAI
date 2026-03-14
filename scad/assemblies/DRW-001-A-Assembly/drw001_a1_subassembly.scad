@@ -39,7 +39,6 @@ module drw001_a1_subassembly_scene(
     a1_roll_deg = 90,
     a3_roll_deg = 0
 ) {
-    echo("here ", explode, a1_thickness);
     rotate([0, 0, theta]) {
         drw001_a1_subassembly_place_a1(
             a1_body_d = a1_body_d,
@@ -49,6 +48,7 @@ module drw001_a1_subassembly_scene(
         );
         translate([0, 0, explode])
             drw001_a1_subassembly_place_a3(
+                a1_thickness = a1_thickness,
                 a3_d = a3_d,
                 a3_h = a3_h,
                 a3_roll_deg = a3_roll_deg
@@ -113,29 +113,35 @@ module drw001_a1_subassembly_place_a1(
     // A1 centered on origin with axis on X.
     // Flip along axis so taper direction matches the drawing.
     color([0.45, 0.30, 0.18])
-        translate([0, 0, a1_thickness])
-            rotate([0, 0,45])
-                rotate([90, 0, 0])
-                rotate([a1_roll_deg, 0, 0])
-                part_a1(
-                    body_d = a1_body_d,
-                    thickness = a1_thickness,
-                    bore_d = a1_bore_d,
-                    spoke_count = 0
-                );
+        rotate([0, 0,45])
+            rotate([90, 0, 0])
+            rotate([a1_roll_deg, 0, 0])
+            part_a1(
+                body_d = a1_body_d,
+                thickness = a1_thickness,
+                bore_d = a1_bore_d,
+                spoke_count = 0
+            );
 }
 
 module drw001_a1_subassembly_place_a3(
+    a1_thickness = 2.0,
     a3_d = 9.8,
     a3_h = 16.6,
     a3_roll_deg = 0
 ) {
     // A3 aligned to same axis, seated into A1 by interface_inset.
     // Use reversed axial orientation so the intended end mates with A1.
+    // The lower pin section is the intended fit into A1.
+    // Keep that pin seated through the gear thickness while the larger body
+    // remains outside the gear face.
+    a3_insert_h = 2.0;
+    seat_z = a1_thickness / 2 + a3_h / 2 - a3_insert_h;
+
     color("green")
-        // Place with zero gap by default: left face of A3 at +a1_thickness/2.
-        // Using +90 keeps A3 extending toward +X while mating with the opposite end.
-        translate([0, 0, a3_h])
+        // Place with zero gap by default: mating face of A3 sits on the
+        // positive face of centered A1.
+        translate([0, 0, seat_z])
             rotate([0, 0, 0])
             rotate([0, 180, 90])
             rotate([a3_roll_deg, 0, 0])

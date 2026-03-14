@@ -42,6 +42,7 @@
 - Modeled parts used: `a2, a3, a4, a5, a6, a12` plus local `a1_gear()` helper
 - Notes: includes orthographic + isometric style layout and sample dimensions.
 - Note: source callout for the small A1-side subassembly is treated as a drawing error; use `a3` (not `a4`) as the riveted/fit mate to `a1`.
+- Note: the `a1` subassembly annotation appears to mislabel part `a3` as `a4`; project assembly references should treat that fitted rivet/pin part as `a3`.
 - Note: Sheet 5 dimensions and geometry are currently treated as `a12`, even though the source sheet appears to label that part as `a11` in at least one view. No local dimension set for a distinct `a11` part has been found in the project sources.
 
 ### Sheet 6 (`drw001_sheet6`)
@@ -60,15 +61,15 @@ Dimensions below are the current default parameters in each part file (mm).
 
 | Part | File | Current modeled dimensions (default params) |
 |---|---|---|
-| `a1` | `scad/parts/DRW-001-A-Assembly/a1.scad` | `body_d=28.2`, `thickness=2.0`, `bore_d=8`, `spoke_count=6` |
+| `a1` | `scad/parts/DRW-001-A-Assembly/a1.scad` | `body_d=28.2`, `thickness=2.0`, `bore_d=5.0`, `spoke_count=6`, `teeth=56` |
 | `a2` | `scad/parts/DRW-001-A-Assembly/a2_ring.scad` | `od=16`, `id=10`, `th=0.7` |
 | `a3` | `scad/parts/DRW-001-A-Assembly/a3_pin.scad` | `d=9.8`, `h=16.6`; stepped stack with top lobed boss, lower slot, and `Ø1.5` cross-hole |
 | `a4` | `scad/parts/DRW-001-A-Assembly/a4_block.scad` | `w=16`, `d=8`, `body_h=32.2`, `top_pin_d=2.9`, `top_pin_h=2.0`, `pin_spacing=8.0`, `bore_d=10.0`, `bore_center_z=17.6` |
-| `a5` | `scad/parts/DRW-001-A-Assembly/a5_ring.scad` | `od=12`, `id=8`, `th=2` |
-| `a6` | `scad/parts/DRW-001-A-Assembly/a6_bush.scad` | `od=11.8`, `id=8`, `h=9.4` |
-| `a7` | `scad/parts/DRW-001-A-Assembly/a7_block.scad` | `w=12`, `d=8`, `h=24`, `bore_d=8`, `top_pin_d=4`, `top_pin_h=3` |
-| `a8` | `scad/parts/DRW-001-A-Assembly/a8_rivet_pin.scad` | `pin_d=3`, `pin_h=11`, `head_d=6`, `head_h=1.6` |
-| `a9` | `scad/parts/DRW-001-A-Assembly/a9_axle.scad` | `body_d=9`, `body_h=32`, `upper_d=8`, `upper_h=11.4`, `shoulder_d=14`, `shoulder_h=1.8` |
+| `a5` | `scad/parts/DRW-001-A-Assembly/a5_ring.scad` | `od=12`, `id=8`, `th=0.1` |
+| `a6` | `scad/parts/DRW-001-A-Assembly/a6_bush.scad` | `od=11.8`, `id=8.0`, `h=17.0`, `u_slot_w=3.0`, `u_slot_h=8.8` |
+| `a7` | `scad/parts/DRW-001-A-Assembly/a7_block.scad` | `w=16.0`, `d=8.0`, `body_h=35.2`, `bore_d=12.0`, `top_post_d=4.6`, `top_post_h=5.0` |
+| `a8` | `scad/parts/DRW-001-A-Assembly/a8_rivet_pin.scad` | `pin_d=3.0`, `pin_h=11.0` |
+| `a9` | `scad/parts/DRW-001-A-Assembly/a9_axle.scad` | `body_d=14.0`, `body_h=32.0`, `upper_d=8.8`, `upper_h=11.4`, `bottom_core_d=9.0`, `bottom_pin_d=3.0`, `bottom_pin_h=3.0` |
 | `a10` | `scad/parts/DRW-001-A-Assembly/a10_disc.scad` | `od=111`, `th=2`, `center_hole_d=9` |
 | `a11` | `scad/parts/DRW-001-A-Assembly/a11_gear_lock.scad` | `od=18.0`, `id=9.0`, `th=1.5`, `gap_w=2.0` |
 | `a12` | `scad/parts/DRW-001-A-Assembly/a12_link.scad` | `th=1.0`; `c2c=19.5`, `hole_d=3.0`, `r_left=5.0`, `r_right=2.5`, `shoulder_r=4.5`, tapered left tab |
@@ -83,6 +84,8 @@ Dimensions below are the current default parameters in each part file (mm).
 - `a4` has completed a first correction pass: top bosses are now additive (`Ø2.9`, `2.0` high), overall height is dimensioned (`32.2`), bore is dimension-positioned (`Ø10.0` at `z=17.6`), and lower cutouts were added as a first-pass interpretation.
 - `a4` still needs a contour/detail pass to better match the drawing end radii/edge transitions and exact lower cutout profile.
 - `a6` currently has a known modeling issue: the top slots do not yet cut fully through the cylinder wall; defer this to the later part-correction pass.
+- The `a1`-to-`a6` locking detail remains unresolved: Sheet 7 shows the `a1` subassembly engaging `a6`, but the project does not yet identify a confirmed separate locking hardware part for the `a3` slot / `a6` interface.
+- The `a6`-to-`a8` fit is currently inconsistent in the modeled defaults: Sheet 7 calls for a tight friction fit, but the present part files use `a6.id=8.0` and `a9.upper_d=8.8`, so the assembly cannot yet represent that fit faithfully. Leave the current parts and assembly placement as-is for now and defer the fit reconciliation to a later correction pass.
 - `a7` has a known unfinished top feature: the current top post is only a simplified baseline, and the intended top slot/groove details are not yet modeled; defer this to the later part-correction pass.
 - `a11` remains semantically uncertain: the active DRW-001 project treats it as a lock ring / gear lock tied to `b1 Gear Lock.ipt` on Sheet 2, while the Sheet 5 dimensioned part is currently modeled and tracked as `a12`.
 
