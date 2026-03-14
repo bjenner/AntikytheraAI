@@ -1,0 +1,32 @@
+// Misc part router.
+// SPDX-License-Identifier: MIT
+
+use <../parts/i1_gear.scad>
+use <../parts/i2_hub.scad>
+use <../parts/h1_gear.scad>
+use <../parts/h2_pinion.scad>
+use <../parts/h3_hub.scad>
+use <../parts/exe1_rivet_pin.scad>
+use <../parts/g2_pinion.scad>
+
+PART_MODES_MISC = [
+    "part_i1", "part_i2", "part_h1", "part_h2", "part_h3", "part_exe1", "part_g2"
+];
+
+module route_parts_misc(mode) {
+    if (mode == "part_i1") {
+        part_i1();
+    } else if (mode == "part_i2") {
+        part_i2();
+    } else if (mode == "part_h1") {
+        part_h1();
+    } else if (mode == "part_h2") {
+        part_h2();
+    } else if (mode == "part_h3") {
+        part_h3();
+    } else if (mode == "part_exe1") {
+        part_exe1();
+    } else if (mode == "part_g2") {
+        part_g2();
+    }
+}
