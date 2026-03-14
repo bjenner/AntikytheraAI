@@ -5,19 +5,19 @@
 // revision: 0.1
 // SPDX-License-Identifier: MIT
 
-module wire_segment(a = [0, 0, 0], b = [10, 0, 0], d = 0.8) {
+module wire_segment(a = [0, 0, 0], b = [10, 0, 0], d = 0.4) {
     hull() {
-        translate(a) sphere(d = d, $fn = 16);
-        translate(b) sphere(d = d, $fn = 16);
+        translate(a) sphere(d = d, $fn = 20);
+        translate(b) sphere(d = d, $fn = 20);
     }
 }
 
-module part_b15(run = 17, drop = 4, wire_d = 0.8) {
-    // Bent wire with short return hooks at ends.
+module part_b15(run = 17, hook_len = 0.9, wire_d = 0.4) {
+    // Planar bent wire with short 90-degree return hooks.
     union() {
         wire_segment([0, 0, 0], [run, 0, 0], wire_d);
-        wire_segment([0, 0, 0], [-2.2, 0, -1.2], wire_d);
-        wire_segment([run, 0, 0], [run + 2.2, 0, 1.2], wire_d);
+        wire_segment([0, 0, 0], [0, 0, -hook_len], wire_d);
+        wire_segment([run, 0, 0], [run, 0, -hook_len], wire_d);
     }
 }
 
