@@ -172,6 +172,18 @@ Metadata and traceability:
 - Keep `scad_file=...` evidence populated for traceability.
 - Do not rename stable part IDs casually; metadata continuity matters.
 
+Origins, transforms, and animation:
+- New and rebuilt parts should use a consistent local origin that matches the part's functional reference.
+- Prefer centered, rotation-friendly part coordinates over corner-based coordinates.
+- For rotational parts, place the origin on the rotation axis.
+- For plate and bracket parts, prefer the XY center as origin and use a clear Z reference such as the bottom face at `z=0` unless the drawing strongly suggests a better datum.
+- Keep raw part geometry in the part file; do not bake assembly placement transforms into part geometry.
+- Apply `translate(...)` and `rotate(...)` at the assembly level or in a thin placement helper, not inside the core part definition.
+- When a reusable transform helper is needed, keep it small and generic so the same part can be used in static, exploded, and animated assemblies.
+- Keep animation logic at the assembly level. Do not couple animation state to part geometry by default.
+- When animation is added, rotate moving parts about their local functional origin and only then translate them into assembly position.
+- When touching older parts, prefer moving them toward these origin conventions instead of introducing new corner-based or assembly-baked coordinate systems.
+
 ## Workflow Per Drawing Sheet
 
 1. Confirm target sheet (`DRW-### Sheet #`) and scope.

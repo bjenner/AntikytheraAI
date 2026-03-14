@@ -1,5 +1,10 @@
 // Part A1: toothed gear disc with keyed center cutout.
 // SPDX-License-Identifier: MIT
+//
+// Local origin convention:
+// - XY origin is the gear rotation axis.
+// - Z origin is the part midplane.
+// - Assembly placement and animation should be applied outside this file.
 
 function a1_polar(r, a_deg) = [r * cos(a_deg), r * sin(a_deg)];
 
@@ -64,7 +69,7 @@ module part_a1(
     top_scale = max(0.5, (tip_r - draft_delta) / tip_r);
 
     difference() {
-        linear_extrude(height = thickness, scale = top_scale)
+        linear_extrude(height = thickness, center = true, scale = top_scale)
             a1_gear_profile_2d(
                 teeth = teeth,
                 r_tip = tip_r,
@@ -73,7 +78,7 @@ module part_a1(
                 r_root = root_r
             );
 
-        translate([0, 0, -0.1])
+        translate([0, 0, -thickness / 2 - 0.1])
             linear_extrude(height = thickness + 0.2)
                 a1_center_cutout_2d(bore_d = bore_d);
     }
