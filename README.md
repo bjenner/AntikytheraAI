@@ -5,9 +5,12 @@ OpenSCAD project for building and animating an Antikythera-inspired mechanism wi
 ## Project Layout
 
 - `ref/`: source drawings, part reference images, manuals, and metadata.
+- `ref/drawings/DRW-...-Name/`: one folder per drawing with the source PDF and extracted page PNGs.
 - `docs/`: project notes, planning, and design decisions.
-- `scad/`: reusable libraries, parts, assemblies, configs, and top-level entrypoint.
-- `exports/`: generated STL, PNG, and DXF output.
+- `scad/parts/DRW-...-Name/`: parts grouped by origin drawing.
+- `scad/assemblies/DRW-...-Name/`: sheets and subassemblies grouped by drawing.
+- `scad/`: reusable libraries, configs, routers, and top-level entrypoint.
+- `exports/DRW-...-Name/`: generated PNG and STL outputs grouped by drawing.
 - `scripts/`: helper scripts for exports and automation.
 
 ## Quick Start
@@ -45,15 +48,15 @@ Artifact behavior:
 - Dry-run path resolution only: `python3 scripts/qa_preview.py drw001_sheet2 --dry-run`
 
 Behavior:
-- Prefers a local extracted source page PNG when available under `ref/`
+- Prefers a local extracted source page PNG in the matching `ref/drawings/DRW-...-Name/` folder
 - Falls back to the source PDF from `ref/meta/drawing_index.csv` and jumps to the requested sheet page
 - Opens the recreated PNG from `exports/<drawing-folder>/` and arranges source left / recreation right in Preview on macOS
 - In drawing-wide mode, pauses after each sheet until you press Enter, then closes the old pair and opens the next one
 - In part mode, renders a fresh orthographic PNG to `exports/<drawing-folder>/<part>.png` before opening it
 
-## Current Starter Modules
+## Key Entry Points
 
-- `scad/parts/DRW-001-A-Assembly/a1.scad`: placeholder driven gear/disc.
+- `scad/parts/DRW-001-A-Assembly/a1.scad`: representative part file.
 - `scad/assemblies/full_mechanism.scad`: base plate + rotating A1 placement.
 - `scad/main.scad`: top-level selector and animation driver.
 
