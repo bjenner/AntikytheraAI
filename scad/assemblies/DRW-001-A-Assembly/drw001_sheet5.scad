@@ -67,6 +67,57 @@ module a1_gear_2d(tip_d = 30, root_d = 27.5, teeth = 48, bore_d = 4) {
     }
 }
 
+module drw001_sheet5_parts_scene(theta = 0) {
+    rotate_turn = theta;
+
+    // Reusable A1 subassembly callout view.
+    translate([76, 74, 20])
+        rotate([66, 0, 28 + rotate_turn])
+            scale([0.85, 0.85, 0.85])
+                drw001_a1_subassembly();
+
+    color([0.45, 0.30, 0.18])
+        translate([56, 226, 20])
+            rotate([65, 0, 35 + rotate_turn])
+                scale([1.2, 1.2, 1.2])
+                    a1_gear();
+
+    color([0.28, 0.23, 0.20])
+        translate([129, 234, 18])
+            rotate([68, 0, 25 + rotate_turn])
+                part_a2();
+
+    color([0.55, 0.46, 0.40])
+        translate([206, 226, 18])
+            rotate([rotate_turn, 0, 0])
+                part_a3();
+
+    color([0.45, 0.30, 0.18])
+        translate([306, 198, 18])
+            rotate([0, rotate_turn, 0])
+                part_a4();
+
+    color([0.45, 0.30, 0.18])
+        translate([126, 92, 18])
+            rotate([68, 0, 25 + rotate_turn])
+                scale([0.95, 0.95, 0.95])
+                    part_a5();
+
+    color([0.38, 0.30, 0.22])
+        translate([329, 93, 18])
+            rotate([0, rotate_turn, 0])
+                part_a6();
+
+    color([0.30, 0.24, 0.20])
+        translate([228, 112, 18])
+            rotate([70, 0, -25 + rotate_turn])
+                part_a12();
+}
+
+module drw001_sheet5_parts_animate(turns = 1) {
+    drw001_sheet5_parts_scene(theta = 360 * turns * $t);
+}
+
 module drw001_sheet5() {
     show_ortho = is_undef(SHEET5_SHOW_ORTHO) ? true : SHEET5_SHOW_ORTHO;
     show_thumbs = is_undef(SHEET5_SHOW_THUMBS) ? true : SHEET5_SHOW_THUMBS;
@@ -140,16 +191,7 @@ module drw001_sheet5() {
 
     if (show_thumbs) {
         // 3D thumbnails similar to source sheet.
-        // Reusable A1 subassembly callout view.
-        translate([76, 74, 20]) rotate([66, 0, 28]) scale([0.85, 0.85, 0.85]) drw001_a1_subassembly();
-
-        color([0.45, 0.30, 0.18]) translate([56, 226, 20]) rotate([65, 0, 35]) scale([1.2, 1.2, 1.2]) a1_gear();
-        color([0.28, 0.23, 0.20]) translate([129, 234, 18]) rotate([68, 0, 25]) scale([1.0, 1.0, 1.0]) part_a2();
-        color([0.55, 0.46, 0.40]) translate([206, 226, 18]) rotate([0, 0, 0]) scale([1.0, 1.0, 1.0]) part_a3();
-        color([0.45, 0.30, 0.18]) translate([306, 198, 18]) rotate([0, 0, 0]) scale([1.0, 1.0, 1.0]) part_a4();
-        color([0.45, 0.30, 0.18]) translate([126, 92, 18]) rotate([68, 0, 25]) scale([0.95, 0.95, 0.95]) part_a5();
-        color([0.38, 0.30, 0.22]) translate([329, 93, 18]) rotate([0, 0, 0]) scale([1.0, 1.0, 1.0]) part_a6();
-        color([0.30, 0.24, 0.20]) translate([228, 112, 18]) rotate([70, 0, -25]) scale([1.0, 1.0, 1.0]) part_a12();
+        drw001_sheet5_parts_scene(theta = 0);
     }
 
     color("black") translate([74, 18, 0]) linear_extrude(height = th) label("a1 sub assembly", sz = 3.3);

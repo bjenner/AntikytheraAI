@@ -14,7 +14,7 @@ use <../assemblies/DRW-001-A-Assembly/drw001_a8_subassembly.scad>
 
 ASSEMBLY_MODES_DRW001 = [
     "drw001_sheet1", "drw001_sheet2", "drw001_sheet3", "drw001_sheet4", "drw001_sheet5",
-    "drw001_sheet6", "drw001_sheet7", "drw001_a1_subassembly", "drw001_a1_subassembly_exploded",
+    "drw001_sheet5_parts_animate", "drw001_sheet6", "drw001_sheet7", "drw001_a1_subassembly", "drw001_a1_subassembly_exploded",
     "drw001_a1_subassembly_animate", "drw001_a1_gear_assembly", "drw001_a1_gear_assembly_animate",
     "drw001_a8_subassembly"
 ];
@@ -30,6 +30,8 @@ module route_assemblies_drw001(mode, spin_turns, exploded_gap) {
         drw001_sheet4();
     } else if (mode == "drw001_sheet5") {
         drw001_sheet5();
+    } else if (mode == "drw001_sheet5_parts_animate") {
+        drw001_sheet5_parts_animate(turns = spin_turns);
     } else if (mode == "drw001_sheet6") {
         drw001_sheet6();
     } else if (mode == "drw001_sheet7") {
