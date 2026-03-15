@@ -12,6 +12,7 @@ import argparse
 import glob
 import math
 import os
+import shlex
 import struct
 import sys
 import zlib
@@ -21,59 +22,75 @@ from pathlib import Path
 PNG_SIG = b"\x89PNG\r\n\x1a\n"
 
 
+def load_env_file(path: Path) -> dict[str, str]:
+    values: dict[str, str] = {}
+    if not path.exists():
+        return values
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        values[key.strip()] = shlex.split(value.strip())[0] if value.strip() else ""
+    return values
+
+
 def parse_args() -> argparse.Namespace:
+    repo_root = Path(__file__).resolve().parent.parent
+    defaults = load_env_file(repo_root / "config" / "sheet5_overlay.env")
+
     parser = argparse.ArgumentParser(
         description="Composite a rendered Sheet 5 parts pass over the Sheet 5 source drawing."
     )
     parser.add_argument(
         "--background",
-        default="ref/drawings/DRW-001-A-Assembly/a_page05.png",
+        default=defaults.get("BACKGROUND", "ref/drawings/DRW-001-A-Assembly/a_page05.png"),
         help="Background PNG path. Defaults to DRW-001 Sheet 5 source page.",
     )
     parser.add_argument(
         "--frames-dir",
-        default="exports/DRW-001-A-Assembly/sheet5_parts_pass",
+        default=defaults.get("PARTS_PASS_DIR", "exports/DRW-001-A-Assembly/sheet5_parts_pass"),
         help="Directory containing rendered parts-pass PNG frames.",
     )
     parser.add_argument(
         "--glob",
-        default="*.png",
+        default=defaults.get("FRAME_GLOB", "frame[0-9][0-9][0-9][0-9][0-9].png"),
         dest="glob_pattern",
         help="Glob used to select frame files within --frames-dir.",
     )
     parser.add_argument(
         "--output-dir",
-        default="exports/DRW-001-A-Assembly/sheet5_composite",
+        default=defaults.get("COMPOSITE_DIR", "exports/DRW-001-A-Assembly/sheet5_composite"),
         help="Directory to write composite PNG frames.",
     )
     parser.add_argument(
         "--scale",
         type=float,
-        default=1.0,
+        default=float(defaults.get("SCALE", "1.0")),
         help="Uniform scale applied to the parts-pass image before compositing.",
     )
     parser.add_argument(
         "--offset-x",
         type=int,
-        default=0,
+        default=int(defaults.get("OFFSET_X", "0")),
         help="Horizontal offset of the parts pass on the background canvas in pixels.",
     )
     parser.add_argument(
         "--offset-y",
         type=int,
-        default=0,
+        default=int(defaults.get("OFFSET_Y", "0")),
         help="Vertical offset of the parts pass on the background canvas in pixels.",
     )
     parser.add_argument(
         "--white-threshold",
         type=int,
-        default=245,
+        default=int(defaults.get("WHITE_THRESHOLD", "245")),
         help="Pixels at or above this RGB value are treated as transparent background.",
     )
     parser.add_argument(
         "--opacity",
         type=float,
-        default=1.0,
+        default=float(defaults.get("OPACITY", "1.0")),
         help="Global opacity multiplier for the parts pass (0..1).",
     )
     return parser.parse_args()

@@ -13,6 +13,8 @@ Produce:
 
 ## Standard Paths
 
+- Shared workflow config:
+  - `config/sheet5_overlay.env`
 - Source drawing page:
   - `ref/drawings/DRW-001-A-Assembly/a_page05.png`
 - GUI-dumped raw frames:
@@ -29,6 +31,40 @@ Use:
 
 This mode is wired through `scad/main.scad` and renders only the rotating Sheet 5
 parts scene, not the static reconstructed sheet.
+
+## Shared Settings
+
+The workflow now uses:
+- `config/sheet5_overlay.env`
+
+This file stores:
+- render mode
+- frame count
+- image size
+- optional explicit OpenSCAD camera string
+- standard input/output directories
+- composite offsets and white-key threshold
+
+## Camera Capture
+
+For deterministic CLI export, capture a known-good OpenSCAD camera string from the GUI
+and store it in:
+- `config/sheet5_overlay.env`
+
+Set:
+- `CAMERA="..."`
+
+Recommended process:
+- open `scad/main.scad`
+- set `mode = "drw001_sheet5_parts_animate"`
+- adjust the viewport until the framing looks right
+- copy the viewport/camera parameters from OpenSCAD
+- paste that string into `CAMERA=...`
+
+When `CAMERA` is non-empty, the render helper will use it directly.
+When `CAMERA` is empty, the helper falls back to:
+- `--viewall`
+- `--autocenter`
 
 ## Workflow
 
@@ -72,13 +108,11 @@ This step:
 Run:
 
 ```bash
-python3 scripts/compose_sheet5_overlay.py --offset-x 71 --offset-y 195 --white-threshold 245
+python3 scripts/compose_sheet5_overlay.py
 ```
 
-Current first-pass alignment values:
-- `offset-x 71`
-- `offset-y 195`
-- `white-threshold 245`
+The default alignment values now come from:
+- `config/sheet5_overlay.env`
 
 This writes composite frames to:
 - `exports/DRW-001-A-Assembly/sheet5_composite/`

@@ -2,8 +2,11 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SOURCE_DIR="$REPO_ROOT/scad"
-DEST_DIR="$REPO_ROOT/exports/DRW-001-A-Assembly/sheet5_parts_pass"
+source "$REPO_ROOT/config/sheet5_overlay.env"
+
+SOURCE_DIR="$REPO_ROOT/$GUI_FRAME_SOURCE"
+DEST_DIR="$REPO_ROOT/$PARTS_PASS_DIR"
+FRAME_GLOB="${FRAME_GLOB:-frame[0-9][0-9][0-9][0-9][0-9].png}"
 MOVE_FILES=0
 
 while [[ $# -gt 0 ]]; do
@@ -28,18 +31,19 @@ while [[ $# -gt 0 ]]; do
 done
 
 shopt -s nullglob
-frames=("$SOURCE_DIR"/frame*.png)
+frames=("$SOURCE_DIR"/$FRAME_GLOB)
 if [[ ${#frames[@]} -eq 0 ]]; then
-    echo "No GUI-dumped frame PNGs found in $SOURCE_DIR" >&2
+    echo "No GUI-dumped canonical frame PNGs found in $SOURCE_DIR matching $FRAME_GLOB" >&2
     exit 1
 fi
 
-python3 - "$SOURCE_DIR" <<'PY'
+python3 - "$SOURCE_DIR" "$FRAME_GLOB" <<'PY'
 from pathlib import Path
 import sys
 
 source = Path(sys.argv[1])
-frames = sorted(source.glob("frame*.png"))
+pattern = sys.argv[2]
+frames = sorted(source.glob(pattern))
 nums = [int(f.stem.replace("frame", "")) for f in frames]
 if nums[0] != 0:
     raise SystemExit(f"Frame sequence does not start at frame00000.png in {source}")
@@ -55,10 +59,10 @@ rm -f "$DEST_DIR"/frame*.png
 
 if [[ "$MOVE_FILES" -eq 1 ]]; then
     echo "Moving GUI-dumped frames to ${DEST_DIR#$REPO_ROOT/}"
-    mv "$SOURCE_DIR"/frame*.png "$DEST_DIR"/
+    mv "$SOURCE_DIR"/$FRAME_GLOB "$DEST_DIR"/
 else
     echo "Copying GUI-dumped frames to ${DEST_DIR#$REPO_ROOT/}"
-    cp "$SOURCE_DIR"/frame*.png "$DEST_DIR"/
+    cp "$SOURCE_DIR"/$FRAME_GLOB "$DEST_DIR"/
 fi
 
 echo "Ingest complete: $(find "$DEST_DIR" -maxdepth 1 -type f -name 'frame*.png' | wc -l | tr -d ' ') frames"

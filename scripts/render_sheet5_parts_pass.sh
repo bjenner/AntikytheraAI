@@ -2,10 +2,16 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-OUT_DIR="$REPO_ROOT/exports/DRW-001-A-Assembly/sheet5_parts_pass"
-FRAMES=48
-IMGSIZE="1600,1200"
-QUALITY="preview"
+source "$REPO_ROOT/config/sheet5_overlay.env"
+
+OUT_DIR="$REPO_ROOT/$PARTS_PASS_DIR"
+FRAMES="${FRAMES:-96}"
+IMGSIZE="${IMGSIZE:-2340,1364}"
+QUALITY="${QUALITY:-preview}"
+MODE="${MODE:-drw001_sheet5_parts_animate}"
+PROJECTION="${PROJECTION:-o}"
+CAMERA="${CAMERA:-}"
+VIEW_OPTIONS="${VIEW_OPTIONS:-}"
 
 OPENSCAD_BIN="${OPENSCAD:-}"
 if [[ -z "$OPENSCAD_BIN" ]]; then
@@ -47,13 +53,27 @@ done
 mkdir -p "$OUT_DIR"
 
 echo "Rendering DRW-001 Sheet 5 parts pass to ${OUT_DIR#$REPO_ROOT/}"
+
+OPENSCAD_ARGS=(
+    --animate "$FRAMES"
+    --imgsize="$IMGSIZE"
+    --projection="$PROJECTION"
+    -D '__LIB_MODE__=1'
+    -D "mode=\"$MODE\""
+    -D "quality=\"$QUALITY\""
+)
+
+if [[ -n "$CAMERA" ]]; then
+    OPENSCAD_ARGS+=(--camera "$CAMERA")
+else
+    OPENSCAD_ARGS+=(--viewall --autocenter)
+fi
+
+if [[ -n "$VIEW_OPTIONS" ]]; then
+    OPENSCAD_ARGS+=(--view "$VIEW_OPTIONS")
+fi
+
 "$OPENSCAD_BIN" \
-    --animate "$FRAMES" \
-    --imgsize="$IMGSIZE" \
-    --viewall \
-    --autocenter \
-    -D '__LIB_MODE__=1' \
-    -D 'mode="drw001_sheet5_parts_animate"' \
-    -D "quality=\"$QUALITY\"" \
+    "${OPENSCAD_ARGS[@]}" \
     -o "$OUT_DIR/frame.png" \
     "$REPO_ROOT/scad/main.scad"
