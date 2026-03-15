@@ -25,6 +25,20 @@ module label(s, sz = 3.1, bold = false) {
     text(s, size = sz, halign = "left", valign = "center", font = bold ? "Liberation Sans:style=Bold" : "Liberation Sans");
 }
 
+module dim_h(x0, x1, y, txt = "") {
+    line2d([x0, y], [x1, y], 0.26);
+    translate([x0, y]) rotate([0, 0, 180]) polygon([[0, 0], [1.2, 0.42], [1.2, -0.42]]);
+    translate([x1, y]) polygon([[0, 0], [-1.2, 0.42], [-1.2, -0.42]]);
+    if (txt != "") translate([(x0 + x1) / 2, y + 1.7]) text(txt, size = 2.8, halign = "center");
+}
+
+module dim_v(y0, y1, x, txt = "") {
+    line2d([x, y0], [x, y1], 0.26);
+    translate([x, y0]) rotate([0, 0, -90]) polygon([[0, 0], [1.2, 0.42], [1.2, -0.42]]);
+    translate([x, y1]) rotate([0, 0, 90]) polygon([[0, 0], [1.2, 0.42], [1.2, -0.42]]);
+    if (txt != "") translate([x + 1.8, (y0 + y1) / 2]) rotate([0, 0, 90]) text(txt, size = 2.8, halign = "center");
+}
+
 module drw001_sheet6() {
     w = 420;
     h = 297;
@@ -52,39 +66,82 @@ module drw001_sheet6() {
     color("black") translate([289, 25, 0]) linear_extrude(height = th) label("DWG NO   a      (a7 to a10)", sz = 3.0);
     color("black") translate([289, 13, 0]) linear_extrude(height = th) label("SIZE A3    REV 8.0    SHEET 6 OF 7", sz = 2.9);
 
-    // Orthographic outlines from parts.
-    color([0.90, 0.90, 0.90]) translate([80, 86, 0]) linear_extrude(height = th) projection(cut = true) part_a7();
-    color("black") translate([80, 86, 0.01]) linear_extrude(height = th) outline2d(0.35) projection(cut = true) part_a7();
-    color("black") translate([50, 106, 0]) linear_extrude(height = th) label("a7", sz = 3.2, bold = true);
+    // Top-row detail views.
+    color([0.90, 0.90, 0.90]) translate([90, 195, 0]) linear_extrude(height = th) projection(cut = false) rotate([0, 90, 0]) part_a7();
+    color("black") translate([90, 195, 0.01]) linear_extrude(height = th) outline2d(0.32) projection(cut = false) rotate([0, 90, 0]) part_a7();
+    color("black") translate([48, 160, 0]) linear_extrude(height = th) label("a7", sz = 3.2, bold = true);
 
-    color([0.90, 0.90, 0.90]) translate([126, 246, 0]) linear_extrude(height = th) projection(cut = true) part_a8();
-    color("black") translate([126, 246, 0.01]) linear_extrude(height = th) outline2d(0.34) projection(cut = true) part_a8();
-    color("black") translate([141, 250, 0]) linear_extrude(height = th) label("a8 x 2", sz = 3.0, bold = true);
+    color([0.90, 0.90, 0.90]) translate([124, 246, 0]) linear_extrude(height = th) projection(cut = false) rotate([90, 0, 35]) part_a8();
+    color("black") translate([124, 246, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = false) rotate([90, 0, 35]) part_a8();
+    color("black") translate([128, 256, 0]) linear_extrude(height = th) label("a8 x 2", sz = 2.9, bold = true);
 
-    color([0.90, 0.90, 0.90]) translate([204, 235, 0]) linear_extrude(height = th) projection(cut = true) part_a9();
-    color("black") translate([204, 235, 0.01]) linear_extrude(height = th) outline2d(0.34) projection(cut = true) part_a9();
-    color("black") translate([218, 232, 0]) linear_extrude(height = th) label("a9", sz = 3.0, bold = true);
+    color([0.90, 0.90, 0.90]) translate([200, 198, 0]) linear_extrude(height = th) projection(cut = false) rotate([0, 90, 0]) part_a9();
+    color("black") translate([200, 198, 0.01]) linear_extrude(height = th) outline2d(0.32) projection(cut = false) rotate([0, 90, 0]) part_a9();
+    color("black") translate([233, 240, 0]) linear_extrude(height = th) label("a9", sz = 3.0, bold = true);
 
-    color([0.90, 0.90, 0.90]) translate([335, 124, 0]) linear_extrude(height = th) projection(cut = true) part_a10();
-    color("black") translate([335, 124, 0.01]) linear_extrude(height = th) outline2d(0.34) projection(cut = true) part_a10();
-    color("black") translate([266, 104, 0]) linear_extrude(height = th) label("a10", sz = 3.0, bold = true);
+    color([0.90, 0.90, 0.90]) translate([360, 136, 0]) linear_extrude(height = th) projection(cut = false) part_a10();
+    color("black") translate([360, 136, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = false) part_a10();
+    color("black") translate([297, 116, 0]) linear_extrude(height = th) label("a10", sz = 3.0, bold = true);
 
-    // Big isometric part previews.
-    color([0.45, 0.30, 0.18]) translate([83, 76, 16]) rotate([0, 0, 0]) scale([1, 1, 1]) part_a7();
-    color([0.52, 0.43, 0.34]) translate([232, 210, 16]) rotate([0, 0, 0]) scale([1, 1, 1]) part_a9();
-    color([0.45, 0.30, 0.18]) translate([235, 50, 18]) rotate([68, 0, 12]) scale([0.45, 0.45, 0.45]) part_a10();
+    // Minimal dimension callouts to anchor the page layout to the source sheet.
+    color("black")
+    linear_extrude(height = th) {
+        dim_h(81, 99, 263, "11");
+        dim_v(183, 218, 35, "35.2");
+        dim_h(194, 214, 255, "14.0");
+        dim_v(181, 227, 172, "46.4");
+        dim_h(329, 391, 170, "111");
+    }
+
+    // Bottom-row isometric part previews.
+    color([0.45, 0.30, 0.18])
+        translate([36, 72, 16])
+            rotate([0, 0, 0])
+                part_a7();
+
+    color([0.52, 0.43, 0.34])
+        translate([124, 245, 7])
+            rotate([58, -18, -42])
+                part_a8();
+
+    color([0.52, 0.43, 0.34])
+        translate([145, 79, 14])
+            rotate([90, 0, 90])
+                scale([0.9, 0.9, 0.9])
+                    part_a9();
+
+    color([0.52, 0.43, 0.34])
+        translate([246, 220, 15])
+            rotate([0, 0, 0])
+                part_a9();
+
+    color([0.45, 0.30, 0.18])
+        translate([256, 72, 12])
+            rotate([74, 0, -18])
+                part_a10();
 
     // a8 subassembly area.
-    translate([142, 50, 18]) rotate([90, 0, 35]) scale([0.75, 0.75, 0.75]) drw001_a8_subassembly();
-    color("black") translate([154, 20, 0]) linear_extrude(height = th) label("a8 sub assembly", sz = 3.2);
+    translate([112, 62, 13])
+        rotate([0, 90, 6])
+            scale([0.82, 0.82, 0.82])
+                drw001_a8_subassembly(a8_hole_z = 200);
+    color("black") translate([102, 24, 0]) linear_extrude(height = th) label("a8 sub assembly", sz = 3.0);
 
-    // Simple callout leaders to match sheet feel.
+    // Callout leaders and labels following the source page composition.
     color("black") linear_extrude(height = th) {
-        line2d([92, 110], [112, 120], 0.24);   // a7 leader
-        line2d([206, 218], [186, 126], 0.24);  // a9 leader
-        line2d([258, 108], [247, 88], 0.24);   // a10 leader
-        line2d([180, 105], [170, 74], 0.24);   // subassembly leader
+        line2d([50, 168], [88, 186], 0.24);
+        line2d([128, 248], [118, 238], 0.24);
+        line2d([227, 236], [210, 222], 0.24);
+        line2d([305, 119], [344, 137], 0.24);
+        line2d([44, 92], [28, 74], 0.24);
+        line2d([150, 109], [132, 88], 0.24);
+        line2d([172, 109], [166, 87], 0.24);
+        line2d([262, 92], [282, 114], 0.24);
     }
+    color("black") translate([23, 72, 0]) linear_extrude(height = th) label("a7", sz = 3.0);
+    color("black") translate([134, 107, 0]) linear_extrude(height = th) label("a9 rivet to a10", sz = 2.7);
+    color("black") translate([157, 112, 0]) linear_extrude(height = th) label("a10 rivet to a11", sz = 2.7);
+    color("black") translate([282, 115, 0]) linear_extrude(height = th) label("a10", sz = 3.0);
 }
 
 
