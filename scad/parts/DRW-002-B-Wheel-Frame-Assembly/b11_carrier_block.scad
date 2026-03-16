@@ -86,28 +86,29 @@ module part_b11(
 ) {
     slot_r = slot_depth - slot_center_drop;
 
-    difference() {
-        linear_extrude(height = t)
-            b11_profile_2d(
-                w = w,
-                h = h,
-                window_w = window_w,
-                window_h = window_h,
-                window_bottom_offset = window_bottom_offset,
-                small_top_offset = small_top_offset,
-                small_bottom_offset = small_bottom_offset
-            );
+    translate([-w / 2, -h / 2, -t / 2])
+        difference() {
+            linear_extrude(height = t)
+                b11_profile_2d(
+                    w = w,
+                    h = h,
+                    window_w = window_w,
+                    window_h = window_h,
+                    window_bottom_offset = window_bottom_offset,
+                    small_top_offset = small_top_offset,
+                    small_bottom_offset = small_bottom_offset
+                );
 
-        // Full-height center groove: shallow top-face cut, not a through-slot.
-        b11_slot_segment_3d(
-            y0 = 0,
-            y1 = h,
-            x = w / 2,
-            top_z = t,
-            slot_r = slot_r,
-            slot_center_drop = slot_center_drop
-        );
-    }
+            // Full-height center groove: shallow top-face cut, not a through-slot.
+            b11_slot_segment_3d(
+                y0 = 0,
+                y1 = h,
+                x = w / 2,
+                top_z = t,
+                slot_r = slot_r,
+                slot_center_drop = slot_center_drop
+            );
+        }
 }
 
 // ---- "main guard" ----

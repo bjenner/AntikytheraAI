@@ -7,10 +7,11 @@
 
 module part_b12(d = 3.0, h = 9.0, edge_r = 0.5) {
     // Slightly softened cylinder for press/rivet pin visual.
-    minkowski() {
-        cylinder(d = d - 2 * edge_r, h = h - 2 * edge_r, center = false, $fn = 42);
-        sphere(r = edge_r, $fn = 18);
-    }
+    translate([0, 0, -h / 2])
+        minkowski() {
+            cylinder(d = d - 2 * edge_r, h = h - 2 * edge_r, center = false, $fn = 42);
+            sphere(r = edge_r, $fn = 18);
+        }
 }
 
 // ---- "main guard" ----

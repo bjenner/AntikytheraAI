@@ -70,25 +70,27 @@ module drw002_sheet10() {
     color([0.92, 0.92, 0.92])
     translate([300, 74, 0])
         linear_extrude(height = th)
-            projection(cut = true) part_b17();
+            projection(cut = true) translate([0, 0, 7.35]) part_b17();
 
     color("black")
     translate([300, 74, 0.01])
         linear_extrude(height = th)
-            outline2d(0.32) projection(cut = true) part_b17();
+            outline2d(0.32) projection(cut = true) translate([0, 0, 7.35]) part_b17();
 
     // Isometric previews matching source composition.
     color([0.45, 0.30, 0.18])
-    translate([80, 56, 16])
-        rotate([20, -8, 15])
+    translate([62, 48, 16])
+        rotate([20, -8, 8])
             scale([1.9, 1.9, 1.9])
-                part_b18();
+                translate([62, 12, 0.8])
+                    part_b18();
 
     color([0.45, 0.30, 0.18])
-    translate([262, 118, 16])
+    translate([298, 126, 16])
         rotate([26, -12, 35])
             scale([1.5, 1.5, 1.5])
-                part_b17();
+                translate([0, 0, 1.5])
+                    part_b17();
 
     // Detail symbol for b17 hole diameter callout zone.
     color("black")
@@ -99,14 +101,14 @@ module drw002_sheet10() {
     }
 
     // Labels.
-    color("black") translate([171, 105, 0]) linear_extrude(height = th) label("b18", sz = 3.1, bold = true);
-    color("black") translate([276, 139, 0]) linear_extrude(height = th) label("b17 x 4", sz = 3.1, bold = true);
+    color("black") translate([156, 94, 0]) linear_extrude(height = th) label("b18", sz = 3.1, bold = true);
+    color("black") translate([316, 148, 0]) linear_extrude(height = th) label("b17 x 4", sz = 3.1, bold = true);
 
     // Leaders.
     color("black")
     linear_extrude(height = th) {
-        line2d([186, 104], [164, 88], 0.24);
-        line2d([291, 138], [271, 126], 0.24);
+        line2d([173, 94], [150, 79], 0.24);
+        line2d([330, 147], [309, 132], 0.24);
     }
 }
 

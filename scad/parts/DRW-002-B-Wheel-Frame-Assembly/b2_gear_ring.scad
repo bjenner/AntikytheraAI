@@ -43,8 +43,9 @@ module b2_gear_2d(
 }
 
 module part_b2(thickness = 2.0) {
-    linear_extrude(height = thickness)
-        b2_gear_2d();
+    translate([0, 0, -thickness / 2])
+        linear_extrude(height = thickness)
+            b2_gear_2d();
 }
 
 // ---- "main guard" ----

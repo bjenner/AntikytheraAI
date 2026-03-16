@@ -7,7 +7,7 @@ use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b4_rivet_pin.scad>
 
 module drw002_b2_subassembly(
     rivet_pcd_r = 10.0,
-    rivet_z = 1.7
+    rivet_z = 0
 ) {
     color([0.45, 0.30, 0.18])
         part_b2();

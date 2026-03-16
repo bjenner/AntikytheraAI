@@ -19,8 +19,9 @@ module b3_gear_2d(outer_d = 17.2, root_d = 14.96, tooth_count = 33, bore_d = 4.0
 }
 
 module part_b3(thickness = 1.6) {
-    linear_extrude(height = thickness)
-        b3_gear_2d();
+    translate([0, 0, -thickness / 2])
+        linear_extrude(height = thickness)
+            b3_gear_2d();
 }
 
 // ---- "main guard" ----

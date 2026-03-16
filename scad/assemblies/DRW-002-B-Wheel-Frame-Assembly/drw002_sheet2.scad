@@ -1,5 +1,12 @@
 // DRW-002 Sheet 2 recreation (parts list / exploded assembly).
 // Uses existing b-series parts only.
+// Working note: sheet-2 likely depends on a cross-drawing center shaft/core
+// element, currently suspected to be `sun17`, even though it is not listed in
+// the DRW-002 B-series parts table. Current visual stack reading is
+// `b3 -> b7 (+ b8/b9) -> b10 -> b2 subassembly -> b1`, with the large wheel
+// oriented so its toothed edge faces upward in the exploded view. The source
+// drawing may also contain a `b9`/`b10` callout mix-up around the thin disc-like
+// elements on the centerline.
 // SPDX-License-Identifier: MIT
 
 use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b0_gear.scad>
@@ -21,6 +28,8 @@ use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b15_wire_link.scad>
 use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b16_rivet.scad>
 use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b17_standoff_pin.scad>
 use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b18_link_plate.scad>
+use <drw002_b2_subassembly.scad>
+use <drw002_b9_subassembly.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.3) {
     hull() {
@@ -107,6 +116,103 @@ module parts_table_b2(x = 8, y = 122) {
     }
 }
 
+module bronze() {
+    color([0.45, 0.30, 0.18]) children();
+}
+
+module dark_metal() {
+    color([0.22, 0.22, 0.22]) children();
+}
+
+module light_metal() {
+    color([0.72, 0.72, 0.72]) children();
+}
+
+module roller_cluster() {
+    rotate([0, 0, -18])
+        drw002_b9_subassembly();
+}
+
+module drive_axis_exploded() {
+    bronze()
+        rotate([0, 90, 0]) translate([0, 0, 6.95]) part_b7();
+
+    dark_metal()
+        translate([-18, 0, 0]) rotate([0, 90, 0]) translate([0, 0, 3.1]) part_b8();
+
+    dark_metal()
+        translate([18, 0, 0]) rotate([0, 90, 0]) translate([0, 0, 1.75]) part_b9();
+
+    bronze() {
+        translate([34, 0, 0]) rotate([0, 90, 0]) part_b0();
+        translate([47, 0, 0]) rotate([0, 90, 0]) translate([0, 0, -0.3]) part_b10();
+        translate([56, 0, 0]) rotate([0, 90, 0]) drw002_b2_subassembly();
+        translate([70, 0, 0]) rotate([0, 90, 0]) translate([0, 0, -0.3]) part_b10();
+        translate([83, 0, 0]) rotate([0, 90, 0]) part_b3();
+    }
+}
+
+module vertical_drive_stack() {
+    b18_outer_holes = [
+        [-58.5, -7.8],
+        [-58.5, 7.8],
+        [58.5, -7.8],
+        [58.5, 7.8]
+    ];
+
+    // Leftmost in the current fit-check view, matching the large wheel at the
+    // end of the centerline stack. Keep the toothed rim facing upward.
+    bronze()
+        translate([0, 0, 0]) rotate([0, -90, 0]) part_b0();
+
+    bronze()
+        translate([12, 0, 0]) rotate([0, 90, 0]) {
+            part_b18();
+            for (p = b18_outer_holes)
+                translate([p[0], p[1], -15.7])
+                    part_b5();
+        }
+
+    bronze()
+        translate([34, 0, 0]) rotate([0, 90, 0]) part_b1();
+
+    // b2 subassembly with its b4 rivets stays on the centerline.
+    bronze()
+        translate([58, 0, 0]) rotate([0, 90, 0]) drw002_b2_subassembly();
+
+    // Drawing callout likely says b9 here in error; current interpretation is
+    // that this centerline disc is b10.
+    bronze()
+        translate([71, 0, 0]) rotate([0, 90, 0]) translate([0, 0, -0.3]) part_b10();
+
+    // b7 hub with its associated b8/b9 pins.
+    bronze()
+        translate([86, 0, 0]) rotate([0, 90, 0]) translate([0, 0, 6.95]) part_b7();
+    dark_metal()
+        translate([94, 0, 0]) rotate([0, 90, 0]) translate([0, 0, 3.1]) part_b8();
+    dark_metal()
+        translate([99, 0, 0]) rotate([0, 90, 0]) translate([0, 0, 1.75]) part_b9();
+
+    // Placeholder only until sun17 is modeled/wired into this sheet.
+    dark_metal()
+        translate([113, 0, 0]) rotate([0, 90, 0]) cylinder(d = 5.3, h = 54.8, center = true, $fn = 42);
+
+    bronze()
+        translate([132, 0, 0]) rotate([0, 90, 0]) part_b3();
+}
+
+module post_cluster() {
+    bronze()
+        translate([45, -15, -2]) rotate([0, 22, 26]) part_b6();
+
+    dark_metal() {
+        translate([-10, 26, 0]) rotate([0, 90, 24]) part_b17();
+        translate([10, 26, 2]) rotate([0, 90, 24]) part_b17();
+        translate([30, 24, 5]) rotate([0, 90, 24]) part_b17();
+        translate([50, 22, 8]) rotate([0, 90, 24]) part_b17();
+    }
+}
+
 module drw002_sheet2() {
     W = 420;
     H = 297;
@@ -137,61 +243,40 @@ module drw002_sheet2() {
     // Parts table on left.
     parts_table_b2();
 
-    // Exploded cluster (existing parts only).
-    translate([250, 102, 16]) rotate([75, 0, 28]) scale([1.08, 1.08, 1.08]) part_b1();
-    translate([272, 112, 18]) rotate([75, 0, 28]) scale([1.02, 1.02, 1.02]) part_b18();
+    // Stage loose plate hardware up top while we solve the main fit.
+    translate([296, 221, 16]) post_cluster();
 
-    // Main axle group.
-    color([0.50, 0.42, 0.34]) translate([299, 77, 18]) rotate([12, 78, -28]) part_b7();
-    color([0.18, 0.18, 0.18]) translate([292, 84, 18]) rotate([10, 78, -28]) part_b8();
-    color([0.18, 0.18, 0.18]) translate([306, 68, 18]) rotate([10, 78, -28]) part_b9();
+    // Straight exploded drive stack with no presentation-angle twist yet.
+    translate([232, 107, 16]) vertical_drive_stack();
 
-    // Gear stack.
-    color([0.45, 0.30, 0.18]) translate([320, 107, 17]) rotate([76, 0, 29]) part_b0();
-    color([0.45, 0.30, 0.18]) translate([334, 92, 17]) rotate([76, 0, 29]) part_b2();
-    color([0.45, 0.30, 0.18]) translate([345, 76, 17]) rotate([76, 0, 29]) part_b3();
+    // Off-centerline items parked nearby while the main stack is verified.
+    // Roller subsystem parked below the main stack for separate fit checking.
+    translate([230, 32, 16]) rotate([0, 0, 0]) roller_cluster();
 
-    // Posts and standoffs.
-    color([0.45, 0.30, 0.18]) translate([216, 183, 17]) rotate([18, 0, 18]) part_b5();
-    color([0.45, 0.30, 0.18]) translate([250, 60, 17]) rotate([18, 0, 18]) part_b5();
-    color([0.45, 0.30, 0.18]) translate([358, 228, 17]) rotate([18, 0, 18]) part_b5();
-    color([0.45, 0.30, 0.18]) translate([342, 168, 17]) rotate([18, 0, 18]) part_b6();
+    // Spare b17 kept high and separate for now.
+    dark_metal()
+        translate([228, 214, 17]) rotate([0, 90, 0]) part_b17();
 
-    // Roller subsystem at bottom-middle.
-    color([0.40, 0.29, 0.19]) translate([241, 52, 16]) rotate([18, -2, -25]) part_b11();
-    color([0.45, 0.30, 0.18]) translate([254, 50, 17]) rotate([8, 85, -20]) part_b12();
-    color([0.35, 0.25, 0.18]) translate([265, 52, 17]) rotate([8, 85, -20]) part_b13();
-    color([0.75, 0.75, 0.75]) translate([274, 51, 17]) rotate([8, 85, -20]) part_b14();
-    color([0.75, 0.75, 0.75]) translate([282, 48, 17]) rotate([0, 70, -20]) part_b15();
-    color([0.25, 0.25, 0.25]) translate([290, 44, 17]) rotate([8, 85, -20]) part_b16();
+    // Temporary callouts for the fit-check layout.
+    callout("b10", [299, 107], [338, 148], [382, 188]);
+    callout("b9",  [327, 107], [334, 145], [382, 171]);
+    callout("b8",  [322, 107], [327, 127], [382, 154]);
+    callout("b7",  [314, 107], [320, 111], [382, 137]);
+    callout("b0",  [232, 107], [345, 111], [382, 120]);
+    callout("b1",  [262, 107], [336, 95],  [382, 103]);
+    callout("b2",  [286, 107], [351, 88],  [382, 86]);
+    callout("b3",  [360, 107], [360, 72],  [382, 69]);
+    callout("b4",  [286, 117], [350, 56],  [382, 52]);
 
-    // Rivet and link parts.
-    color([0.25, 0.25, 0.25]) translate([222, 126, 17]) rotate([90, 0, 20]) part_b17();
-    color([0.25, 0.25, 0.25]) translate([198, 92, 17]) rotate([90, 0, 20]) part_b17();
-    color([0.25, 0.25, 0.25]) translate([233, 160, 17]) rotate([90, 0, 20]) part_b17();
-    color([0.25, 0.25, 0.25]) translate([346, 124, 17]) rotate([90, 0, 20]) part_b4();
+    color("black")
+        linear_extrude(height = th) {
+            line2d([235, 38], [214, 44], 0.22);
+            translate([169, 48]) text("b9 sub assembly", size = 2.8, halign = "left", valign = "center");
+        }
 
-    // A few sheet-like callouts around right side.
-    callout("b10", [323, 107], [353, 140], [378, 188]);
-    callout("b9",  [306, 68],  [347, 132], [378, 171]);
-    callout("b8",  [292, 84],  [341, 122], [378, 154]);
-    callout("b7",  [299, 77],  [334, 112], [378, 137]);
-    callout("b0",  [320, 107], [340, 98],  [378, 120]);
-    callout("b1",  [250, 101], [330, 88],  [378, 103]);
-    callout("b2",  [334, 92],  [350, 80],  [378, 86]);
-    callout("b3",  [345, 76],  [355, 66],  [378, 69]);
-    callout("b4",  [346, 124], [359, 53],  [378, 52]);
-
-    callout("b11", [241, 52], [226, 43], [168, 48]);
-    callout("b12", [254, 50], [248, 39], [185, 44]);
-    callout("b13", [265, 52], [264, 33], [202, 43]);
-    callout("b14", [274, 51], [281, 34], [220, 45]);
-    callout("b15", [282, 48], [300, 37], [238, 46]);
-    callout("b16", [290, 44], [316, 33], [256, 45]);
-
-    callout("b5", [358, 228], [334, 242], [268, 257]);
-    callout("b6", [342, 168], [329, 201], [252, 246]);
-    callout("b17", [222, 126], [206, 252], [228, 258]);
+    callout("b5",  [320, 221], [307, 237], [268, 257]);
+    callout("b6",  [341, 206], [331, 216], [252, 246]);
+    callout("b17", [228, 214], [220, 246], [228, 258]);
 }
 
 // ---- "main guard" ----

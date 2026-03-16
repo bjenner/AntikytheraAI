@@ -66,8 +66,9 @@ module b0_gear_2d(
 module part_b0(thickness = 1.6, taper = 0.92) {
     // Slight taper improves the isometric read against the source drawing,
     // while the sheet-cut profile remains defined by b0_gear_2d().
-    linear_extrude(height = thickness, scale = taper)
-        b0_gear_2d();
+    translate([0, 0, -thickness / 2])
+        linear_extrude(height = thickness, scale = taper)
+            b0_gear_2d();
 }
 
 // ---- "main guard" ----

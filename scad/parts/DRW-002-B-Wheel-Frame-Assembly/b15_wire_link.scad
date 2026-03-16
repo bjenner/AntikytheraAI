@@ -14,11 +14,12 @@ module wire_segment(a = [0, 0, 0], b = [10, 0, 0], d = 0.4) {
 
 module part_b15(run = 17, hook_len = 0.9, wire_d = 0.4) {
     // Planar bent wire with short 90-degree return hooks.
-    union() {
-        wire_segment([0, 0, 0], [run, 0, 0], wire_d);
-        wire_segment([0, 0, 0], [0, 0, -hook_len], wire_d);
-        wire_segment([run, 0, 0], [run, 0, -hook_len], wire_d);
-    }
+    translate([-run / 2, 0, hook_len / 2])
+        union() {
+            wire_segment([0, 0, 0], [run, 0, 0], wire_d);
+            wire_segment([0, 0, 0], [0, 0, -hook_len], wire_d);
+            wire_segment([run, 0, 0], [run, 0, -hook_len], wire_d);
+        }
 }
 
 // ---- "main guard" ----

@@ -41,22 +41,22 @@ module label(s, sz = 3.0, bold = false) {
 }
 
 module roller_subassembly() {
-    color([0.40, 0.29, 0.19]) part_b11();
+    color([0.40, 0.29, 0.19]) translate([8.0, 12.0, 1.5]) part_b11();
     color([0.45, 0.34, 0.23]) {
-        translate([5.2, 20.0, 11.2]) part_b12();
-        translate([10.8, 20.0, 11.2]) part_b12();
+        translate([5.2, 20.0, 15.7]) part_b12();
+        translate([10.8, 20.0, 15.7]) part_b12();
     }
-    color([0.35, 0.25, 0.18]) translate([16, 12, 8.6]) part_b13();
-    color([0.70, 0.70, 0.70]) translate([8.0, 6.0, 9.0]) rotate([90, 0, 0]) part_b14();
-    color([0.72, 0.72, 0.72]) translate([8.0, 8.0, 6.4]) rotate([0, 90, -20]) part_b15();
-    color([0.25, 0.25, 0.25]) translate([12.0, 5.0, 2.2]) rotate([90, 0, 0]) part_b16();
+    color([0.35, 0.25, 0.18]) translate([18.5, 12, 8.6]) part_b13();
+    color([0.70, 0.70, 0.70]) translate([8.0, 6.0, 11.5]) rotate([90, 0, 0]) part_b14();
+    color([0.72, 0.72, 0.72]) translate([8.0, 8.0, 6.4]) rotate([0, 90, -20]) translate([8.5, 0, -0.45]) part_b15();
+    color([0.25, 0.25, 0.25]) translate([12.0, 5.0, 3.7]) rotate([90, 0, 0]) part_b16();
 }
 
 module b_drive_cluster() {
     // Main axle and wheel-side gear train.
-    color([0.50, 0.42, 0.34]) rotate([90, 0, 90]) part_b7();
-    color([0.20, 0.20, 0.20]) translate([5.5, 0, 0]) rotate([90, 0, 90]) part_b8();
-    color([0.20, 0.20, 0.20]) translate([-5.5, 0, 0]) rotate([90, 0, 90]) part_b9();
+    color([0.50, 0.42, 0.34]) rotate([90, 0, 90]) translate([0, 0, 6.95]) part_b7();
+    color([0.20, 0.20, 0.20]) translate([5.5, 0, 0]) rotate([90, 0, 90]) translate([0, 0, 3.1]) part_b8();
+    color([0.20, 0.20, 0.20]) translate([-5.5, 0, 0]) rotate([90, 0, 90]) translate([0, 0, 1.75]) part_b9();
 
     color([0.45, 0.30, 0.18]) translate([10, 0, 0]) rotate([90, 0, 90]) part_b0();
     color([0.45, 0.30, 0.18]) translate([15, 0, 0]) rotate([90, 0, 90]) part_b2();
@@ -73,16 +73,16 @@ module b_assembly() {
     color([0.45, 0.30, 0.18]) part_b1();
 
     // Superior/internal plate.
-    color([0.45, 0.30, 0.18]) translate([0, 0, 22]) part_b18();
+    color([0.45, 0.30, 0.18]) translate([0, 0, 22]) translate([62, 12, 0.8]) part_b18();
 
     // Plate posts (b17) and standoffs (b5).
     color([0.45, 0.30, 0.18]) {
         for (a = [35, 145, 215, 325])
-            rotate([0, 0, a]) translate([55, 0, 2.0]) part_b5();
+            rotate([0, 0, a]) translate([55, 0, 2.0]) translate([0, 0, 14.9]) part_b5();
     }
     color([0.28, 0.28, 0.28]) {
         for (a = [0, 90, 180, 270])
-            rotate([0, 0, a]) translate([62, 0, 2.0]) part_b17();
+            rotate([0, 0, a]) translate([62, 0, 2.0]) translate([0, 0, 7.35]) part_b17();
     }
 
     // Center drive cluster.
@@ -92,12 +92,12 @@ module b_assembly() {
     translate([24, -22, 8]) rotate([0, 0, -25]) roller_subassembly();
 
     // Node clip piece mounted near rim.
-    color([0.45, 0.30, 0.18]) translate([44, 12, 22]) part_b6();
+    color([0.45, 0.30, 0.18]) translate([44, 12, 22]) translate([0, 0, 3.65]) part_b6();
 
     // b10 inner discs.
     color([0.45, 0.30, 0.18]) {
-        translate([-16, 10, 3]) part_b10();
-        translate([-16, 10, 5.3]) part_b10();
+        translate([-16, 10, 3]) translate([0, 0, 1.0]) part_b10();
+        translate([-16, 10, 5.3]) translate([0, 0, 1.0]) part_b10();
     }
 }
 

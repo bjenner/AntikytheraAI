@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 
 module part_b9(pin_d = 2.0, pin_h = 3.5) {
-    cylinder(d = pin_d, h = pin_h, center = false, $fn = 30);
+    cylinder(d = pin_d, h = pin_h, center = true, $fn = 30);
 }
 
 // ---- "main guard" ----

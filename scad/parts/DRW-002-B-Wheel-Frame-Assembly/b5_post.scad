@@ -33,38 +33,39 @@ module part_b5(
     lower_slot_h = 1.0,
     lower_slot_offset = 3.0
 ) {
-    difference() {
-        union() {
-            // Main fitted post body with rounded corners.
-            translate([0, 0, bottom_stub_h])
-                linear_extrude(height = body_h)
-                    rounded_rect_2d(w = body_w, d = body_d, r = body_r);
+    total_h = bottom_stub_h + body_h + top_stub_h;
 
-            // Bottom cylinder with small lower chamfer.
-            translate([0, 0, bottom_chamfer_r])
-                cylinder(d = bottom_stub_d, h = bottom_stub_h - bottom_chamfer_r, center = false, $fn = 42);
-            cylinder(d1 = bottom_stub_d - 2 * bottom_chamfer_r, d2 = bottom_stub_d, h = bottom_chamfer_r, center = false, $fn = 42);
-
-            // Top locating peg.
-            translate([0, 0, bottom_stub_h + body_h])
-                cylinder(d = top_stub_d, h = top_stub_h, center = false, $fn = 42);
-        }
-
-        // Annular recess in lower cylinder.
+    translate([0, 0, -total_h / 2])
         difference() {
-            translate([0, 0, lower_recess_z])
-                cylinder(d = bottom_stub_d + 1, h = lower_recess_h, center = false, $fn = 42);
-            translate([0, 0, lower_recess_z])
-                cylinder(d = lower_recess_d, h = lower_recess_h, center = false, $fn = 42);
+            union() {
+                // Main fitted post body with rounded corners.
+                translate([0, 0, bottom_stub_h])
+                    linear_extrude(height = body_h)
+                        rounded_rect_2d(w = body_w, d = body_d, r = body_r);
+
+                // Bottom cylinder with small lower chamfer.
+                translate([0, 0, bottom_chamfer_r])
+                    cylinder(d = bottom_stub_d, h = bottom_stub_h - bottom_chamfer_r, center = false, $fn = 42);
+                cylinder(d1 = bottom_stub_d - 2 * bottom_chamfer_r, d2 = bottom_stub_d, h = bottom_chamfer_r, center = false, $fn = 42);
+
+                // Top locating peg.
+                translate([0, 0, bottom_stub_h + body_h])
+                    cylinder(d = top_stub_d, h = top_stub_h, center = false, $fn = 42);
+            }
+
+            // Annular recess in lower cylinder.
+            difference() {
+                translate([0, 0, lower_recess_z])
+                    cylinder(d = bottom_stub_d + 1, h = lower_recess_h, center = false, $fn = 42);
+                translate([0, 0, lower_recess_z])
+                    cylinder(d = lower_recess_d, h = lower_recess_h, center = false, $fn = 42);
+            }
+
+            // Opposed slot cuts in the recessed band.
+            for (sx = [-1, 1])
+                translate([sx * lower_slot_offset, 0, lower_recess_z + lower_slot_h / 2])
+                    cube([lower_slot_w, lower_slot_d, lower_slot_h], center = true);
         }
-     
-        // Opposed slot cuts in the recessed band.
-        for (sx = [-1, 1])
-            echo("here: " + "51")
-            color("green")
-            translate([sx * lower_slot_offset, 0, lower_recess_z+lower_slot_h/2])
-                cube([lower_slot_w, lower_slot_d, lower_slot_h], center = true);
-    }
 }
 
 // ---- "main guard" ----

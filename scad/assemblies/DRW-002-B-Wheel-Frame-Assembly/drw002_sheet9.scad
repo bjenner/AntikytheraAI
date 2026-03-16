@@ -58,11 +58,11 @@ module drw002_sheet9() {
     color("black") translate([289, 13, 0]) linear_extrude(height = th) label("SIZE A3    REV 7.0    SHEET 9 OF 10", sz = 2.9);
 
     // Part previews across top row.
-    color([0.45, 0.30, 0.18]) translate([54, 242, 16]) rotate([18, 0, -25]) scale([1.15, 1.15, 1.15]) part_b11();
-    color([0.45, 0.30, 0.18]) translate([165, 246, 16]) rotate([0, 0, 0]) scale([1.0, 1.0, 1.0]) part_b12();
-    color([0.35, 0.25, 0.18]) translate([224, 246, 16]) rotate([0, 0, 0]) scale([1.0, 1.0, 1.0]) part_b13();
-    color([0.75, 0.75, 0.75]) translate([276, 246, 16]) rotate([0, 90, 0]) scale([1.0, 1.0, 1.0]) part_b14();
-    color([0.75, 0.75, 0.75]) translate([334, 246, 16]) rotate([0, 90, 0]) scale([1.1, 1.1, 1.1]) part_b15();
+    color([0.45, 0.30, 0.18]) translate([54, 242, 16]) rotate([18, 0, -25]) scale([1.15, 1.15, 1.15]) translate([8.0, 12.0, 1.5]) part_b11();
+    color([0.45, 0.30, 0.18]) translate([165, 246, 16]) rotate([0, 0, 0]) scale([1.0, 1.0, 1.0]) translate([0, 0, 4.5]) part_b12();
+    color([0.35, 0.25, 0.18]) translate([224, 246, 16]) rotate([0, 0, 0]) scale([1.0, 1.0, 1.0]) translate([2.5, 0, 0]) part_b13();
+    color([0.75, 0.75, 0.75]) translate([276, 246, 16]) rotate([0, 90, 0]) scale([1.0, 1.0, 1.0]) translate([0, 0, 2.5]) part_b14();
+    color([0.75, 0.75, 0.75]) translate([334, 246, 16]) rotate([0, 90, 0]) scale([1.1, 1.1, 1.1]) translate([8.5, 0, -0.45]) part_b15();
 
     // b11 orthographic linework (left-center) from part projection.
     color([0.93, 0.93, 0.93])
@@ -74,7 +74,7 @@ module drw002_sheet9() {
         outline2d(0.32) projection(cut = true) rotate([90, 0, 0]) part_b11();
 
     // b16 detail view (right-mid).
-    color([0.25, 0.25, 0.25]) translate([336, 136, 16]) rotate([20, -10, 22]) part_b16();
+    color([0.25, 0.25, 0.25]) translate([336, 136, 16]) rotate([20, -10, 22]) translate([0, 0, 1.5]) part_b16();
     color("black") translate([324, 148, 0]) linear_extrude(height = th) label("b16", sz = 3.0, bold = true);
 
     // Bottom assembly views.
@@ -103,9 +103,7 @@ module drw002_sheet9() {
 
     // Library continuity previews for b9 and b10 (to complete b9..b16 set).
     color([0.30, 0.30, 0.30]) translate([26, 84, 16]) rotate([90, 0, 0]) part_b9();
-    color([0.45, 0.30, 0.18]) translate([36, 84, 16]) rotate([75, 0, 20]) scale([0.85, 0.85, 0.85]) part_b10();
     color("black") translate([20, 70, 0]) linear_extrude(height = th) label("b9", sz = 2.8);
-    color("black") translate([35, 70, 0]) linear_extrude(height = th) label("b10", sz = 2.8);
 }
 
 // ---- "main guard" ----

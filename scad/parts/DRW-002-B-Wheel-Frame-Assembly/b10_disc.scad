@@ -35,8 +35,9 @@ module b10_profile_2d(
 }
 
 module part_b10(od = 30, thickness = 2.0) {
-    linear_extrude(height = thickness)
-        b10_profile_2d(od = od);
+    translate([0, 0, -thickness / 2])
+        linear_extrude(height = thickness)
+            b10_profile_2d(od = od);
 }
 
 // ---- "main guard" ----

@@ -18,10 +18,10 @@ module drw002_b7_subassembly(
 
     color([0.20, 0.20, 0.20]) {
         for (sx = [-1, 1])
-            translate([sx * b8_offset, 0, 0])
+            translate([sx * b8_offset, 0, -core_h / 2 + b8_insert_h / 2])
                 part_b8(pin_h = b8_insert_h);
 
-        translate([-b9_offset, 0, core_h - b9_insert_h])
+        translate([-b9_offset, 0, core_h / 2 - b9_insert_h / 2])
             part_b9(pin_h = b9_insert_h);
     }
 }

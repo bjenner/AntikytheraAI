@@ -143,21 +143,22 @@ module b1_bevel_solid_3d(
 }
 
 module part_b1(thickness = 2.0, edge_drop_h = 1.1, tooth_root_r = 61.2) {
-    difference() {
-        union() {
-            b1_bevel_solid_3d(
-                thickness = thickness,
-                edge_drop_h = edge_drop_h,
-                tooth_root_r = tooth_root_r
-            );
-            translate([0, 0, thickness - edge_drop_h])
-                linear_extrude(height = edge_drop_h)
-                    b1_blank_2d();
-        }
+    translate([0, 0, -thickness / 2])
+        difference() {
+            union() {
+                b1_bevel_solid_3d(
+                    thickness = thickness,
+                    edge_drop_h = edge_drop_h,
+                    tooth_root_r = tooth_root_r
+                );
+                translate([0, 0, thickness - edge_drop_h])
+                    linear_extrude(height = edge_drop_h)
+                        b1_blank_2d();
+            }
 
-        linear_extrude(height = thickness + 0.2)
-            b1_holes_2d();
-    }
+            linear_extrude(height = thickness + 0.2)
+                b1_holes_2d();
+        }
 }
 
 // ---- "main guard" ----

@@ -28,28 +28,29 @@ module part_b7(
     top_side_hole_r = 1.0,
     top_side_hole_h = 3.6
 ) {
-    difference() {
-        union() {
-            cylinder(r = core_r, h = core_h, center = false, $fn = 72);
-            translate([0, 0, upper_core_z])
-                cylinder(r = upper_core_r, h = core_h - upper_core_z, center = false, $fn = 72);
-            translate([0, 0, upper_core_z + top_core_offset])
-                cylinder(r = top_core_r, h = core_h - upper_core_z - top_core_offset, center = false, $fn = 72);
-            translate([0, 0, core_h - top_cap_h - flange_h])
-                cylinder(d = flange_d, h = flange_h, center = false, $fn = 96);
-            translate([0, 0, core_h - top_cap_h])
-                cylinder(r = top_cap_r, h = top_cap_h, center = false, $fn = 96);
+    translate([0, 0, -core_h / 2])
+        difference() {
+            union() {
+                cylinder(r = core_r, h = core_h, center = false, $fn = 72);
+                translate([0, 0, upper_core_z])
+                    cylinder(r = upper_core_r, h = core_h - upper_core_z, center = false, $fn = 72);
+                translate([0, 0, upper_core_z + top_core_offset])
+                    cylinder(r = top_core_r, h = core_h - upper_core_z - top_core_offset, center = false, $fn = 72);
+                translate([0, 0, core_h - top_cap_h - flange_h])
+                    cylinder(d = flange_d, h = flange_h, center = false, $fn = 96);
+                translate([0, 0, core_h - top_cap_h])
+                    cylinder(r = top_cap_r, h = top_cap_h, center = false, $fn = 96);
+            }
+            translate([0, 0, -0.1])
+                cylinder(d = bore_d, h = bore_h + 0.2, center = false, $fn = 48);
+            translate([0, 0, core_h - top_bore_h])
+                cylinder(d = top_bore_d, h = top_bore_h + 0.1, center = false, $fn = 48);
+            for (sx = [-1, 1])
+                translate([sx * side_hole_offset, 0, -0.1])
+                    cylinder(r = side_hole_r, h = side_hole_h + 0.2, center = false, $fn = 36);
+            translate([-top_side_hole_offset, 0, core_h - top_side_hole_h])
+                cylinder(r = top_side_hole_r, h = top_side_hole_h + 0.1, center = false, $fn = 36);
         }
-        translate([0, 0, -0.1])
-            cylinder(d = bore_d, h = bore_h + 0.2, center = false, $fn = 48);
-        translate([0, 0, core_h - top_bore_h])
-            cylinder(d = top_bore_d, h = top_bore_h + 0.1, center = false, $fn = 48);
-        for (sx = [-1, 1])
-            translate([sx * side_hole_offset, 0, -0.1])
-                cylinder(r = side_hole_r, h = side_hole_h + 0.2, center = false, $fn = 36);
-        translate([-top_side_hole_offset, 0, core_h - top_side_hole_h])
-            cylinder(r = top_side_hole_r, h = top_side_hole_h + 0.1, center = false, $fn = 36);
-    }
 }
 
 // ---- "main guard" ----

@@ -53,7 +53,7 @@ module drw002_sheet8() {
     color("black") translate([289, 13, 0]) linear_extrude(height = th) label("SIZE A3    REV 7.0    SHEET 8 OF 10", sz = 2.9);
 
     // Top-row part isometrics.
-    color([0.45, 0.30, 0.18]) translate([56, 234, 16]) rotate([28, 0, -28]) scale([1.6, 1.6, 1.6]) part_b7();
+    color([0.45, 0.30, 0.18]) translate([56, 234, 16]) rotate([28, 0, -28]) scale([1.6, 1.6, 1.6]) translate([0, 0, 6.95]) part_b7();
     color([0.2, 0.2, 0.2]) translate([162, 246, 16]) rotate([0, 90, 0]) part_b8();
     color([0.2, 0.2, 0.2]) translate([214, 246, 16]) rotate([0, 90, 0]) part_b9();
     color([0.45, 0.30, 0.18]) translate([318, 238, 16]) rotate([74, 0, 20]) scale([1.6, 1.6, 1.6]) part_b10();

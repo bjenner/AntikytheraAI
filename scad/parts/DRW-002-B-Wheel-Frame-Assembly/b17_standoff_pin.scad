@@ -29,26 +29,29 @@ module part_b17(
     lower_end_d = 3.0,
     lower_end_h = 1.0
 ) {
-    union() {
-        intersection() {
-            linear_extrude(height = body_h)
-                rounded_rect_2d(w = body_w, d = body_d, corner_r = 0.5);
+    total_h = body_h + top_pin_h + lower_neck_h + lower_pin_h + lower_end_h;
 
-            cylinder(d = body_corner_to_corner_d, h = body_h, center = false, $fn = 64);
+    translate([0, 0, -(-lower_neck_h - lower_pin_h - lower_end_h + total_h / 2)])
+        union() {
+            intersection() {
+                linear_extrude(height = body_h)
+                    rounded_rect_2d(w = body_w, d = body_d, corner_r = 0.5);
+
+                cylinder(d = body_corner_to_corner_d, h = body_h, center = false, $fn = 64);
+            }
+
+            translate([0, 0, body_h])
+                cylinder(d = top_pin_d, h = top_pin_h, center = false, $fn = 32);
+
+            translate([0, 0, -lower_neck_h])
+                cylinder(d = lower_neck_d, h = lower_neck_h, center = false, $fn = 32);
+
+            translate([0, 0, -lower_neck_h - lower_pin_h])
+                cylinder(d = lower_pin_d, h = lower_pin_h, center = false, $fn = 24);
+
+            translate([0, 0, -lower_neck_h - lower_pin_h - lower_end_h])
+                cylinder(d = lower_end_d, h = lower_end_h, center = false, $fn = 32);
         }
-
-        translate([0, 0, body_h])
-            cylinder(d = top_pin_d, h = top_pin_h, center = false, $fn = 32);
-
-        translate([0, 0, -lower_neck_h])
-            cylinder(d = lower_neck_d, h = lower_neck_h, center = false, $fn = 32);
-
-        translate([0, 0, -lower_neck_h - lower_pin_h])
-            cylinder(d = lower_pin_d, h = lower_pin_h, center = false, $fn = 24);
-
-        translate([0, 0, -lower_neck_h - lower_pin_h - lower_end_h])
-            cylinder(d = lower_end_d, h = lower_end_h, center = false, $fn = 32);
-    }
 }
 
 // ---- "main guard" ----
