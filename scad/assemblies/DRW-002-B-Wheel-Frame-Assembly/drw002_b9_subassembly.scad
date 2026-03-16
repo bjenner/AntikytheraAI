@@ -9,8 +9,10 @@ use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b15_wire_link.scad>
 use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b16_rivet.scad>
 
 module drw002_b9_subassembly() {
+    block_center = [8.0, 12.0, 1.5];
+
     // Core block.
-    color([0.40, 0.29, 0.19]) translate([8.0, 12.0, 1.5]) part_b11();
+    color([0.40, 0.29, 0.19]) translate(block_center) part_b11();
 
     // Two b12 guide pins through the large face holes.
     color([0.45, 0.34, 0.23]) {
@@ -18,28 +20,27 @@ module drw002_b9_subassembly() {
         translate([12.0, 4.0, 4.5]) part_b12();
     }
 
-    // b13 roller crossing the center window.
+    // Roller, bush, and rivet share the window center axis.
     color([0.70, 0.70, 0.70])
-        translate([8.0, 12.0, 1.5])
+        translate(block_center)
             rotate([0, 0, 90])
                 part_b13();
 
-    // b16 rivet through the lower small face hole.
+    color([0.85, 0.85, 0.85])
+        translate(block_center)
+            rotate([90, 0, 0])
+                part_b14();
+
     color([0.25, 0.25, 0.25])
-        translate([8.0, 21.5, 1.5])
-            part_b16();
+        translate(block_center)
+            rotate([90, 0, 0])
+                part_b16();
 
-    // Wire link centered in the groove.
+    // Wire link seated in the long groove on the block face.
     color([0.72, 0.72, 0.72])
-        translate([8.0, 3.5, 1.6])
+        translate([8.0, 12.0, 1.7])
             rotate([0, 0, 90])
-                translate([8.5, 0, -0.45])
-                    part_b15();
-
-    // Placeholder rivet from b17 callout region used in sheet view.
-    color([0.15, 0.15, 0.15])
-        translate([8.0, 4.0, 0])
-            cylinder(d = 1.5, h = 2.0, center = false, $fn = 24);
+                part_b15();
 }
 
 // ---- "main guard" ----
