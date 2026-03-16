@@ -159,6 +159,12 @@ module vertical_drive_stack() {
         [58.5, -7.8],
         [58.5, 7.8]
     ];
+    b1_rim_holes = [
+        [41.7, 41.7],
+        [-44.5, 38.7],
+        [-48.3, -33.8],
+        [41.7, -41.7]
+    ];
 
     // Leftmost in the current fit-check view, matching the large wheel at the
     // end of the centerline stack. Keep the toothed rim facing upward.
@@ -169,12 +175,17 @@ module vertical_drive_stack() {
         translate([12, 0, 0]) rotate([0, 90, 0]) {
             part_b18();
             for (p = b18_outer_holes)
-                translate([p[0], p[1], -15.7])
-                    part_b5();
+                translate([p[0], p[1], 7.0])
+                    part_b17();
         }
 
     bronze()
-        translate([34, 0, 0]) rotate([0, 90, 0]) part_b1();
+        translate([34, 0, 0]) rotate([0, 90, 0]) {
+            part_b1();
+            for (p = b1_rim_holes)
+                translate([p[0], p[1], -11.0])
+                    part_b5();
+        }
 
     // b2 subassembly with its b4 rivets stays on the centerline.
     bronze()
@@ -204,13 +215,6 @@ module vertical_drive_stack() {
 module post_cluster() {
     bronze()
         translate([45, -15, -2]) rotate([0, 22, 26]) part_b6();
-
-    dark_metal() {
-        translate([-10, 26, 0]) rotate([0, 90, 24]) part_b17();
-        translate([10, 26, 2]) rotate([0, 90, 24]) part_b17();
-        translate([30, 24, 5]) rotate([0, 90, 24]) part_b17();
-        translate([50, 22, 8]) rotate([0, 90, 24]) part_b17();
-    }
 }
 
 module drw002_sheet2() {
@@ -253,10 +257,6 @@ module drw002_sheet2() {
     // Roller subsystem parked below the main stack for separate fit checking.
     translate([230, 32, 16]) rotate([0, 0, 0]) roller_cluster();
 
-    // Spare b17 kept high and separate for now.
-    dark_metal()
-        translate([228, 214, 17]) rotate([0, 90, 0]) part_b17();
-
     // Temporary callouts for the fit-check layout.
     callout("b10", [299, 107], [338, 148], [382, 188]);
     callout("b9",  [327, 107], [334, 145], [382, 171]);
@@ -274,9 +274,7 @@ module drw002_sheet2() {
             translate([169, 48]) text("b9 sub assembly", size = 2.8, halign = "left", valign = "center");
         }
 
-    callout("b5",  [320, 221], [307, 237], [268, 257]);
     callout("b6",  [341, 206], [331, 216], [252, 246]);
-    callout("b17", [228, 214], [220, 246], [228, 258]);
 }
 
 // ---- "main guard" ----
