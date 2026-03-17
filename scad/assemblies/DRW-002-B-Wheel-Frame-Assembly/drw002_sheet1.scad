@@ -61,8 +61,38 @@ module b_drive_cluster() {
         rotate([0, 0, a]) translate([10, 0, 16.8]) part_b4();
 }
 
+module b_center_stack_preview() {
+    axis_rot = [0, 0, 270];
+    bronze = [0.45, 0.30, 0.18];
+    steel = [0.25, 0.25, 0.25];
+
+    color(bronze)
+        translate([0, 0, 130]) rotate(axis_rot) part_b2();
+
+    color(bronze) {
+        for (sx = [-4, 4])
+            translate([0, 0, 125.2]) rotate([180, 0, axis_rot[2] + 90]) translate([sx, 0, -3.95]) part_b8();
+        translate([0, 0, 128.0]) rotate(axis_rot) part_b10();
+    }
+
+    color(bronze)
+        translate([-5.9, 0, 120]) rotate(axis_rot) part_b9();
+
+    color(bronze)
+        translate([0, 0, 132.2]) rotate([180, 0, axis_rot[2] + 90]) translate([0, 0, 6.95]) part_b7();
+
+    color(bronze)
+        translate([0, 0, 117.5]) rotate(axis_rot) part_b3();
+}
+
 module b_simple_assembly() {
     b18_angle_deg = 12;
+    b1_spoke_holes = [
+        [10, 0],
+        [0, 10],
+        [-10, 0],
+        [0, -10]
+    ];
     b1_rim_holes = [
         [41.7, -41.7],
         [-44.5, -38.7],
@@ -94,6 +124,11 @@ module b_simple_assembly() {
             translate([p[0], p[1], 8.6])
                 rotate([180, 0, 0])
                     part_b17();
+
+    color([0.28, 0.28, 0.28])
+        for (p = b1_spoke_holes)
+            translate([p[0], p[1], -1])
+                part_b4();
 }
 
 module b_assembly() {
@@ -159,17 +194,21 @@ module drw002_sheet1() {
     // Top-left side profile uses the simpler plate/post assembly.
     translate([122, 228, 16]) rotate([90, 0, 0]) scale([0.90, 0.90, 0.90]) b_simple_assembly();
 
-    // Top-right tilted side view.
-    translate([310, 214, 16]) rotate([20, 0, -58]) scale([0.90, 0.90, 0.90]) b_assembly();
-
     // Bottom-left top view reuses the simpler plate/post assembly.
     translate([122, 88, 16]) rotate([0, 0, 0]) scale([0.90, 0.90, 0.90]) b_simple_assembly();
 
-    // Bottom-right view starts from the simple assembly, with the b9 subassembly
-    // parked on the underside and aligned with the spoke near the b18 arch.
-    translate([330, 48, 16]) rotate([90, 0, 180]) scale([0.90, 0.90, 0.90]) {
+    // Bottom-right view starts from the simple assembly, with the center drive
+    // stack parked nearby for orientation checks before fitting.
+    translate([322, 120, 16]) rotate([90, 0, 180]) scale([0.90, 0.90, 0.90]) {
         rotate([0, 0, 180]) b_simple_assembly();
-        translate([8, 80, -4]) rotate([0, 0, 180]) roller_subassembly();
+        translate([0, 0, -132]) b_center_stack_preview();
+    }
+}
+
+module drw002_b_assembly() {
+    rotate([90, 0, 180]) {
+        rotate([0, 0, 180]) b_simple_assembly();
+        translate([0, 0, -132]) b_center_stack_preview();
     }
 }
 

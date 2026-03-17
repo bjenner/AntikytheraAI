@@ -18,7 +18,7 @@ use <../assemblies/DRW-002-B-Wheel-Frame-Assembly/drw002_b9_subassembly.scad>
 ASSEMBLY_MODES_DRW002 = [
     "drw002_sheet1", "drw002_sheet2", "drw002_sheet3", "drw002_sheet4", "drw002_sheet5",
     "drw002_sheet6", "drw002_sheet7", "drw002_sheet8", "drw002_sheet9", "drw002_sheet10",
-    "drw002_b2_subassembly", "drw002_b7_subassembly", "drw002_b9_subassembly"
+    "drw002_b2_subassembly", "drw002_b7_subassembly", "drw002_b9_subassembly", "drw002_b_assembly"
 ];
 
 module route_assemblies_drw002(mode) {
@@ -48,5 +48,7 @@ module route_assemblies_drw002(mode) {
         drw002_b7_subassembly();
     } else if (mode == "drw002_b9_subassembly") {
         drw002_b9_subassembly();
+    } else if (mode == "drw002_b_assembly") {
+        drw002_b_assembly();
     }
 }

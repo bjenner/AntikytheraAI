@@ -27,6 +27,7 @@
 - Modeled parts used: `b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b11, b12, b13, b14, b15, b16, b17, b18`
 - Notes: includes a 22-row parts table with three CP fork references (`cp-f1`, `cp-f2`, `cp-f6`) and exploded callouts for the modeled B-series parts.
 - Working interpretation note: the sheet-2 centerline stack likely depends on `sun17` as a cross-drawing shaft/core-rotation element even though it is not listed in the DRW-002 B-series parts table. Current visual reading for the main stack is `b3 -> b7` (with `b8` and `b9` pins) -> `b10` -> `b2` subassembly -> `b1`, with the wheel oriented so the toothed edge faces upward in the exploded view. The current source drawing may also contain a `b9`/`b10` callout mix-up around the two thin disc-like elements.
+- Confirmed source-note mismatch on sheet 2: the callouts on that page appear to be rotated among the three small center-stack parts. As currently interpreted from the wider drawing set, sheet 2 labels `b8` as `b10`, labels `b10` as `b9`, and labels `b9` as `b8`. Continue using the proper part IDs from the part drawings rather than the raw sheet-2 callout text.
 
 ### Sheet 3 (`drw002_sheet3`)
 - Intent: `b2`, `sp2`, `dat1` mounting-hole alignment
@@ -124,6 +125,7 @@ Dimensions below are the current default parameters in each part file (mm).
 - `b1` tooth/rim detailing is deferred for now; keep the current smooth rim/bevel placeholder until a better source view is available to resolve the tooth profile correctly.
 - `b7` still has a vertical-stack discrepancy in the current interpretation; the drawing’s height chain does not yet reconcile cleanly with the rebuilt feature stack, so final step heights may need revision when related parts/assemblies are modeled.
 - `b7` includes one top-bored side hole currently modeled with an inferred `R1.0`; the drawing location is clear (`5.9` left of center, `3.6` deep) but the radius is not explicitly specified and may need correction later.
+- Sheet 2 callouts for `b8`, `b9`, and `b10` are unreliable. Current working interpretation is: `b8` is the slimmer/taller pin, `b9` is the shorter small pin, and `b10` is the disc-like element. Keep this override in mind when reviewing exploded sheet-2 imagery.
 - `b10` may be misidentified in the current model/metadata; sheet-8 imagery suggests an assembly context that does not align cleanly with the present “disc plate” interpretation, so part identity should be rechecked against the source before further refinement.
 - `b10` outer hole positions/sizes are still placeholders; the current drawing view does not specify them clearly enough, so they should be revisited when a better source or assembly constraint is available.
 - Sheet 2 likely has an omitted cross-drawing shaft/core element. Current best hypothesis is `sun17`, based on matching centerline role and shaft geometry from the Sun subassembly drawings/manual extracts. Treat this as an external dependency rather than a new B-series part unless contradictory evidence appears.
