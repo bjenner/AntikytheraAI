@@ -206,10 +206,9 @@ module drw002_sheet1() {
 }
 
 module drw002_b_assembly() {
-    rotate([90, 0, 180]) {
-        rotate([0, 0, 180]) b_simple_assembly();
-        translate([0, 0, -132]) b_center_stack_preview();
-    }
+    rotate([0, 0, 180]) b_simple_assembly();
+    translate([0, 0, -132]) b_center_stack_preview();
+    translate([8, 81, -4]) rotate([0, 0, 180]) roller_subassembly();
 }
 
 // ---- "main guard" ----
