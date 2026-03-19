@@ -22,6 +22,7 @@ use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b16_rivet.scad>
 use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b17_standoff_pin.scad>
 use <../../parts/DRW-002-B-Wheel-Frame-Assembly/b18_link_plate.scad>
 use <./drw002_b9_subassembly.scad>
+use <../../assemblies/DRW-021-Sun/drw021_true_sun_axle_subassembly.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.3) {
     hull() {
@@ -65,9 +66,12 @@ module b_center_stack_preview() {
     axis_rot = [0, 0, 270];
     bronze = [0.45, 0.30, 0.18];
     steel = [0.25, 0.25, 0.25];
+    sun_axle_b0_center_z = 23.55;
 
     color(bronze)
-        translate([0, 0, 130]) rotate(axis_rot) part_b2();
+        translate([0, 0, 130 - sun_axle_b0_center_z])
+            rotate(axis_rot)
+                drw021_true_sun_axle_subassembly();
 
     color(bronze) {
         for (sx = [-4, 4])
