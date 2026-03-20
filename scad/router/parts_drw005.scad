@@ -27,7 +27,8 @@ PART_MODES_DRW005 = [
     "part_cp1", "part_cp2", "part_cp3", "part_cp4", "part_cp5", "part_cp6",
     "part_cp7", "part_cp8", "part_cp9", "part_cpr1", "part_cpr2", "part_cpr3",
     "part_cpr4", "part_cpr5", "part_cpr6", "part_cpf1", "part_cpf2", "part_cpf3",
-    "part_cpf4", "part_cpf5", "part_cpf6"
+    "part_cpf4", "part_cpf5", "part_cpf6",
+    "cpf1_fork", "cpf2_fork", "cpf3_fork", "cpf4_fork", "cpf5_fork", "cpf6_fork"
 ];
 
 module route_parts_drw005(mode) {
@@ -61,17 +62,17 @@ module route_parts_drw005(mode) {
         part_cpr5();
     } else if (mode == "part_cpr6") {
         part_cpr6();
-    } else if (mode == "part_cpf1") {
+    } else if (mode == "part_cpf1" || mode == "cpf1_fork") {
         part_cpf1();
-    } else if (mode == "part_cpf2") {
+    } else if (mode == "part_cpf2" || mode == "cpf2_fork") {
         part_cpf2();
-    } else if (mode == "part_cpf3") {
+    } else if (mode == "part_cpf3" || mode == "cpf3_fork") {
         part_cpf3();
-    } else if (mode == "part_cpf4") {
+    } else if (mode == "part_cpf4" || mode == "cpf4_fork") {
         part_cpf4();
-    } else if (mode == "part_cpf5") {
+    } else if (mode == "part_cpf5" || mode == "cpf5_fork") {
         part_cpf5();
-    } else if (mode == "part_cpf6") {
+    } else if (mode == "part_cpf6" || mode == "cpf6_fork") {
         part_cpf6();
     }
 }

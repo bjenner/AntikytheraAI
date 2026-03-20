@@ -5,18 +5,19 @@
 // revision: 0.1
 // SPDX-License-Identifier: MIT
 
-module cpf2_profile_2d() {
-    difference() {
-        union() {
-            circle(r = 5.0, $fn = 80);
-            translate([0, 4.8]) square([5.2, 7.0], center = true);
-        }
-        translate([0, 6.7]) square([2.0, 7.0], center = true);
-    }
-}
+use <cpf_fork_common.scad>
 
 module part_cpf2(th = 1.0) {
-    linear_extrude(height = th) cpf2_profile_2d();
+    cpf_fork_part(
+        body_r = 4.0,
+        slot_w = 2.0,
+        slot_l = 6.0,
+        overall_w = 6.0,
+        overall_l = 7.0,
+        shoulder_r = 2.0,
+        tip_r = 0.4,
+        thickness = th
+    );
 }
 
 // ---- "main guard" ----
