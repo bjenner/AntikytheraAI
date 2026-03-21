@@ -7,6 +7,8 @@
 - Current SCAD sheets: `scad/assemblies/DRW-005-Common-Parts/drw005_sheet1.scad` through `drw005_sheet3.scad`
 
 ## Notes
+- `cp-f3` is still an in-progress reconstruction and needs more work before it should be treated as dimensionally reliable.
+- The `cp-f3` slot and lower body relationship is currently under active tuning and should be considered a follow-up task on this drawing.
 - `cp-f5` now has a tuned first-pass body and slot reconstruction in [`scad/parts/DRW-005-Common-Parts/cpf5_fork.scad`](../../../scad/parts/DRW-005-Common-Parts/cpf5_fork.scad).
 - The small outer `R0.3 mm` chamfer/edge treatment shown on the `cp-f5` section detail is not yet modeled.
 - `cp-f6` now has a workable first-pass body and slot reconstruction in [`scad/parts/DRW-005-Common-Parts/cpf6_fork.scad`](../../../scad/parts/DRW-005-Common-Parts/cpf6_fork.scad).
