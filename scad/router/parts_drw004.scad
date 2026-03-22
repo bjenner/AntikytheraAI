@@ -3,13 +3,16 @@
 
 use <../parts/DRW-004-IP-Plate-Gear-Assembly/c1_gear.scad>
 use <../parts/DRW-004-IP-Plate-Gear-Assembly/c2_gear.scad>
+use <../parts/DRW-004-IP-Plate-Gear-Assembly/c3_pin.scad>
 
-PART_MODES_DRW004 = ["part_c1", "part_c2"];
+PART_MODES_DRW004 = ["part_c1", "part_c2", "part_c3"];
 
 module route_parts_drw004(mode) {
     if (mode == "part_c1") {
         part_c1();
     } else if (mode == "part_c2") {
         part_c2();
+    } else if (mode == "part_c3") {
+        part_c3();
     }
 }
