@@ -1,0 +1,12 @@
+// DRW-004 part router.
+// SPDX-License-Identifier: MIT
+
+use <../parts/DRW-004-IP-Plate-Gear-Assembly/c1_gear.scad>
+
+PART_MODES_DRW004 = ["part_c1"];
+
+module route_parts_drw004(mode) {
+    if (mode == "part_c1") {
+        part_c1();
+    }
+}

@@ -6,6 +6,7 @@ include <configs/presets.scad>
 include <router/common.scad>
 include <router/parts_drw001.scad>
 include <router/parts_drw002.scad>
+include <router/parts_drw004.scad>
 include <router/parts_drw005.scad>
 include <router/parts_drw008.scad>
 include <router/parts_drw022.scad>
@@ -28,6 +29,8 @@ if (route_has(PART_MODES_DRW001, mode)) {
     route_parts_drw001(mode);
 } else if (route_has(PART_MODES_DRW002, mode)) {
     route_parts_drw002(mode);
+} else if (route_has(PART_MODES_DRW004, mode)) {
+    route_parts_drw004(mode);
 } else if (route_has(PART_MODES_DRW005, mode)) {
     route_parts_drw005(mode);
 } else if (route_has(PART_MODES_DRW008, mode)) {
