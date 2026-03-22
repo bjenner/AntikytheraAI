@@ -19,9 +19,9 @@ module part_c4(
     side_boss_r = 0.75,
     notch_block_w = 4.0,
     notch_block_d = 4.0,
-    notch_block_h = 0.7,
+    notch_block_h = 1.0,
     notch_block_gap_from_axis = 1.0,
-    notch_block_z_offset = 0.7
+    notch_block_bottom_gap_above_flange = 0.7
 ) {
     body_top_z = body_h / 2;
     flange_top_z = body_top_z - flange_top_offset;
@@ -29,7 +29,7 @@ module part_c4(
     lower_stem_h = flange_bottom_z + body_h / 2;
     lower_stem_center_z = -body_h / 2 + lower_stem_h / 2;
     side_boss_center_x = body_d / 2;
-    notch_block_center_z = flange_top_z + notch_block_z_offset + notch_block_h / 2;
+    notch_block_center_z = flange_top_z + notch_block_bottom_gap_above_flange + notch_block_h / 2;
     notch_block_center_x = notch_block_gap_from_axis + notch_block_w / 2;
 
     difference() {

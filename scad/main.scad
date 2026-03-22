@@ -17,6 +17,7 @@ include <router/parts_drw013.scad>
 include <router/parts_drw021.scad>
 include <router/assemblies_drw001.scad>
 include <router/assemblies_drw002.scad>
+include <router/assemblies_drw004.scad>
 include <router/assemblies_drw021.scad>
 include <router/assemblies_misc.scad>
 include <router/assemblies_general.scad>
@@ -51,6 +52,8 @@ if (route_has(PART_MODES_DRW001, mode)) {
     route_assemblies_drw001(mode, spin_turns, exploded_gap);
 } else if (route_has(ASSEMBLY_MODES_DRW002, mode)) {
     route_assemblies_drw002(mode);
+} else if (route_has(ASSEMBLY_MODES_DRW004, mode)) {
+    route_assemblies_drw004(mode);
 } else if (route_has(ASSEMBLY_MODES_DRW021, mode)) {
     route_assemblies_drw021(mode);
 } else if (route_has(ASSEMBLY_MODES_MISC, mode)) {
