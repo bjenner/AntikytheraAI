@@ -12,7 +12,7 @@ run_openscad() {
 
     local stderr_log
     local stdout_text=""
-    stderr_log="$(mktemp "${TMPDIR:-/tmp}/openscad_stderr_XXXXXX.log")"
+    stderr_log="$(mktemp -t openscad_stderr)"
     trap 'rm -f "$stderr_log"' RETURN
 
     set +e
