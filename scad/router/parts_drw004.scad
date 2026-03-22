@@ -5,8 +5,10 @@ use <../parts/DRW-004-IP-Plate-Gear-Assembly/c1_gear.scad>
 use <../parts/DRW-004-IP-Plate-Gear-Assembly/c2_gear.scad>
 use <../parts/DRW-004-IP-Plate-Gear-Assembly/c3_pin.scad>
 use <../parts/DRW-004-IP-Plate-Gear-Assembly/c4_bush.scad>
+use <../parts/DRW-004-IP-Plate-Gear-Assembly/c5_washer.scad>
+use <../parts/DRW-004-IP-Plate-Gear-Assembly/c6_washer.scad>
 
-PART_MODES_DRW004 = ["part_c1", "part_c2", "part_c3", "part_c4"];
+PART_MODES_DRW004 = ["part_c1", "part_c2", "part_c3", "part_c4", "part_c5", "part_c6"];
 
 module route_parts_drw004(mode) {
     if (mode == "part_c1") {
@@ -17,5 +19,9 @@ module route_parts_drw004(mode) {
         part_c3();
     } else if (mode == "part_c4") {
         part_c4();
+    } else if (mode == "part_c5") {
+        part_c5();
+    } else if (mode == "part_c6") {
+        part_c6();
     }
 }
