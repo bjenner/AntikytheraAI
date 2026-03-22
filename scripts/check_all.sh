@@ -7,14 +7,13 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCAD_PARTS="$REPO_ROOT/scad/parts"
 SCAD_ASSEMBLIES="$REPO_ROOT/scad/assemblies"
+OPENSCAD_WRAPPER="$REPO_ROOT/scripts/openscad.sh"
 
-# Locate openscad binary
-if command -v openscad &>/dev/null; then
-    OPENSCAD="openscad"
-elif [ -x "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD" ]; then
-    OPENSCAD="/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"
+# Locate openscad wrapper
+if [ -x "$OPENSCAD_WRAPPER" ]; then
+    OPENSCAD="$OPENSCAD_WRAPPER"
 else
-    echo "ERROR: openscad not found in PATH or /Applications/OpenSCAD.app" >&2
+    echo "ERROR: OpenSCAD wrapper not found: $OPENSCAD_WRAPPER" >&2
     exit 1
 fi
 
@@ -30,20 +29,26 @@ trap 'rm -f "$TMPFILE"' EXIT
 check_file() {
     local file="$1"
     local label
+    local output
+    local status
     label="$(basename "$file")"
     # Pass __LIB_MODE__=1 so main guards don't auto-render; export CSG to force full parse
-    if "$OPENSCAD" --export-format csg -o "$TMPFILE" -D '__LIB_MODE__=1' "$file" 2>/dev/null; then
+    if output="$("$OPENSCAD" --export-format csg -o "$TMPFILE" -D '__LIB_MODE__=1' "$file" 2>&1)"; then
         echo "  PASS  $label"
         ((PASS++)) || true
     else
+        status=$?
         echo "  FAIL  $label"
-        "$OPENSCAD" --export-format csg -o "$TMPFILE" -D '__LIB_MODE__=1' "$file" 2>&1 \
-            | grep -i "error\|warning" | head -5 | sed 's/^/          /'
+        if grep -qi "error\|warning" <<<"$output"; then
+            grep -i "error\|warning" <<<"$output" | head -5 | sed 's/^/          /'
+        else
+            head -5 <<<"$output" | sed 's/^/          /'
+        fi
         ERRORS+=("$file")
         ((FAIL++)) || true
         if [[ $STOP_ON_ERROR -eq 1 ]]; then
             echo "Stopped on first error. Re-run without --stop-on-error to see all failures."
-            exit 1
+            exit "$status"
         fi
     fi
 }

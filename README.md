@@ -22,6 +22,10 @@ OpenSCAD project for building and animating an Antikythera-inspired mechanism wi
 3. Press Preview (`F5`) for interactive checks.
 4. For animation mode, use Design -> Animate and set FPS/Steps as needed. `spin_turns` controls revolutions per cycle.
 
+OpenSCAD on macOS:
+- Repo scripts use `scripts/openscad.sh`, which launches `/Applications/OpenSCAD.app` with the Qt plugin paths set explicitly.
+- This avoids the common VS Code / terminal `Qt platform plugin "cocoa"` startup failure when calling the app binary indirectly.
+
 ## Build And Test Cycle
 
 - Compile-check all parts and assemblies: `bash scripts/check_all.sh`

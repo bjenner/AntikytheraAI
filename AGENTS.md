@@ -24,6 +24,12 @@ Prerequisites:
 - `python3` for helper scripts
 - `git-lfs` if using repo hooks or working with tracked LFS assets
 
+Codex runtime note:
+- In some Codex/macOS sandbox environments, launching OpenSCAD can fail before startup with a Qt CPU-feature error such as `Incompatible processor... neon`.
+- This is a runtime compatibility issue, not usually a repo path or script configuration issue.
+- When that happens, run OpenSCAD validation commands in your normal local macOS Terminal or the OpenSCAD GUI instead of relying on the in-agent runtime.
+- The repo wrapper at `scripts/openscad.sh` surfaces this failure mode with a clearer diagnostic message.
+
 Build / export:
 - Full compile check: `bash scripts/check_all.sh`
 - Stop on first compile failure: `bash scripts/check_all.sh --stop-on-error`

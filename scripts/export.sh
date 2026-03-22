@@ -5,13 +5,12 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PARTS_DIR="$REPO_ROOT/scad/parts"
 ASSEMBLIES_DIR="$REPO_ROOT/scad/assemblies"
 EXPORTS_DIR="$REPO_ROOT/exports"
+OPENSCAD_WRAPPER="$REPO_ROOT/scripts/openscad.sh"
 
-if command -v openscad >/dev/null 2>&1; then
-    OPENSCAD="openscad"
-elif [ -x "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD" ]; then
-    OPENSCAD="/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"
+if [ -x "$OPENSCAD_WRAPPER" ]; then
+    OPENSCAD="$OPENSCAD_WRAPPER"
 else
-    echo "ERROR: openscad not found in PATH or /Applications/OpenSCAD.app" >&2
+    echo "ERROR: OpenSCAD wrapper not found: $OPENSCAD_WRAPPER" >&2
     exit 1
 fi
 

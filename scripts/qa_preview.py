@@ -52,7 +52,9 @@ def ref_root(root: Path) -> Path:
 
 
 def openscad_binary() -> str:
+    root = repo_root()
     candidates = [
+        str(root / "scripts" / "openscad.sh"),
         "openscad",
         "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD",
         "/Applications/OpenSCAD-2021.01.app/Contents/MacOS/OpenSCAD",
