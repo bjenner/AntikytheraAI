@@ -13,8 +13,10 @@ use <../parts/DRW-004-IP-Plate-Gear-Assembly/d3_pin.scad>
 use <../parts/DRW-004-IP-Plate-Gear-Assembly/d4_washer.scad>
 use <../parts/DRW-004-IP-Plate-Gear-Assembly/d5_washer.scad>
 use <../parts/DRW-004-IP-Plate-Gear-Assembly/d6_disk.scad>
+use <../parts/DRW-004-IP-Plate-Gear-Assembly/e1_gear.scad>
+use <../parts/DRW-004-IP-Plate-Gear-Assembly/e2_gear.scad>
 
-PART_MODES_DRW004 = ["part_c1", "part_c2", "part_c3", "part_c4", "part_c5", "part_c6", "part_d1", "part_d2", "part_d3", "part_d4", "part_d5", "part_d6"];
+PART_MODES_DRW004 = ["part_c1", "part_c2", "part_c3", "part_c4", "part_c5", "part_c6", "part_d1", "part_d2", "part_d3", "part_d4", "part_d5", "part_d6", "part_e1", "part_e2"];
 
 module route_parts_drw004(mode) {
     if (mode == "part_c1") {
@@ -41,5 +43,9 @@ module route_parts_drw004(mode) {
         part_d5();
     } else if (mode == "part_d6") {
         part_d6();
+    } else if (mode == "part_e1") {
+        part_e1();
+    } else if (mode == "part_e2") {
+        part_e2();
     }
 }
