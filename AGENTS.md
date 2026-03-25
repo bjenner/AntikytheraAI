@@ -67,6 +67,29 @@ CI:
 Cursor / Copilot rules:
 - No `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md` files exist in this repository at the time of writing.
 
+## Role Invocation
+
+When a user starts a chat with a role request, treat it as an instruction to load the matching prompt file in `docs/agents/` and follow that role for the rest of the chat unless the user changes scope.
+
+Suggested trigger phrases:
+- `Take the role of planner` -> read `docs/agents/planner.md`
+- `Take the role of part-modeler` -> read `docs/agents/part-modeler.md`
+- `Take the role of assembly-modeler` -> read `docs/agents/assembly-modeler.md`
+- `Take the role of metadata-curator` -> read `docs/agents/metadata-curator.md`
+- `Take the role of qa-reviewer` -> read `docs/agents/qa-reviewer.md`
+
+Recommended user pattern:
+- Start the chat with one of the trigger phrases above.
+- Add the immediate target after it, for example:
+  - `Take the role of planner. Target: DRW-004 Sheet 9.`
+  - `Take the role of part-modeler. Target: scad/parts/DRW-004-IP-Plate-Gear-Assembly/c1_gear.scad.`
+
+Agent behavior for role invocation:
+- Read the referenced role file before doing substantial work.
+- Keep the chat scoped to that role by default.
+- If the user later asks for a different role, switch roles and read the new role file.
+- If the user gives no role, fall back to the default behavior in this root `AGENTS.md`.
+
 ## Goals
 
 - Build reusable part modules from source drawings.
