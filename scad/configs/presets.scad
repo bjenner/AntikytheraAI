@@ -7,7 +7,7 @@
 //mode = "part_a12";
 //
 // Drawing sheet:
-mode = "drw001_sheet5";
+mode = "drw001_sheet6";
 //
 // Drawing-specific subassembly:
 //mode = "drw001_a1_subassembly";

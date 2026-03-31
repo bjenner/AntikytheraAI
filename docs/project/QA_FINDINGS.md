@@ -38,13 +38,13 @@ Active QA findings captured during review so they do not get lost in chat histor
 - Confidence: high
 - Next action: none for reuse cleanup; review Sheet 5 composition and A1 orthographic fidelity against the source layout
 
-- Status: open
+- Status: resolved
 - Scope: DRW-001 sheet fidelity
 - File: `scad/assemblies/DRW-001-A-Assembly/drw001_sheet6.scad`
 - Issue: Sheet 6 calls the reusable A8 subassembly with `a8_hole_z = 200`, which is far outside the part scale and makes the subassembly placement inconsistent with the source drawing.
 - Evidence: `drw001_sheet6.scad` passes `drw001_a8_subassembly(a8_hole_z = 200)` even though the reusable subassembly comment describes `a8_hole_z` as the A8 pin cross-hole center measured from the axle bottom face; the DRW-001 Sheet 6 source shows a compact A8/A9/A10 cluster, not a pin offset by hundreds of millimeters
 - Confidence: high
-- Next action: remove the extreme override or replace it with a drawing-based value once the A8 subassembly is corrected, then recheck Sheet 6 composition
+- Next action: none for the internal-override fix; review Sheet 6 composition visually and adjust outer placement only if the page still needs tuning
 
 - Status: open
 - Scope: DRW-001 metadata synchronization

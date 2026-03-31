@@ -124,7 +124,7 @@ module drw001_sheet6() {
     translate([112, 62, 13])
         rotate([0, 90, 6])
             scale([0.82, 0.82, 0.82])
-                drw001_a8_subassembly(a8_hole_z = 200);
+                drw001_a8_subassembly();
     color("black") translate([102, 24, 0]) linear_extrude(height = th) label("a8 sub assembly", sz = 3.0);
 
     // Callout leaders and labels following the source page composition.
