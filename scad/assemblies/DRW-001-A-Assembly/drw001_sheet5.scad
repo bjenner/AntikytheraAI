@@ -1,6 +1,7 @@
 // DRW-001 Sheet 5 recreation (a1 to a7, a12 focus).
 // SPDX-License-Identifier: MIT
 
+use <../../parts/DRW-001-A-Assembly/a1.scad>
 use <../../parts/DRW-001-A-Assembly/a2_ring.scad>
 use <../../parts/DRW-001-A-Assembly/a3_pin.scad>
 use <../../parts/DRW-001-A-Assembly/a4_block.scad>
@@ -41,30 +42,8 @@ module dim_v(y0, y1, x, txt = "") {
     if (txt != "") translate([x + 1.9, (y0 + y1) / 2]) rotate([0, 0, 90]) text(txt, size = 3.0, halign = "center");
 }
 
-module a1_gear(th = 2.0, tip_d = 30, root_d = 27.5, teeth = 48, bore_d = 4) {
-    difference() {
-        union() {
-            cylinder(d = root_d, h = th, center = false);
-            for (a = [0 : 360 / teeth : 360 - 360 / teeth]) {
-                rotate([0, 0, a]) translate([root_d / 2, 0, 0]) translate([0, -0.35, 0])
-                    cube([(tip_d - root_d) / 2, 0.7, th], center = false);
-            }
-        }
-        translate([0, 0, -0.1]) cylinder(d = bore_d, h = th + 0.2, center = false);
-    }
-}
-
-module a1_gear_2d(tip_d = 30, root_d = 27.5, teeth = 48, bore_d = 4) {
-    difference() {
-        union() {
-            circle(d = root_d, $fn = 120);
-            for (a = [0 : 360 / teeth : 360 - 360 / teeth]) {
-                rotate(a) translate([root_d / 2, 0])
-                    square([(tip_d - root_d) / 2, 0.7], center = true);
-            }
-        }
-        circle(d = bore_d, $fn = 64);
-    }
+module a1_sheet5_view() {
+    part_a1();
 }
 
 module drw001_sheet5_parts_scene(theta = 0) {
@@ -80,7 +59,7 @@ module drw001_sheet5_parts_scene(theta = 0) {
         translate([56, 226, 20])
             rotate([65, 0, 35 + rotate_turn])
                 scale([1.2, 1.2, 1.2])
-                    a1_gear();
+                    a1_sheet5_view();
 
     color([0.28, 0.23, 0.20])
         translate([129, 234, 18])
@@ -150,8 +129,8 @@ module drw001_sheet5() {
 
     if (show_ortho) {
         // Main orthographic views.
-        color([0.90, 0.90, 0.90]) translate([78, 156, 0]) linear_extrude(height = th) a1_gear_2d();
-        color("black") translate([78, 156, 0.01]) linear_extrude(height = th) a1_gear_2d();
+        color([0.90, 0.90, 0.90]) translate([78, 156, 0]) linear_extrude(height = th) projection(cut = false) a1_sheet5_view();
+        color("black") translate([78, 156, 0.01]) linear_extrude(height = th) outline2d(0.30) projection(cut = false) a1_sheet5_view();
         color("black") translate([48, 213, 0]) linear_extrude(height = th) label("a1", sz = 3.2, bold = true);
 
         color([0.90, 0.90, 0.90]) translate([130, 165, 0]) linear_extrude(height = th) projection(cut = false) part_a2();

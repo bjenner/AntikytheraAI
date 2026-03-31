@@ -30,13 +30,13 @@ Active QA findings captured during review so they do not get lost in chat histor
 - Confidence: high
 - Next action: none for reuse cleanup; review Sheet 1 composition visually against the source layout after the module swap
 
-- Status: open
+- Status: resolved
 - Scope: DRW-001 sheet reuse / maintainability
 - File: `scad/assemblies/DRW-001-A-Assembly/drw001_sheet5.scad`
 - Issue: Sheet 5 recreates `a1` geometry locally with `a1_gear()` and `a1_gear_2d()` instead of projecting or reusing the `part_a1()` module.
 - Evidence: local `a1_gear()` and `a1_gear_2d()` modules in `drw001_sheet5.scad` duplicate the gear body rather than sourcing it from `scad/parts/DRW-001-A-Assembly/a1.scad`
 - Confidence: high
-- Next action: reuse `part_a1()` for the 3D thumbnail and orthographic projection, then recheck the sheet layout and dimensions
+- Next action: none for reuse cleanup; review Sheet 5 composition and A1 orthographic fidelity against the source layout
 
 - Status: open
 - Scope: DRW-001 sheet fidelity
