@@ -11,6 +11,7 @@ Agents should keep changes checkpoint-friendly and preserve drawing/part traceab
 - Core folders:
   - `scad/parts/<drawing-folder>/` reusable parts grouped by origin drawing
   - `scad/assemblies/<drawing-folder>/` drawing sheets and subassemblies grouped by drawing
+  - `ref/drawings/<drawing-folder>/` source drawing PDFs and page PNGs used for modeling and QA
   - `scad/configs/presets.scad` render mode selector
   - `scad/main.scad` top-level router for all modes
   - `ref/meta/drawing_index.csv` drawing coverage metadata
@@ -216,13 +217,14 @@ Origins, transforms, and animation:
 ## Workflow Per Drawing Sheet
 
 1. Confirm target sheet (`DRW-### Sheet #`) and scope.
-2. Identify new vs existing parts.
-3. Create/update part files.
-4. Create/update assembly sheet file.
-5. Wire `main.scad` modes and imports.
-6. Update `parts_list.csv` and optionally `drawing_index.csv`.
-7. Run compile checks.
-8. Commit checkpoint.
+2. Open the source drawing assets under `ref/drawings/<drawing-folder>/` and identify the PDF plus page PNGs for the target sheet.
+3. Identify new vs existing parts.
+4. Create/update part files.
+5. Create/update assembly sheet file.
+6. Wire `main.scad` modes and imports.
+7. Update `parts_list.csv` and optionally `drawing_index.csv`.
+8. Run compile checks.
+9. Commit checkpoint.
 
 ## Definition of Done
 

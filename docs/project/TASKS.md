@@ -5,7 +5,7 @@
 
 ## DRW-001 snapshot
 - Source drawing: `ref/drawings/DRW-001-A-Assembly/a.pdf`
-- PNG prefix: `a_page*.png`
+- Source page PNGs: `ref/drawings/DRW-001-A-Assembly/a_page*.png`
 - Target sheets: `1,2,3,4,5,6,7`
 - Current file presence: all 7 assembly sheet files exist
 - Current priority: quality + ordering + metadata consistency
