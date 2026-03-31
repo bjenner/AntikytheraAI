@@ -17,7 +17,7 @@
 - [x] Normalize assembly module naming and main-guard consistency in all 7 sheet files.
 - [x] Reorder `use <assemblies/drw001_sheetX.scad>` lines in `scad/main.scad` to 1..7 (contiguous).
 - [x] Ensure `mode == "drw001_sheetX"` branches are present and ordered 1..7 in `scad/main.scad`.
-- [ ] Ensure `presets.scad` mode comment list contains ordered `drw001_sheet1..drw001_sheet7`.
+- [x] Ensure `presets.scad` mode comment list contains ordered `drw001_sheet1..drw001_sheet7`.
 
 ### 2) Part quality pass (a-series only)
 - [x] Review `a1..a12` against `a_page*.png` references for obvious proportion and feature mismatches.
@@ -27,14 +27,14 @@
   - [x] main guard block present.
 
 ### 3) Sheet quality pass (1 to 7)
-- [ ] Sheet 1: composition and label sanity.
-- [ ] Sheet 2: composition and label sanity.
-- [ ] Sheet 3: composition and label sanity.
-- [ ] Sheet 4: composition and label sanity.
-- [ ] Sheet 5: composition and label sanity.
-- [ ] Sheet 6: composition and label sanity.
-- [ ] Sheet 7: composition and label sanity.
-- [ ] Ensure sheet files reuse part modules and do not duplicate part geometry.
+- [x] Sheet 1: composition and label sanity.
+- [x] Sheet 2: composition and label sanity.
+- [x] Sheet 3: composition and label sanity.
+- [x] Sheet 4: composition and label sanity.
+- [x] Sheet 5: composition and label sanity.
+- [x] Sheet 6: composition and label sanity.
+- [x] Sheet 7: composition and label sanity.
+- [x] Ensure sheet files reuse part modules and do not duplicate part geometry.
 
 ### 4) Metadata synchronization
 - [ ] Confirm `drawing_index.csv` row `DRW-001` has:

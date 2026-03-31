@@ -69,3 +69,11 @@ Active QA findings captured during review so they do not get lost in chat histor
 - Evidence: `ref/drawings/DRW-001-A-Assembly/a_page06.png` shows the A10 side/detail view with a `3.0` thickness callout, while `part_a10()` defaults to `th = 2`
 - Confidence: high
 - Next action: none for the thickness default; recheck DRW-001 assembly placements only if any visual alignment issues remain
+
+- Status: resolved
+- Scope: DRW-001 sheet quality pass
+- File: `scad/assemblies/DRW-001-A-Assembly/drw001_sheet2.scad`
+- Issue: Sheet 2 label/content sanity is not fully reconciled with the repo decision that all DRW-001 `a11` references should be treated as `a12`.
+- Evidence: prior reviewed Sheet 2 code state still used `a11` in the parts table and callout text for the flat link, while the project QA decision now treats that item as `a12`
+- Confidence: medium
+- Next action: none; Sheet 2 now uses `a12` in generated content and the DRW-001 design notes explicitly document the source-sheet `a11` mislabel interpretation
