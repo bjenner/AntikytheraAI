@@ -20,11 +20,11 @@
 - [ ] Ensure `presets.scad` mode comment list contains ordered `drw001_sheet1..drw001_sheet7`.
 
 ### 2) Part quality pass (a-series only)
-- [ ] Review `a1..a12` against `a_page*.png` references for obvious proportion and feature mismatches.
-- [ ] Fix high-confidence geometry issues only (OD/ID, thickness, hole locations, tooth count where legible).
-- [ ] Keep each part file compliant with project standard:
-  - [ ] `part_<id>()` top-level module.
-  - [ ] main guard block present.
+- [x] Review `a1..a12` against `a_page*.png` references for obvious proportion and feature mismatches.
+- [x] Fix high-confidence geometry issues only (OD/ID, thickness, hole locations, tooth count where legible).
+- [x] Keep each part file compliant with project standard:
+  - [x] `part_<id>()` top-level module.
+  - [x] main guard block present.
 
 ### 3) Sheet quality pass (1 to 7)
 - [ ] Sheet 1: composition and label sanity.

@@ -53,3 +53,19 @@ Active QA findings captured during review so they do not get lost in chat histor
 - Evidence: the DRW-001 source set provides dimensioned geometry for the flat link tracked as `a12`, while no separate confirmed `a11` part definition has been found in project sources
 - Confidence: high
 - Next action: none; project policy is now explicit that all DRW-001 references to `a11` should be treated as `a12`, and `parts_list.csv` should continue tracking only `a12`
+
+- Status: resolved
+- Scope: DRW-001 part quality pass
+- File: `scad/parts/DRW-001-A-Assembly/a8_rivet_pin.scad`
+- Issue: `a8` was flagged as a possible geometry mismatch, but the DRW-001 detail confirms it is fundamentally a simple cylindrical pin.
+- Evidence: the Sheet 6 detail shows `a8 x 2` with `Ø3.0` and `11` length, matching the current plain-cylinder interpretation; the remaining `R.3 / 0.4` note appears to be a minor end-detail refinement rather than a different overall shape
+- Confidence: high
+- Next action: none for primary geometry; optional future refinement only if end-edge detail becomes important
+
+- Status: resolved
+- Scope: DRW-001 part quality pass
+- File: `scad/parts/DRW-001-A-Assembly/a10_disc.scad`
+- Issue: `a10` is modeled with `th = 2`, but the DRW-001 detail sheet indicates a `3.0` thickness for the disc.
+- Evidence: `ref/drawings/DRW-001-A-Assembly/a_page06.png` shows the A10 side/detail view with a `3.0` thickness callout, while `part_a10()` defaults to `th = 2`
+- Confidence: high
+- Next action: none for the thickness default; recheck DRW-001 assembly placements only if any visual alignment issues remain
