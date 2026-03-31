@@ -13,10 +13,10 @@
 ## Ordered execution plan (do in sequence)
 
 ### 1) Baseline and ordering
-- [ ] Verify `drw001_sheet1..drw001_sheet7.scad` each compile standalone.
-- [ ] Normalize assembly module naming and main-guard consistency in all 7 sheet files.
-- [ ] Reorder `use <assemblies/drw001_sheetX.scad>` lines in `scad/main.scad` to 1..7 (contiguous).
-- [ ] Ensure `mode == "drw001_sheetX"` branches are present and ordered 1..7 in `scad/main.scad`.
+- [x] Verify `drw001_sheet1..drw001_sheet7.scad` each compile standalone.
+- [x] Normalize assembly module naming and main-guard consistency in all 7 sheet files.
+- [x] Reorder `use <assemblies/drw001_sheetX.scad>` lines in `scad/main.scad` to 1..7 (contiguous).
+- [x] Ensure `mode == "drw001_sheetX"` branches are present and ordered 1..7 in `scad/main.scad`.
 - [ ] Ensure `presets.scad` mode comment list contains ordered `drw001_sheet1..drw001_sheet7`.
 
 ### 2) Part quality pass (a-series only)

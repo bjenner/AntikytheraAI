@@ -138,6 +138,7 @@ module drw001_sheet3() {
 
 
 // ---- "main guard" ----
+// Default to previewing when opened directly:
 if (is_undef(__LIB_MODE__)) {
     drw001_sheet3();
 }
