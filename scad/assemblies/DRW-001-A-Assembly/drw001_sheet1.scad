@@ -1,17 +1,9 @@
 // DRW-001 Sheet 1 recreation (assembly overview).
-// Uses existing parts only.
+// Uses reusable DRW-001 assembly modules.
 // SPDX-License-Identifier: MIT
 
-use <../../parts/DRW-001-A-Assembly/a1.scad>
-use <../../parts/DRW-001-A-Assembly/a2_ring.scad>
-use <../../parts/DRW-001-A-Assembly/a3_pin.scad>
-use <../../parts/DRW-001-A-Assembly/a4_block.scad>
-use <../../parts/DRW-001-A-Assembly/a5_ring.scad>
-use <../../parts/DRW-001-A-Assembly/a6_bush.scad>
-use <../../parts/DRW-001-A-Assembly/a7_block.scad>
-use <../../parts/DRW-001-A-Assembly/a8_rivet_pin.scad>
-use <../../parts/DRW-001-A-Assembly/a9_axle.scad>
-use <../../parts/DRW-001-A-Assembly/a10_disc.scad>
+use <./drw001_a1_gear_assembly.scad>
+use <./drw001_a8_subassembly.scad>
 
 module line2d(a = [0, 0], b = [10, 0], w = 0.3) {
     hull() {
@@ -29,35 +21,6 @@ module outline2d(w = 0.38) {
 
 module label(s, sz = 3.0, bold = false) {
     text(s, size = sz, halign = "left", valign = "center", font = bold ? "Liberation Sans:style=Bold" : "Liberation Sans");
-}
-
-module a1_subassembly() {
-    color([0.45, 0.30, 0.18]) rotate([90, 0, 0]) part_a1(body_d = 30, thickness = 2.0, bore_d = 4, spoke_count = 0);
-    color([0.28, 0.23, 0.20]) translate([0, -0.8, 0]) rotate([90, 0, 0]) part_a2();
-    color([0.55, 0.46, 0.40]) translate([0, -1.6, 0]) rotate([90, 0, 0]) part_a3(d = 6, h = 9);
-    color([0.45, 0.30, 0.18]) translate([0, -2.2, 0]) rotate([0, 0, 0]) part_a4(w = 9, d = 6, h = 9, bore_d = 5);
-}
-
-module a8_subassembly() {
-    color([0.45, 0.30, 0.18]) part_a10();
-    color([0.52, 0.43, 0.34]) translate([0, 0, 2]) part_a9();
-    color([0.25, 0.25, 0.25]) translate([6, 0, 3.5]) rotate([90, 0, 0]) part_a8();
-    color([0.25, 0.25, 0.25]) translate([-6, 0, 3.5]) rotate([90, 0, 0]) part_a8();
-}
-
-module a1_gear_assembly() {
-    // Central shaft and left disc.
-    color([0.45, 0.30, 0.18]) translate([0, 0, 0]) rotate([0, 90, 0]) cylinder(d = 11, h = 76, center = false);
-    color([0.45, 0.30, 0.18]) translate([-4, 0, 0]) rotate([0, 90, 0]) cylinder(d = 125, h = 2, center = true);
-
-    // Right-side mount cluster.
-    color([0.45, 0.30, 0.18]) translate([64, -4, -8]) part_a7();
-    color([0.38, 0.30, 0.22]) translate([78, 0, 0]) rotate([0, 90, 0]) part_a6();
-    color([0.28, 0.23, 0.20]) translate([89, 0, 0]) rotate([0, 90, 0]) part_a5();
-    color([0.45, 0.30, 0.18]) translate([95, -5, -7]) part_a4();
-
-    // Gear cluster nose.
-    color([0.45, 0.30, 0.18]) translate([104, 0, 0]) rotate([0, 90, 0]) part_a1(body_d = 30, thickness = 2, bore_d = 4, spoke_count = 0);
 }
 
 module drw001_sheet1() {
@@ -89,13 +52,21 @@ module drw001_sheet1() {
 
     // Three-view layout similar to source.
     // Top-left perspective.
-    translate([68, 182, 18]) rotate([0, 0, 0]) scale([0.62, 0.62, 0.62]) a1_gear_assembly();
+    translate([68, 182, 18])
+        scale([0.62, 0.62, 0.62])
+            drw001_a1_gear_assembly();
 
     // Top-right face-on disc with center mechanism.
-    translate([260, 178, 16]) rotate([90, 0, 0]) scale([0.72, 0.72, 0.72]) a8_subassembly();
+    translate([260, 178, 16])
+        rotate([90, 0, 0])
+            scale([0.72, 0.72, 0.72])
+                drw001_a8_subassembly();
 
     // Bottom-left oblique.
-    translate([108, 67, 18]) rotate([35, 0, 20]) scale([0.72, 0.72, 0.72]) a1_gear_assembly();
+    translate([108, 67, 18])
+        rotate([35, 0, 20])
+            scale([0.72, 0.72, 0.72])
+                drw001_a1_gear_assembly();
 }
 
 

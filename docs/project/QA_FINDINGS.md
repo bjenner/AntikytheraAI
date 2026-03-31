@@ -22,13 +22,13 @@ Active QA findings captured during review so they do not get lost in chat histor
 - Confidence: high
 - Next action: none for note cleanup; any remaining work belongs under sheet fidelity/composition review
 
-- Status: open
+- Status: resolved
 - Scope: DRW-001 sheet reuse / maintainability
 - File: `scad/assemblies/DRW-001-A-Assembly/drw001_sheet1.scad`
 - Issue: Sheet 1 duplicates assembly geometry locally via `a1_subassembly()`, `a8_subassembly()`, and `a1_gear_assembly()` instead of reusing the existing DRW-001 reusable assembly modules.
 - Evidence: local helper modules in `drw001_sheet1.scad` recreate the same assembly structures that already exist in `drw001_a1_subassembly.scad`, `drw001_a8_subassembly.scad`, and `drw001_a1_gear_assembly.scad`
 - Confidence: high
-- Next action: replace the local assembly helpers in Sheet 1 with the reusable DRW-001 assembly modules, then recheck the sheet composition
+- Next action: none for reuse cleanup; review Sheet 1 composition visually against the source layout after the module swap
 
 - Status: open
 - Scope: DRW-001 sheet reuse / maintainability
@@ -45,3 +45,11 @@ Active QA findings captured during review so they do not get lost in chat histor
 - Evidence: `drw001_sheet6.scad` passes `drw001_a8_subassembly(a8_hole_z = 200)` even though the reusable subassembly comment describes `a8_hole_z` as the A8 pin cross-hole center measured from the axle bottom face; the DRW-001 Sheet 6 source shows a compact A8/A9/A10 cluster, not a pin offset by hundreds of millimeters
 - Confidence: high
 - Next action: remove the extreme override or replace it with a drawing-based value once the A8 subassembly is corrected, then recheck Sheet 6 composition
+
+- Status: open
+- Scope: DRW-001 metadata synchronization
+- File: `ref/meta/parts_list.csv`
+- Issue: `parts_list.csv` contains reconciled rows for `a1..a10` and `a12`, but no row for `a11` even though the current DRW-001 sheet/model references still include `a11`.
+- Evidence: DRW-001 rows exist in `ref/meta/parts_list.csv` for `a1`, `a2`, `a3`, `a4`, `a5`, `a6`, `a7`, `a8`, `a9`, `a10`, and `a12`, but no `a11` row is present
+- Confidence: high
+- Next action: decide whether `a11` remains a distinct tracked part or is fully retired in favor of the `a12` interpretation, then update `parts_list.csv` and the DRW-001 sheets consistently
