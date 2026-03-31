@@ -46,10 +46,10 @@ Active QA findings captured during review so they do not get lost in chat histor
 - Confidence: high
 - Next action: none for the internal-override fix; review Sheet 6 composition visually and adjust outer placement only if the page still needs tuning
 
-- Status: open
+- Status: resolved
 - Scope: DRW-001 metadata synchronization
 - File: `ref/meta/parts_list.csv`
-- Issue: `parts_list.csv` contains reconciled rows for `a1..a10` and `a12`, but no row for `a11` even though the current DRW-001 sheet/model references still include `a11`.
-- Evidence: DRW-001 rows exist in `ref/meta/parts_list.csv` for `a1`, `a2`, `a3`, `a4`, `a5`, `a6`, `a7`, `a8`, `a9`, `a10`, and `a12`, but no `a11` row is present
+- Issue: DRW-001 metadata needed an explicit decision on whether `a11` remained a distinct tracked part or should be folded into `a12`.
+- Evidence: the DRW-001 source set provides dimensioned geometry for the flat link tracked as `a12`, while no separate confirmed `a11` part definition has been found in project sources
 - Confidence: high
-- Next action: decide whether `a11` remains a distinct tracked part or is fully retired in favor of the `a12` interpretation, then update `parts_list.csv` and the DRW-001 sheets consistently
+- Next action: none; project policy is now explicit that all DRW-001 references to `a11` should be treated as `a12`, and `parts_list.csv` should continue tracking only `a12`
