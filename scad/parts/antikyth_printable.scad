@@ -7,7 +7,7 @@
 $fn = 180;
 
 // --------- What to generate ----------
-PART = "a1";  // "a1","a2","a3","a4","a5","a6","a7","a8","a9","a10","a11","a12","all"
+PART = "a1";  // "a1","a2","a3","a4","a5","a6","a7","a8","a9","a10","a12","all"
 
 // --------- Print tolerance controls ----------
 /*
@@ -67,18 +67,6 @@ module part_a10(
         translate([0,0,-0.5])
             linear_extrude(height=t+1.0)
                 obround_2d(L=slot_len, W=2*slot_end_r);
-    }
-}
-
-// -----------------------------
-// a11: Gear lock ring / split lock washer
-// Aligned with the active DRW-001 `a11_gear_lock.scad` interpretation.
-// -----------------------------
-module part_a11(od=18.0, id=9.0, th=1.5, gap_w=2.0) {
-    difference() {
-        cylinder(d=od, h=th, center=false);
-        translate([0,0,-0.5]) cylinder(d=id, h=th+1.0, center=false);
-        translate([0,-gap_w/2,-0.5]) cube([od/2 + 1, gap_w, th + 1.0], center=false);
     }
 }
 
@@ -285,7 +273,6 @@ module render_part(name) {
     else if (name=="a8") part_a8();
     else if (name=="a9") part_a9();
     else if (name=="a10") part_a10();
-    else if (name=="a11") part_a11();
     else if (name=="a12") part_a12();
     else if (name=="all") {
         // layout for batch exporting (spaced out)
@@ -297,7 +284,6 @@ module render_part(name) {
         translate([-40,-40,0]) part_a2();
         translate([  0,-40,0]) part_a5();
         translate([ 40,-40,0]) part_a12();
-        translate([  0,-65,0]) part_a11();
         translate([ 60,-65,0]) part_a8();
         translate([ 70,-65,0]) part_a8();
     }

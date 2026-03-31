@@ -12,7 +12,7 @@ use <../../parts/DRW-001-A-Assembly/a7_block.scad>
 use <../../parts/DRW-001-A-Assembly/a8_rivet_pin.scad>
 use <../../parts/DRW-001-A-Assembly/a9_axle.scad>
 use <../../parts/DRW-001-A-Assembly/a10_disc.scad>
-use <../../parts/DRW-001-A-Assembly/a11_gear_lock.scad>
+use <../../parts/DRW-001-A-Assembly/a12_link.scad>
 use <../../parts/DRW-005-Common-Parts/cpr5_rivet.scad>
 use <../../parts/DRW-005-Common-Parts/cpf5_fork.scad>
 use <../../parts/DRW-005-Common-Parts/cpf6_fork.scad>
@@ -67,7 +67,7 @@ module parts_table(x = 290, y = 185) {
         translate([x + 38, y + 96]) text("FILE NAME", size = 2.6);
         translate([x + 98, y + 96]) text("MATERIAL", size = 2.6);
 
-        // Rows (abbreviated same IDs as source).
+        // Rows use the project interpretation, not the known Sheet 2 source mislabel.
         items = [
             ["a1","1","a1 cut.ipt","Bronze"],
             ["a2","1","a1 Gear washer.ipt","Bronze"],
@@ -79,7 +79,7 @@ module parts_table(x = 290, y = 185) {
             ["a8","1","a1 handle pin.ipt","Bronze"],
             ["a9","1","a1 Axle.ipt","Bronze"],
             ["a10","1","a1 crank inner.ipt","Bronze"],
-            ["a11","1","b1 Gear Lock.ipt","Bronze"],
+            ["a12","1","a12 link.ipt","Bronze"],
             ["cp-r5","1","CP Rivet 3D 3.6L.ipt","Bronze"],
             ["cp-f5","1","CP Fork 3W 12D 17L 12T.ipt","Bronze"],
             ["cp-f6","1","CP Fork 3W 10D 6L 10T.ipt","Bronze"]
@@ -143,7 +143,7 @@ module drw001_sheet2() {
     color([0.28, 0.23, 0.20]) translate([274, 136, 18]) rotate([0, 90, 0]) part_a2();
     color([0.45, 0.30, 0.18]) translate([292, 136, 18]) rotate([0, 90, 0]) part_a1(body_d = 30, thickness = 2, bore_d = 4, spoke_count = 0);
     // Remaining listed hardware parts (lower callouts).
-    color([0.30, 0.24, 0.20]) translate([222, 92, 18]) rotate([90, 0, -12]) part_a11();
+    color([0.30, 0.24, 0.20]) translate([219, 92, 18]) rotate([90, 0, -12]) part_a12();
     color([0.38, 0.30, 0.22]) translate([201, 88, 18]) rotate([90, 0, 0]) part_cpr5();
 
     // Callouts (IDs visible in source sheet).
@@ -160,7 +160,7 @@ module drw001_sheet2() {
     callout("a2", [274, 136], [274, 186], [266, 230]);
     callout("a1", [292, 136], [294, 185], [286, 230]);
     callout("cp-r5", [201, 88], [198, 74], [194, 60]);
-    callout("a11", [222, 92], [230, 73], [232, 60]);
+    callout("a12", [219, 92], [230, 73], [232, 60]);
 }
 
 

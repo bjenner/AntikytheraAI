@@ -24,8 +24,9 @@
 
 ### Sheet 2 (`drw001_sheet2`)
 - Intent: parts list and exploded positioning
-- Modeled parts used: `a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, cp-r5, cp-f5, cp-f6`
-- Notes: sheet now instantiates dedicated `a11` and CP part modules instead of stand-in geometry.
+- Modeled parts used: `a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a12, cp-r5, cp-f5, cp-f6`
+- Notes: the Sheet 2 source callout appears to mislabel the flat link part as `a11`; project interpretation should treat that item as `a12`.
+- Notes: no separate dimensioned or standalone source for a distinct `a11` part has been found in the DRW-001 source set.
 
 ### Sheet 3 (`drw001_sheet3`)
 - Intent: `a1` to `b1` gear clearance diagram
@@ -71,7 +72,6 @@ Dimensions below are the current default parameters in each part file (mm).
 | `a8` | `scad/parts/DRW-001-A-Assembly/a8_rivet_pin.scad` | `pin_d=3.0`, `pin_h=11.0` |
 | `a9` | `scad/parts/DRW-001-A-Assembly/a9_axle.scad` | `body_d=14.0`, `body_h=32.0`, `upper_d=8.8`, `upper_h=11.4`, `bottom_core_d=9.0`, `bottom_pin_d=3.0`, `bottom_pin_h=3.0` |
 | `a10` | `scad/parts/DRW-001-A-Assembly/a10_disc.scad` | `od=111`, `th=2`, `center_hole_d=9` |
-| `a11` | `scad/parts/DRW-001-A-Assembly/a11_gear_lock.scad` | `od=18.0`, `id=9.0`, `th=1.5`, `gap_w=2.0` |
 | `a12` | `scad/parts/DRW-001-A-Assembly/a12_link.scad` | `th=1.0`; `c2c=19.5`, `hole_d=3.0`, `r_left=5.0`, `r_right=2.5`, `shoulder_r=4.5`, tapered left tab |
 
 ### Part Status Notes
@@ -87,7 +87,7 @@ Dimensions below are the current default parameters in each part file (mm).
 - The `a1`-to-`a6` locking detail remains unresolved: Sheet 7 shows the `a1` subassembly engaging `a6`, but the project does not yet identify a confirmed separate locking hardware part for the `a3` slot / `a6` interface.
 - The `a6`-to-`a8` fit is currently inconsistent in the modeled defaults: Sheet 7 calls for a tight friction fit, but the present part files use `a6.id=8.0` and `a9.upper_d=8.8`, so the assembly cannot yet represent that fit faithfully. Leave the current parts and assembly placement as-is for now and defer the fit reconciliation to a later correction pass.
 - `a7` has a known unfinished top feature: the current top post is only a simplified baseline, and the intended top slot/groove details are not yet modeled; defer this to the later part-correction pass.
-- `a11` remains semantically uncertain: the active DRW-001 project treats it as a lock ring / gear lock tied to `b1 Gear Lock.ipt` on Sheet 2, while the Sheet 5 dimensioned part is currently modeled and tracked as `a12`.
+- DRW-001 currently has no confirmed distinct `a11` part. The flat link shown on Sheet 2 is treated as a source mislabel that should map to `a12`, and no separate `a11` detail drawing has been found.
 
 ## Cross-Sheet Part Coverage
 
@@ -103,7 +103,6 @@ Dimensions below are the current default parameters in each part file (mm).
 | `a8` | `1,2,6,7` |
 | `a9` | `1,2,6,7` |
 | `a10` | `1,2,6,7` |
-| `a11` | `2` |
 | `a12` | `2,5` |
 
 ### Non-A parts used in DRW-001 assemblies
@@ -115,7 +114,7 @@ Dimensions below are the current default parameters in each part file (mm).
 | `cp-f6` | `scad/parts/DRW-005-Common-Parts/cpf6_fork.scad` | `2` |
 
 ## Rough Gaps To Resolve (next pass)
-- Sheet 2 dedicated-part gap is resolved (`a11`, `cp-r5`, `cp-f5`, `cp-f6` now instantiated from part files).
+- Keep future DRW-001 review work aligned with the current interpretation that the Sheet 2 `a11` callout is a source mislabel for `a12`, unless contradictory source evidence appears.
 - `a1` spoke-loop warning is resolved: `part_a1()` now guards `spoke_count <= 0`, removing prior `nan/-inf` rotate warnings in DRW-001 exports.
 - Sheets 3 and 4 are drawing-primitives only; decide whether any features should reference existing part modules for consistency.
 - Several sheet views override part dimensions inline (for presentation). Confirm whether these should be standardized to part defaults or documented as view-only scaling/placeholder dimensions.

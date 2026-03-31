@@ -140,7 +140,7 @@ module drw001_sheet6() {
     }
     color("black") translate([23, 72, 0]) linear_extrude(height = th) label("a7", sz = 3.0);
     color("black") translate([134, 107, 0]) linear_extrude(height = th) label("a9 rivet to a10", sz = 2.7);
-    color("black") translate([157, 112, 0]) linear_extrude(height = th) label("a10 rivet to a11", sz = 2.7);
+    color("black") translate([157, 112, 0]) linear_extrude(height = th) label("a10 rivet to a12", sz = 2.7);
     color("black") translate([282, 115, 0]) linear_extrude(height = th) label("a10", sz = 3.0);
 }
 

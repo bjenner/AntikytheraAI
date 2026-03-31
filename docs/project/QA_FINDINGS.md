@@ -6,21 +6,21 @@ Active QA findings captured during review so they do not get lost in chat histor
 
 ### DRW-001
 
-- Status: open
-- Scope: DRW-001 part quality pass
-- File: `scad/parts/DRW-001-A-Assembly/a11_gear_lock.scad`
-- Issue: `a11` is modeled as a split ring / c-clip style part, but the source drawing shows a flat lever/link-like lock piece.
-- Evidence: `ref/drawings/DRW-001-A-Assembly/a_page02.png` exploded view callout for `a11`
+- Status: resolved
+- Scope: DRW-001 source-label reconciliation
+- File: `scad/assemblies/DRW-001-A-Assembly/drw001_sheet2.scad`
+- Issue: DRW-001 Sheet 2 appears to mislabel the existing link part as `a11`; the source set does not provide evidence for a distinct `a11` part, and the callout should be treated as `a12`.
+- Evidence: `ref/drawings/DRW-001-A-Assembly/a_page02.png` labels the flat link-like part as `a11`, while `ref/drawings/DRW-001-A-Assembly/a_page05.png` provides the matching dimensioned link geometry tracked in-project as `a12`; no separate `a11` drawing/detail has been found
 - Confidence: high
-- Next action: remodel `a11` to match the source silhouette and assembly role, then recheck its use on the DRW-001 assembly sheets
+- Next action: none for label reconciliation; keep future DRW-001 review notes aligned with the `a12` interpretation
 
-- Status: open
-- Scope: DRW-001 assembly reuse / sheet fidelity
+- Status: resolved
+- Scope: DRW-001 assembly note cleanup
 - File: `scad/assemblies/DRW-001-A-Assembly/drw001_a8_subassembly.scad`
-- Issue: `drw001_a8_subassembly()` declares `(a8, a9, a10, a11)` and imports `a11`, but it never places `part_a11()`.
-- Evidence: module header and imports in `scad/assemblies/DRW-001-A-Assembly/drw001_a8_subassembly.scad`, plus the DRW-001 source sheets show `a11` associated with the A8/A10 side assembly
+- Issue: The reusable A8 subassembly previously referenced a nonexistent `a11`; the code has been reconciled to the project interpretation and should now be reviewed only for layout/fidelity, not missing-part placement.
+- Evidence: `scad/assemblies/DRW-001-A-Assembly/drw001_a8_subassembly.scad` now declares only `(a8, a9, a10)`, matching the current interpretation that the mislabelled link belongs to `a12`
 - Confidence: high
-- Next action: place `a11` in the reusable A8 subassembly once the `a11` geometry is corrected, then recheck Sheets 2, 6, and 7
+- Next action: none for note cleanup; any remaining work belongs under sheet fidelity/composition review
 
 - Status: open
 - Scope: DRW-001 sheet reuse / maintainability

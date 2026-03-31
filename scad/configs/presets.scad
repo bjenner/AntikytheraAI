@@ -4,10 +4,10 @@
 // Uncomment one mode line and edit the IDs or numbers to match what you want to preview.
 //
 // Single part:
-//mode = "part_a1";
+//mode = "part_a12";
 //
 // Drawing sheet:
-//mode = "drw001_sheet3";
+mode = "drw001_sheet2";
 //
 // Drawing-specific subassembly:
 //mode = "drw001_a1_subassembly";
@@ -32,7 +32,7 @@
 //mode = "assembly";
 //mode = "exploded";
 //mode = "animate";
-mode = "drw004_e4_compare";
+//mode = "drw004_e4_compare";
 quality = "preview";      // "preview" or "render"
 exploded_gap = 0;         // mm offset used by exploded views
 spin_turns = 4;            // revolutions completed per animation cycle

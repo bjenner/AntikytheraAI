@@ -1,11 +1,10 @@
-// DRW-001 reusable A8 subassembly (a8, a9, a10, a11).
+// DRW-001 reusable A8 subassembly (a8, a9, a10).
 // Centered on the main axle axis at origin for reuse in sheet scenes.
 // SPDX-License-Identifier: MIT
 
 use <../../parts/DRW-001-A-Assembly/a8_rivet_pin.scad>
 use <../../parts/DRW-001-A-Assembly/a9_axle.scad>
 use <../../parts/DRW-001-A-Assembly/a10_disc.scad>
-use <../../parts/DRW-001-A-Assembly/a11_gear_lock.scad>
 
 module drw001_a8_subassembly(
     a10_th = 3.0,
