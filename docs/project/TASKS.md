@@ -37,22 +37,22 @@
 - [x] Ensure sheet files reuse part modules and do not duplicate part geometry.
 
 ### 4) Metadata synchronization
-- [ ] Confirm `drawing_index.csv` row `DRW-001` has:
+- [x] Confirm `drawing_index.csv` row `DRW-001` has:
   - `scad_status=complete`
   - `scad_sheets_done="1,2,3,4,5,6,7"`
-- [ ] Confirm `parts_list.csv` contains stable rows for `a`-series IDs used in `DRW-001`.
-- [ ] Add/update `scad_file=...` evidence for updated/added entries.
+- [x] Confirm `parts_list.csv` contains stable rows for `a`-series IDs used in `DRW-001`.
+- [x] Add/update `scad_file=...` evidence for updated/added entries.
 
 ### 5) QA gate
-- [ ] Run OpenSCAD compile checks for changed a-series parts (`__LIB_MODE__=1`).
-- [ ] Run OpenSCAD compile checks for all 7 `drw001_sheetX` modes.
-- [ ] Validate no broken mode routing for `DRW-001` in `main.scad` and `presets.scad`.
+- [x] Run OpenSCAD compile checks for changed a-series parts (`__LIB_MODE__=1`).
+- [x] Run OpenSCAD compile checks for all 7 `drw001_sheetX` modes.
+- [x] Validate no broken mode routing for `DRW-001` in `main.scad` and `presets.scad`.
 
 ## Definition of done for Milestone C
-- [ ] All seven `DRW-001` sheets render from their own files and via `main.scad` modes.
-- [ ] `DRW-001` routing and mode declarations are in strict numeric order everywhere.
-- [ ] `a`-series parts used by `DRW-001` pass compile checks.
-- [ ] Metadata rows for `DRW-001` and its parts are consistent and traceable.
+- [x] All seven `DRW-001` sheets render from their own files and via `main.scad` modes.
+- [x] `DRW-001` routing and mode declarations are in strict numeric order everywhere.
+- [x] `a`-series parts used by `DRW-001` pass compile checks.
+- [x] Metadata rows for `DRW-001` and its parts are consistent and traceable.
 - [ ] Checkpoint commit created.
 
 ## Commit cadence (for this milestone)
